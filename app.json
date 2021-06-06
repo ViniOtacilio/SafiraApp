@@ -1,0 +1,12 @@
+{
+  "name": "SafiraFront",
+  "displayName": "SafiraFront",
+  "expo": {
+    "name": "SafiraFront",
+    "slug": "SafiraFront",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
