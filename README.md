@@ -1,6 +1,6 @@
 # Como inicializar o projeto?
 
-Para iniciar o projeto você precisa instalar o aplicativo Expo no seu celular!
+Para iniciar o projeto você precisa instalar o aplicativo Expo no seu celular.
 
 Dentro da pasta SafiraFront, rode o comando:
 
