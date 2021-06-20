@@ -1,6 +1,4 @@
 import React from 'react';
-import {  StyleSheet, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import { Container, Title, Input, Label, InputBox, Link, ButtonLogin } from './styles';
 
 const Login = () => {
@@ -21,6 +19,5 @@ const Login = () => {
       </Container>
     );
   };
-
 
 export default Login;

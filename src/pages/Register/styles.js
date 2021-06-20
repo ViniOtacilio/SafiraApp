@@ -28,16 +28,10 @@ export const Input = styled.TextInput`
     background: #FAFAFF;
 `;
 
-export const Link = styled.Text`
-    color: #E4D9FF;
-    margin: 10px 0;
-`;
-
-export const ButtonLogin = styled.Button`
+export const Button = styled.Button`
     color: #30343F;
     background: #FAFAFF;
     border-radius: 5px;
     width: 100px;
     margin-top: 30px;
 `;
-
