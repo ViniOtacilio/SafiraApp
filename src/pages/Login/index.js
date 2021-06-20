@@ -1,23 +1,26 @@
 import React from 'react';
 import {  StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-
+import { Container, Title, Input, Label, InputBox, Link, ButtonLogin } from './styles';
 
 const Login = () => {
     return (
-      <View style={styles.container}>
-        <Text>Safira</Text>
-        <StatusBar style="auto" />
-      </View>
+      <Container>
+        <Title>$AFIRA</Title>
+        <InputBox>
+          <Label>E-mail:</Label>
+          <Input></Input>
+        </InputBox>
+        <InputBox>
+          <Label>Senha:</Label>
+          <Input></Input>
+        </InputBox>
+        <Link>Criar Conta</Link>
+        <Link>Esqueci minha senha</Link>
+        <ButtonLogin title="Entrar"></ButtonLogin>
+      </Container>
     );
   };
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#4181ba',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-});
+
 
 export default Login;
