@@ -8,30 +8,36 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-    color: #E4D9FF;
+    color: #FAFAFF;
     font-size: 40px;
     margin: 0 0 40px;
 `;
 
 export const InputBox = styled.View`
     flex-direction: row;
-    padding: 20px 0;
-    width: 65%;
+    padding: 12px 0;
+    width: 80%;
     justify-content: space-between;
-`;
-
-export const Label = styled.Text`
-    color: #FAFAFF;
 `;
 
 export const Input = styled.TextInput`
     background: #FAFAFF;
+    height: 44px;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 18px;
 `;
 
-export const Button = styled.Button`
+export const Button = styled.TouchableOpacity`
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
     color: #30343F;
-    background: #FAFAFF;
-    border-radius: 5px;
-    width: 100px;
+    background: #E4D9FF;
+    border-radius: 4px;
+    width: 80%;
     margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
 `;

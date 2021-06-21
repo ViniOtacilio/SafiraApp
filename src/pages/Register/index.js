@@ -6,22 +6,18 @@ const Register = () => {
       <Container>
         <Title>Criar Conta</Title>
         <InputBox>
-          <Label>Nome:</Label>
-          <Input></Input>
+          <Input placeholder="Nome"></Input>
         </InputBox>
         <InputBox>
-          <Label>E-mail:</Label>
-          <Input></Input>
+          <Input placeholder="E-mail"></Input>
         </InputBox>
         <InputBox>
-          <Label>Senha:</Label>
-          <Input></Input>
+          <Input placeholder="Senha"></Input>
         </InputBox>
         <InputBox>
-          <Label>Confirmar senha:</Label>
-          <Input></Input>
+          <Input placeholder="Confirmar senha"></Input>
         </InputBox>
-        <Button title="Criar"></Button>
+        <Button>Criar</Button>
       </Container>
     );
   };

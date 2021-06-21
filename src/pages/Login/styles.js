@@ -8,24 +8,26 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-    color: #E4D9FF;
+    color: #FAFAFF;
     font-size: 40px;
     margin: 0 0 40px;
 `;
 
 export const InputBox = styled.View`
     flex-direction: row;
-    padding: 20px 0;
-    width: 65%;
+    padding: 12px 0;
+    width: 80%;
     justify-content: space-between;
-`;
-
-export const Label = styled.Text`
-    color: #FAFAFF;
+    align-items: center;
 `;
 
 export const Input = styled.TextInput`
-    background: #FAFAFF;
+    background: #FAFAFF; 
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 18px;
 `;
 
 export const Link = styled.Text`
@@ -33,11 +35,15 @@ export const Link = styled.Text`
     margin: 10px 0;
 `;
 
-export const ButtonLogin = styled.Button`
+export const Button = styled.TouchableOpacity`
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
     color: #30343F;
-    background: #FAFAFF;
-    border-radius: 5px;
-    width: 100px;
+    background: #E4D9FF;
+    border-radius: 4px;
+    width: 80%;
     margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
 `;
-
