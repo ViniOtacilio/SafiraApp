@@ -7,10 +7,18 @@ export const Container = styled.View`
     justify-content: center;
 `;
 
+export const HeaderBox = styled.Text`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 40px;
+    width: 80%;
+`;
+
 export const Title = styled.Text`
     color: #FAFAFF;
     font-size: 40px;
-    margin: 0 0 40px;
+    margin-left: 20px;
 `;
 
 export const InputBox = styled.View`

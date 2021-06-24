@@ -1,10 +1,15 @@
 import React from 'react';
-import { Container, Title, Input, Label, InputBox, Button } from './styles';
+import { Container, HeaderBox, Title, Input, InputBox, Button } from './styles';
+import { AntDesign } from '@expo/vector-icons';
 
-const Register = () => {
+const Register = ({ navigation }) => {
     return (
       <Container>
-        <Title>Criar Conta</Title>
+        <HeaderBox>
+          <AntDesign name="arrowleft" size={30} color="#FAFAFF" onPress={ () => navigation.navigate('Login') } />
+          <Title>Criar Conta</Title>
+          <Title></Title>
+        </HeaderBox>
         <InputBox>
           <Input placeholder="Nome"></Input>
         </InputBox>
