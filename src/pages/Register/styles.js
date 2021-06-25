@@ -37,16 +37,19 @@ export const Input = styled.TextInput`
     font-size: 18px;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const ButtonText = styled.Text`
     text-align: center;
-    height: 44px;
-    line-height: 44px;
+    height: 40px;
+    line-height: 40px;
+    color: #FAFAFF;
+    font-size: 20px;
+    font-weight: bold;
+`;
+
+export const Button = styled.TouchableOpacity`
     background: transparent;
     border: 1px solid #FAFAFF;
-    color: #FAFAFF;
     border-radius: 4px;
     width: 80%;
     margin-top: 30px;
-    font-size: 20px;
-    font-weight: bold;
 `;
