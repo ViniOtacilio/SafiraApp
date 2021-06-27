@@ -7,10 +7,18 @@ export const Container = styled.View`
     justify-content: center;
 `;
 
+export const HeaderBox = styled.Text`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 40px;
+    width: 80%;
+`;
+
 export const Title = styled.Text`
     color: #FAFAFF;
     font-size: 40px;
-    margin: 0 0 40px;
+    margin-left: 20px;
 `;
 
 export const InputBox = styled.View`
@@ -29,15 +37,19 @@ export const Input = styled.TextInput`
     font-size: 18px;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const ButtonText = styled.Text`
     text-align: center;
-    height: 44px;
-    line-height: 44px;
-    color: #30343F;
-    background: #E4D9FF;
+    height: 40px;
+    line-height: 40px;
+    color: #FAFAFF;
+    font-size: 20px;
+    font-weight: bold;
+`;
+
+export const Button = styled.TouchableOpacity`
+    background: transparent;
+    border: 1px solid #FAFAFF;
     border-radius: 4px;
     width: 80%;
     margin-top: 30px;
-    font-size: 22px;
-    font-weight: bold;
 `;
