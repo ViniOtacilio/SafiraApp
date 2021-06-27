@@ -11,6 +11,7 @@ const Login = ({ navigation }) => {
   if(!Fonts) {
     return <AppLoading />
   }
+
   return (
     <Container>
       <Title style={ Styles.Title }>$AFIRA</Title>
@@ -24,7 +25,7 @@ const Login = ({ navigation }) => {
         Criar Conta
       </Link>
       <Button>
-        <ButtonText style={ Styles.Button }>Entrar</ButtonText>
+        <ButtonText onPress= { () => navigation.navigate('Dashboard')}style={ Styles.Button }>Entrar</ButtonText>
       </Button>
     </Container>
   );

@@ -1,12 +1,32 @@
 import React, { Component } from "react";
-import { Container, HeaderBox, Title, Input, InputBox, ButtonText, Button } from './styles';
+import {
+  Container,
+  HeaderBox,
+  Title,
+  Input,
+  InputBox,
+  ButtonText,
+  Button,
+} from "./styles";
 import APIKit from "../../utils/APIKit";
-import { AntDesign } from '@expo/vector-icons';
-import {  useFonts, Roboto_100Thin, Roboto_100Thin_Italic, Roboto_300Light,  Roboto_300Light_Italic,  Roboto_400Regular,  
-  Roboto_400Regular_Italic,  Roboto_500Medium, Roboto_500Medium_Italic,  Roboto_700Bold,  Roboto_700Bold_Italic,
-  Roboto_900Black, Roboto_900Black_Italic } from '@expo-google-fonts/roboto';
-import { AppLoading } from 'expo';
-import { StyleSheet } from 'react-native';
+import { AntDesign } from "@expo/vector-icons";
+import {
+  useFonts,
+  Roboto_100Thin,
+  Roboto_100Thin_Italic,
+  Roboto_300Light,
+  Roboto_300Light_Italic,
+  Roboto_400Regular,
+  Roboto_400Regular_Italic,
+  Roboto_500Medium,
+  Roboto_500Medium_Italic,
+  Roboto_700Bold,
+  Roboto_700Bold_Italic,
+  Roboto_900Black,
+  Roboto_900Black_Italic,
+} from "@expo-google-fonts/roboto";
+import { AppLoading } from "expo";
+import { StyleSheet } from "react-native";
 
 const initialState = {
   name: "",
@@ -70,15 +90,20 @@ class Register extends Component {
   render() {
     return (
       <Container>
-             <HeaderBox>
-         <AntDesign name="arrowleft" size={30} color="#FAFAFF" onPress={ () => this.props.navigation.navigate('Login') } />
-         <Title style={ Styles.Title }>Criar Conta</Title>
-         <Title></Title>
-       </HeaderBox>
+        <HeaderBox>
+          <AntDesign
+            name="arrowleft"
+            size={30}
+            color="#FAFAFF"
+            onPress={() => this.props.navigation.navigate("Login")}
+          />
+          <Title style={Styles.Title}>Criar Conta</Title>
+          <Title></Title>
+        </HeaderBox>
         {/* <Title>Criar Conta</Title> */}
         <InputBox>
           <Input
-            style={ Styles.Container }
+            style={Styles.Container}
             placeholder="Nome"
             value={this.state.name}
             autoCapitalize="none"
@@ -88,7 +113,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            style={ Styles.Container }
+            style={Styles.Container}
             placeholder="E-mail"
             value={this.state.email}
             autoCapitalize="none"
@@ -98,7 +123,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            style={ Styles.Container }
+            style={Styles.Container}
             placeholder="Senha"
             value={this.state.password}
             autoCapitalize="none"
@@ -108,7 +133,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            style={ Styles.Container }
+            style={Styles.Container}
             placeholder="Confirmar senha"
             value={this.state.passwordRepeated}
             autoCapitalize="none"
@@ -119,11 +144,14 @@ class Register extends Component {
         {/* <Button
         onPress={this.onPressLogin.bind(this)}
         >Criar</Button> */}
-       <ButtonText 
-       style={ Styles.Button }
-       onPress={this.onPressLogin.bind(this)}
-       >Criar</ButtonText>
-
+        <Button>
+          <ButtonText
+            style={Styles.Button}
+            onPress={this.onPressLogin.bind(this)}
+          >
+            Criar
+          </ButtonText>
+        </Button>
       </Container>
     );
   }
@@ -131,17 +159,15 @@ class Register extends Component {
 
 const Styles = StyleSheet.create({
   Title: {
-    fontFamily: "Roboto_400Regular"
+    fontFamily: "Roboto_400Regular",
   },
   Container: {
-    fontFamily: "Roboto_100Thin"
+    fontFamily: "Roboto_100Thin",
   },
   Button: {
-    fontFamily: "Roboto_300Light"
-  }
+    fontFamily: "Roboto_300Light",
+  },
 });
-
-
 
 // const Register = ({ navigation }) => {
 //   const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
