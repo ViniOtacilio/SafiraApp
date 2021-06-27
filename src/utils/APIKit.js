@@ -4,7 +4,7 @@ import { API_URL } from '@env'
 
 // Create axios client, pre-configured with baseURL
 let APIKit = axios.create({
-  baseURL: 'http://localhost:3333/api',
+  baseURL: 'http://localhost:3333/',
   timeout: 10000,
 });
 

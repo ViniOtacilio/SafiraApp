@@ -7,6 +7,7 @@ import {
   InputBox,
   ButtonText,
   Button,
+  Text
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { AntDesign } from "@expo/vector-icons";
@@ -26,7 +27,7 @@ import {
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 import { AppLoading } from "expo";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const initialState = {
   name: "",
@@ -34,6 +35,7 @@ const initialState = {
   password: "",
   repeatedPassword: "",
   errors: {},
+  errorState: false,
   isAuthorized: false,
   // isLoading: false,
 };
@@ -62,24 +64,28 @@ class Register extends Component {
   onPressLogin() {
     const { name, email, password, passwordRepeated } = this.state;
     const payload = { name, email, password, passwordRepeated };
-    console.log(payload);
+    // console.log(payload);
+    this.setState({errorState: false});
 
     const onSuccess = ({ data }) => {
       // Set JSON Web Token on success
       // setClientToken(data.token);
-      console.log(data);
+      // console.log(data);
+      this.props.navigation.navigate("Dashboard");
       // this.setState({isLoading: false, isAuthorized: true});
     };
 
     const onFailure = (error) => {
-      console.log(error && error.response);
-      this.setState({ errors: error.response.data });
+      // console.log("A partir daqui é erro :")
+      // console.log(error && error.response);
+      // this.setState({ errors: error.response.data });
+      this.setState({ errorState: true });
     };
 
     // Show spinner when call is made
     // this.setState({isLoading: true});
 
-    APIKit.post("/users/register", payload).then(onSuccess).catch(onFailure);
+    APIKit.post("/api/users/register", payload).then(onSuccess).catch(onFailure);
   }
 
   // const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
@@ -100,7 +106,6 @@ class Register extends Component {
           <Title style={Styles.Title}>Criar Conta</Title>
           <Title></Title>
         </HeaderBox>
-        {/* <Title>Criar Conta</Title> */}
         <InputBox>
           <Input
             style={Styles.Container}
@@ -141,9 +146,6 @@ class Register extends Component {
             onChangeText={this.onPasswordRepeatedChange}
           ></Input>
         </InputBox>
-        {/* <Button
-        onPress={this.onPressLogin.bind(this)}
-        >Criar</Button> */}
         <Button>
           <ButtonText
             style={Styles.Button}
@@ -152,6 +154,11 @@ class Register extends Component {
             Criar
           </ButtonText>
         </Button>
+        {this.state.errorState && (
+          <View>
+            <Text>Erro no Cadastro</Text>
+          </View>
+        )}
       </Container>
     );
   }

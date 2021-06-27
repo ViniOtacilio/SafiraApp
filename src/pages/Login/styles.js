@@ -51,3 +51,13 @@ export const Button = styled.TouchableOpacity`
     width: 80%;
     margin-top: 30px;
 `;
+
+export const Text = styled.Text`
+  background: #FAFAFF;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 20px;    
+`;
