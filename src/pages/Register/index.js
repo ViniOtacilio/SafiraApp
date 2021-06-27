@@ -97,13 +97,11 @@ class Register extends Component {
             color="#FAFAFF"
             onPress={() => this.props.navigation.navigate("Login")}
           />
-          <Title style={Styles.Title}>Criar Conta</Title>
-          <Title></Title>
+          <Title>  Criar Conta</Title>
         </HeaderBox>
         {/* <Title>Criar Conta</Title> */}
         <InputBox>
           <Input
-            style={Styles.Container}
             placeholder="Nome"
             value={this.state.name}
             autoCapitalize="none"
@@ -113,7 +111,6 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            style={Styles.Container}
             placeholder="E-mail"
             value={this.state.email}
             autoCapitalize="none"
@@ -123,7 +120,6 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            style={Styles.Container}
             placeholder="Senha"
             value={this.state.password}
             autoCapitalize="none"
@@ -133,7 +129,6 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            style={Styles.Container}
             placeholder="Confirmar senha"
             value={this.state.passwordRepeated}
             autoCapitalize="none"
@@ -146,7 +141,6 @@ class Register extends Component {
         >Criar</Button> */}
         <Button>
           <ButtonText
-            style={Styles.Button}
             onPress={this.onPressLogin.bind(this)}
           >
             Criar

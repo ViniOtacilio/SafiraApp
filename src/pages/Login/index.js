@@ -7,25 +7,25 @@ import { AppLoading } from 'expo';
 import { StyleSheet } from 'react-native';
 
 const Login = ({ navigation }) => {
-  const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
-  if(!Fonts) {
-    return <AppLoading />
-  }
+  //const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
+  //if(!Fonts) {
+    //return <AppLoading />
+  //}
 
   return (
     <Container>
-      <Title style={ Styles.Title }>$AFIRA</Title>
+      <Title>$AFIRA</Title>
       <InputBox>
-        <Input placeholder="E-mail" style={ Styles.Container }></Input>
+        <Input placeholder="E-mail"></Input>
       </InputBox>
       <InputBox>
-        <Input placeholder="Senha" style={ Styles.Container }></Input>
+        <Input placeholder="Senha"></Input>
       </InputBox>
-      <Link onPress={ () => navigation.navigate('Register') } style={ Styles.Container }>
+      <Link onPress={ () => navigation.navigate('Register') }>
         Criar Conta
       </Link>
       <Button>
-        <ButtonText onPress= { () => navigation.navigate('Dashboard')}style={ Styles.Button }>Entrar</ButtonText>
+        <ButtonText onPress= { () => navigation.navigate('Dashboard')}>Entrar</ButtonText>
       </Button>
     </Container>
   );

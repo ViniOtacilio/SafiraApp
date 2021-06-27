@@ -10,9 +10,9 @@ export const Container = styled.View`
 export const HeaderBox = styled.Text`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0 0 40px;
-    width: 80%;
+    width: 70%;
 `;
 
 export const Title = styled.Text`
