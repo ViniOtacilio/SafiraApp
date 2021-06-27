@@ -7,7 +7,8 @@ import {
   InputBox,
   ButtonText,
   Button,
-  Text
+  Text,
+  ErrorText,
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { AntDesign } from "@expo/vector-icons";
@@ -150,7 +151,7 @@ class Register extends Component {
         </Button>
         {this.state.errorState && (
           <View>
-            <Text>Erro no Cadastro</Text>
+            <ErrorText>Erro no Cadastro</ErrorText>
           </View>
         )}
       </Container>
