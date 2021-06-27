@@ -8,6 +8,7 @@ import {
   ButtonText,
   Button,
   Text,
+  ErrorText
 } from "./styles";
 import {
   useFonts,
@@ -91,11 +92,10 @@ class Login extends Component {
   render() {
     return (
       <Container>
-        <Title style={Styles.Title}>$AFIRA</Title>
+        <Title>$AFIRA</Title>
         <InputBox>
           <Input
             placeholder="E-mail"
-            style={Styles.Container}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -105,7 +105,6 @@ class Login extends Component {
         <InputBox>
           <Input
             placeholder="Senha"
-            style={Styles.Container}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -114,21 +113,19 @@ class Login extends Component {
         </InputBox>
         <Link
           onPress={() => this.props.navigation.navigate("Register")}
-          style={Styles.Container}
         >
           Criar Conta
         </Link>
         <Button>
           <ButtonText
             onPress={this.onPressLogin.bind(this)}
-            style={Styles.Button}
           >
             Entrar
           </ButtonText>
         </Button>
         {this.state.errorState && (
           <View>
-            <Text>Erro no Login</Text>
+            <ErrorText>Erro no Login</ErrorText>
           </View>
         )}
       </Container>

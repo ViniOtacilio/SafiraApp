@@ -63,3 +63,13 @@ export const Text = styled.Text`
     text-align: center;
     margin-left: 20px;    
 `;
+
+export const ErrorText = styled.Text`
+    background: transparent;
+    color: red;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;     
+`;
