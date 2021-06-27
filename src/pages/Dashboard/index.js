@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import {
   Container,
   HeaderBox,
-  Title,
-  Input,
-  InputBox,
-  ButtonText,
-  Button,
   Text
 } from "./styles";
 import APIKit from "../../utils/APIKit";
@@ -33,20 +28,14 @@ class Dashboard extends Component {
   render() {
     return (
       <Container>
-        {/* <AntDesign
-            name="arrowleft"
-            size={30}
-            color="#FAFAFF"
-            onPress={() => this.props.navigation.navigate("Login")}
-          />
-        <Text>Usuário Logado</Text> */}
-        <HeaderBox>
         <AntDesign
             name="arrowleft"
             size={30}
             color="#FAFAFF"
             onPress={() => this.props.navigation.navigate("Login")}
           />
+        <HeaderBox>
+        
             <Text> Usuário Logado</Text>
         </HeaderBox>
       </Container>
