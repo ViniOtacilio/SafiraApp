@@ -104,6 +104,7 @@ class Login extends Component {
         </InputBox>
         <InputBox>
           <Input
+            secureTextEntry={true}
             placeholder="Senha"
             value={this.state.password}
             autoCapitalize="none"

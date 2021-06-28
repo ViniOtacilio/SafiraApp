@@ -126,6 +126,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
+            secureTextEntry={true}
             placeholder="Senha"
             value={this.state.password}
             autoCapitalize="none"
@@ -135,6 +136,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
+            secureTextEntry={true}
             placeholder="Confirmar senha"
             value={this.state.passwordRepeated}
             autoCapitalize="none"
