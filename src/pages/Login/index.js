@@ -128,6 +128,12 @@ class Login extends Component {
             <ErrorText>Erro no Login</ErrorText>
           </View>
         )}
+
+        <Link
+          onPress={() => this.props.navigation.navigate("Dashboard")}
+        >
+          dashboard
+        </Link>
       </Container>
     );
   }
