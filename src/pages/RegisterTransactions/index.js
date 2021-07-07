@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import {
   Container,
-  DashboardHeader,
-  UserBox,
-  Title, 
-  Text
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { 
-  SimpleLineIcons, 
-  Ionicons, 
-  FontAwesome 
 } from '@expo/vector-icons';
 import {
   useFonts,
@@ -30,20 +23,10 @@ import {
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 
-class Dashboard extends Component {
+class RegisterTransactions extends Component {
   render() {
     return (
       <Container>
-        <DashboardHeader>
-          <UserBox>
-            <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
-            <Title>Olá, Fulano!</Title>
-          </UserBox>
-          <SimpleLineIcons name="menu" size={24} color="#FAFAFF" />
-        </DashboardHeader>
-        <Text>Saldo: R$5.000,00</Text>
-        <Ionicons name="ios-add-circle-outline" size={44} color="#FAFAFF" style={{textAlign: 'center'}} 
-          onPress={() => this.props.navigation.navigate("RegisterTransactions")}/>
       </Container>
     );
   }
@@ -61,4 +44,4 @@ const Styles = StyleSheet.create({
   },
 });
 
-export default Dashboard;
+export default RegisterTransactions;

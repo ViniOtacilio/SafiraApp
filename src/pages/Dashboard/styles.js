@@ -4,18 +4,32 @@ export const Container = styled.View`
     flex: 1;
     background: #1E2749;
     padding: 60px 20px;
+    justify-content: space-between;
 `;
 
-export const HeaderBox = styled.Text`
-    display: flex;
-    align-items: center;
+export const DashboardHeader = styled.View`
+    flex: 1;
+    background: #1E2749;
+    flex-direction: row;
     justify-content: space-between;
-    margin: auto;
+    max-height: 30px;
+`;
+
+export const UserBox = styled.View`
+    display: flex;
+    flex-direction: row;
+    max-height: 30px;
+`;
+
+export const Title = styled.Text`
+    color: #FAFAFF;
+    font-size: 20px;
+    margin: 0 8px;
 `;
 
 export const Text = styled.Text`
-    background: transparent;
-    color: #FAFAFF;
-    font-size: 18px;
-    text-align: center;  
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center; 
+    color: #FAFAFF; 
 `;
