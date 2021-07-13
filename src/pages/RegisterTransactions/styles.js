@@ -45,7 +45,7 @@ export const Input = styled.TextInput`
     margin: 0 auto;
 `;
 
-export const SwitchSelectBox = styled.View`
+export const SelectBox = styled.View`
     width: 80%;
     margin: 0 auto;
 `;

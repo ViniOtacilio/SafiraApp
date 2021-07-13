@@ -6,7 +6,7 @@ import {
   Title, 
   Text,
   Input,
-  SwitchSelectBox
+  SelectBox
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { 
@@ -34,6 +34,7 @@ import {
   FontAwesome,
 } from '@expo/vector-icons';
 import SwitchSelector from "react-native-switch-selector";
+import RNPickerSelect from 'react-native-picker-select';
 
 class RegisterTransactions extends Component {
   render() {
@@ -49,7 +50,7 @@ class RegisterTransactions extends Component {
         <Text>
           Saldo: R$5000,00
         </Text>
-        <SwitchSelectBox>
+        <SelectBox>
           <SwitchSelector
             initial={0}
             onPress={value => this.setState({ entrance_exit: value })}
@@ -65,7 +66,7 @@ class RegisterTransactions extends Component {
             borderRadius={4}
             fontSize={18}
           />
-        </SwitchSelectBox>
+        </SelectBox>
         <Input
             placeholder="Valor"
         ></Input>
@@ -75,7 +76,35 @@ class RegisterTransactions extends Component {
         <Input
             placeholder="Data"
         ></Input>
-        <SwitchSelectBox>
+        <SelectBox>
+          <RNPickerSelect
+              onValueChange={(value) => console.log(value)}
+              items={[
+                  { label: 'Saúde', value: 'saude' },
+                  { label: 'Baseball', value: 'baseball' },
+                  { label: 'Hockey', value: 'hockey' },
+              ]}
+              placeholder={{ label: "Selecione a categoria...", value: "categoria" }}
+              style={{
+                inputAndroid: {
+                  backgroundColor: '#FAFAFF',
+                  borderRadius: '4px',
+                  height: '40px',
+                },
+                inputIOS: {
+                  backgroundColor: '#FAFAFF',
+                  borderWidth: '4px',
+                  height: '40px',
+                },
+                iconContainer: {
+                  top: 5,
+                  right: 15,
+                },
+              }}
+          />
+        </SelectBox>
+        
+        <SelectBox>
           <SwitchSelector
             initial={0}
             onPress={value => this.setState({ release: value })}
@@ -91,7 +120,7 @@ class RegisterTransactions extends Component {
             borderRadius={4}
             fontSize={18}
           />
-        </SwitchSelectBox>
+        </SelectBox>
         <SimpleLineIcons name="check"  size={44} color="#FAFAFF" style={{textAlign: 'center', cursor: 'pointer'}}  />
       </Container>
     );
