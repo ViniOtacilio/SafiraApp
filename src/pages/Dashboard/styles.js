@@ -33,3 +33,35 @@ export const Text = styled.Text`
     text-align: center; 
     color: #FAFAFF; 
 `;
+
+export const HistoricBox = styled.ScrollView`
+    display: flex;
+    flex-direction: column;
+    background: #FAFAFF;
+    width: 80%;
+    max-height: 350px;
+    margin: 0 auto;
+    border-radius: 4px;
+    padding: 8px;
+`;
+
+export const HistoricItem = styled.View`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    border-radius: 4px;
+    margin: 20px 0;
+`;
+
+export const HistoricTextBox = styled.View`
+
+`;
+
+export const HistoricTextTitle = styled.Text`
+    font-weight: bold;
+`;
+
+export const HistoricText = styled.Text`
+
+`;
