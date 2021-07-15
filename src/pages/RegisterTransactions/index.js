@@ -4,6 +4,8 @@ import {
   Header,
   UserBox,
   Title, 
+  BalanceBox,
+  BalanceBoxIcon,
   Text,
   Input,
   SelectBox
@@ -32,6 +34,7 @@ import {
   SimpleLineIcons, 
   Ionicons, 
   FontAwesome,
+  AntDesign
 } from '@expo/vector-icons';
 import SwitchSelector from "react-native-switch-selector";
 import RNPickerSelect from 'react-native-picker-select';
@@ -47,9 +50,20 @@ class RegisterTransactions extends Component {
           </UserBox>
           <SimpleLineIcons name="menu" size={24} color="#FAFAFF" />
         </Header>
-        <Text>
-          Saldo: R$5000,00
-        </Text>
+        <BalanceBox>
+          <BalanceBoxIcon>
+            <AntDesign
+              name="arrowleft"
+              size={30}
+              color="#FAFAFF"
+              onPress={() => this.props.navigation.navigate("Dashboard")}
+            />
+          </BalanceBoxIcon>
+          <Text>
+            Saldo: R$5000,00
+          </Text>
+          <BalanceBoxIcon></BalanceBoxIcon>
+        </BalanceBox>
         <SelectBox>
           <SwitchSelector
             initial={0}
@@ -88,13 +102,23 @@ class RegisterTransactions extends Component {
               style={{
                 inputAndroid: {
                   backgroundColor: '#FAFAFF',
-                  borderRadius: '4px',
-                  height: '40px',
+                  paddingTop: 8,
+                  paddingBottom: 8,
+                  paddingLeft: 8,
+                  paddingRight: 8,
+                  fontSize: 18,
+                  borderRadius: 4,
+                  height: 40,
                 },
                 inputIOS: {
                   backgroundColor: '#FAFAFF',
-                  borderWidth: '4px',
-                  height: '40px',
+                  paddingTop: 8,
+                  paddingBottom: 8,
+                  paddingLeft: 8,
+                  paddingRight: 8,
+                  fontSize: 18,
+                  borderRadius: 4,
+                  height: 40,
                 },
                 iconContainer: {
                   top: 5,

@@ -27,11 +27,25 @@ export const Title = styled.Text`
     margin: 0 8px;
 `;
 
+export const BalanceBox = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+`;
+
+export const BalanceBoxIcon = styled.View`
+    align-self: flex-start;
+`;
+
 export const Text = styled.Text`
     font-size: 24px;
     font-weight: bold;
     text-align: center; 
     color: #FAFAFF; 
+    align-self: center;
 `;
 
 export const Input = styled.TextInput`
