@@ -63,3 +63,13 @@ export const SelectBox = styled.View`
     width: 80%;
     margin: 0 auto;
 `;
+
+export const ErrorText = styled.Text`
+    background: transparent;
+    color: red;
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;   
+`;

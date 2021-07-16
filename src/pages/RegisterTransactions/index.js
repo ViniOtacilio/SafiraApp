@@ -8,26 +8,12 @@ import {
   BalanceBoxIcon,
   Text,
   Input,
-  SelectBox
+  SelectBox,
+  ErrorText
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { 
 } from '@expo/vector-icons';
-import {
-  useFonts,
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic,
-} from "@expo-google-fonts/roboto";
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 import { 
@@ -39,7 +25,80 @@ import {
 import SwitchSelector from "react-native-switch-selector";
 import RNPickerSelect from 'react-native-picker-select';
 
+const initialState = {
+  value: "",
+  tipo_de_transacao: "entrada",
+  categoriaid: "",
+  titulo_lancamento: "",
+  data_lancamento: "",
+  comentario: "",
+  errors: {},
+  errorState: false,
+  isAuthorized: false,
+};
+
+
 class RegisterTransactions extends Component {
+  state = initialState;
+
+  componentWillUnmount() {}
+
+  componentDidMount() {
+    console.log(this.state);
+  }
+
+  onValueChange = (value) => {
+    this.setState({ value });
+  };
+
+  onTypeOfTransactionChange = (tipo_de_transacao) => {
+    this.setState({ tipo_de_transacao });
+  };
+
+  onCategoryIdChange = (categoriaid) => {
+    this.setState({ categoriaid });
+  };
+
+  onTitleReleaseChange = (titulo_lancamento) => {
+    this.setState({ titulo_lancamento });
+  };
+
+  onDateReleaseChange = (data_lancamento) => {
+    this.setState({ data_lancamento });
+  };
+
+  onCommentChange = (comentario) => {
+    this.setState({ comentario });
+  };
+
+  onPressSave() {
+    const { value, tipo_de_transacao, categoriaid, titulo_lancamento, data_lancamento, comentario } = this.state;
+    const userid = 135;
+    const payload = { value, tipo_de_transacao, categoriaid, titulo_lancamento, data_lancamento, comentario };
+    console.log(payload);
+    this.setState({errorState: false});
+
+    const onSuccess = ({ data }) => {
+      // Set JSON Web Token on success
+      // setClientToken(data.token);
+      // console.log(data);
+      this.props.navigation.navigate("Dashboard");
+      // this.setState({isLoading: false, isAuthorized: true});
+    };
+
+    const onFailure = (error) => {
+      // console.log("A partir daqui é erro :")
+      // console.log(error && error.response);
+      // this.setState({ errors: error.response.data });
+      this.setState({ errorState: true });
+    };
+
+    // Show spinner when call is made
+    // this.setState({isLoading: true});
+
+    APIKit.post("/api/users/novoLancamento", payload).then(onSuccess).catch(onFailure);
+  }
+
   render() {
     return (
       <Container>
@@ -67,7 +126,7 @@ class RegisterTransactions extends Component {
         <SelectBox>
           <SwitchSelector
             initial={0}
-            onPress={value => this.setState({ entrance_exit: value })}
+            onPress={tipo_de_transacao => this.onTypeOfTransactionChange(tipo_de_transacao)}
             textColor={'#E4D9FF'}
             selectedColor={'#30343F'}
             buttonColor={'#E4D9FF'}
@@ -82,21 +141,40 @@ class RegisterTransactions extends Component {
           />
         </SelectBox>
         <Input
+            placeholder="Nome lançamento"
+            value={this.state.titulo_lancamento}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={this.onTitleReleaseChange}
+        ></Input>
+        <Input
             placeholder="Valor"
+            value={this.state.value}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={this.onValueChange}
         ></Input>
         <Input
             placeholder="Descrição"
+            value={this.state.comentario}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={this.onCommentChange}
         ></Input>
         <Input
             placeholder="Data"
+            value={this.state.data_lancamento}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={this.onDateReleaseChange}
         ></Input>
         <SelectBox>
           <RNPickerSelect
-              onValueChange={(value) => console.log(value)}
+              onValueChange={(categoriaid) => this.onCategoryIdChange(categoriaid)}
               items={[
-                  { label: 'Saúde', value: 'saude' },
-                  { label: 'Baseball', value: 'baseball' },
-                  { label: 'Hockey', value: 'hockey' },
+                  { label: 'Saúde', value: '1' },
+                  { label: 'Baseball', value: '2' },
+                  { label: 'Hockey', value: '3' },
               ]}
               placeholder={{ label: "Selecione a categoria...", value: "categoria" }}
               style={{
@@ -128,7 +206,7 @@ class RegisterTransactions extends Component {
           />
         </SelectBox>
         
-        <SelectBox>
+        {/*<SelectBox>
           <SwitchSelector
             initial={0}
             onPress={value => this.setState({ release: value })}
@@ -144,23 +222,16 @@ class RegisterTransactions extends Component {
             borderRadius={4}
             fontSize={18}
           />
-        </SelectBox>
-        <SimpleLineIcons name="check"  size={44} color="#FAFAFF" style={{textAlign: 'center', cursor: 'pointer'}}  />
+          </SelectBox>*/}
+
+        <SimpleLineIcons name="check"  size={44} color="#FAFAFF" style={{textAlign: 'center', cursor: 'pointer'}} 
+          onPress={this.onPressSave.bind(this)} />
+          {this.state.errorState && (
+            <ErrorText>Erro ao criar lançamento</ErrorText>
+          )}
       </Container>
     );
   }
 }
-
-const Styles = StyleSheet.create({
-  Title: {
-    fontFamily: "Roboto_400Regular",
-  },
-  Container: {
-    fontFamily: "Roboto_100Thin",
-  },
-  Button: {
-    fontFamily: "Roboto_300Light",
-  },
-});
 
 export default RegisterTransactions;

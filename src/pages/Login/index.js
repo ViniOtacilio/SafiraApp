@@ -10,21 +10,6 @@ import {
   Text,
   ErrorText
 } from "./styles";
-import {
-  useFonts,
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic,
-} from "@expo-google-fonts/roboto";
 import { AppLoading } from "expo";
 import { StyleSheet, View } from "react-native";
 import APIKit from "../../utils/APIKit";
@@ -36,7 +21,6 @@ const initialState = {
   errors: {},
   errorState: false,
   isAuthorized: false,
-  // isLoading: false,
 };
 
 class Login extends Component {
@@ -84,11 +68,6 @@ class Login extends Component {
     APIKit.post("/users/login", payload).then(onSuccess).catch(onFailure);
   }
 
-  // const Login = ({ navigation }) => {
-  //   const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
-  //   if(!Fonts) {
-  //     return <AppLoading />
-  //   }
   render() {
     return (
       <Container>
@@ -129,27 +108,9 @@ class Login extends Component {
             <ErrorText>Erro no Login</ErrorText>
           </View>
         )}
-
-        <Link
-          onPress={() => this.props.navigation.navigate("Dashboard")}
-        >
-          dashboard
-        </Link>
       </Container>
     );
   }
 }
-
-const Styles = StyleSheet.create({
-  Title: {
-    fontFamily: "Roboto_400Regular",
-  },
-  Container: {
-    fontFamily: "Roboto_100Thin",
-  },
-  Button: {
-    fontFamily: "Roboto_300Light",
-  },
-});
 
 export default Login;
