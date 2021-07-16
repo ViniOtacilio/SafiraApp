@@ -27,10 +27,9 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const initialState = {
   value: "",
-  tipo_de_transacao: "entrada",
+  tipo_de_transacao: "1",
   categoriaid: "",
   titulo_lancamento: "",
-  data_lancamento: "",
   comentario: "",
   errors: {},
   errorState: false,
@@ -72,9 +71,9 @@ class RegisterTransactions extends Component {
   };
 
   onPressSave() {
-    const { value, tipo_de_transacao, categoriaid, titulo_lancamento, data_lancamento, comentario } = this.state;
-    const userid = 135;
-    const payload = { value, tipo_de_transacao, categoriaid, titulo_lancamento, data_lancamento, comentario };
+    const { value, tipo_de_transacao, categoriaid, titulo_lancamento, comentario } = this.state;
+    const user_id = 135;
+    const payload = { value, tipo_de_transacao, user_id, categoriaid, titulo_lancamento, comentario };
     console.log(payload);
     this.setState({errorState: false});
 
@@ -133,8 +132,8 @@ class RegisterTransactions extends Component {
             borderColor={'#E4D9FF'}
             hasPadding
             options={[
-              { label: "Entrada", value: "entrada" }, 
-              { label: "Saída", value: "saida" } 
+              { label: "Entrada", value: "1" }, 
+              { label: "Saída", value: "2" } 
             ]}
             borderRadius={4}
             fontSize={18}
@@ -161,13 +160,13 @@ class RegisterTransactions extends Component {
             autoCorrect={false}
             onChangeText={this.onCommentChange}
         ></Input>
-        <Input
+        {/*<Input
             placeholder="Data"
             value={this.state.data_lancamento}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={this.onDateReleaseChange}
-        ></Input>
+        ></Input>*/}
         <SelectBox>
           <RNPickerSelect
               onValueChange={(categoriaid) => this.onCategoryIdChange(categoriaid)}
