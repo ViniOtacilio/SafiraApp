@@ -24,6 +24,9 @@ const initialState = {
 };
 
 class Login extends Component {
+constructor(props) {
+  super(props)
+}
   state = initialState;
 
   componentWillUnmount() {}
@@ -99,6 +102,7 @@ class Login extends Component {
         <Button>
           <ButtonText
             onPress={this.onPressLogin.bind(this)}
+            testID="loginButton"
           >
             Entrar
           </ButtonText>
