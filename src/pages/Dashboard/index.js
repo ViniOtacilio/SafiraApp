@@ -28,7 +28,7 @@ const initialState = {
 class Dashboard extends Component {
   constructor() {
     super();
-    this.state = { x: [], isAuthenticated: false };
+    this.state = { x: [], isAuthenticated: false, userName: '' };
   }
 
   componentWillUnmount() {}
@@ -39,7 +39,8 @@ class Dashboard extends Component {
       this.props.navigation.navigate("Login"); 
     }
     const onSuccess = ({ data }) => {
-      const value2 = AsyncStorage.getItem("userName");
+      const userName = AsyncStorage.getItem("userName");
+      this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
     };
@@ -54,7 +55,7 @@ class Dashboard extends Component {
         <DashboardHeader>
           <UserBox>
             <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
-            <Title>Olá, Fulano!</Title>
+            <Title>Olá, {this.state.userName}!</Title>
           </UserBox>
           <SimpleLineIcons
             name="menu"
