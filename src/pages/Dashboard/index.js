@@ -28,17 +28,26 @@ const initialState = {
 class Dashboard extends Component {
   constructor() {
     super();
-    this.state = { x: [] };
+    this.state = { x: [], isAuthenticated: false };
   }
 
   componentWillUnmount() {}
+
   componentDidMount() {
+    const value = AsyncStorage.getItem('userId');
+    if (value == null || value == "null"){
+      this.setState({
+        isAuthenticated: false
+        }); 
+        this.props.navigation.navigate("Login"); 
+    } 
+
     const onSuccess = ({ data }) => {
       const value = AsyncStorage.getItem("userId");
       const value2 = AsyncStorage.getItem("userName");
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
-      console.log(value,value2)
+      console.log(value)
     };
     const user_id = 33;
     APIKit.get("/api/users/lancamento/?user_id=" + user_id).then(onSuccess); //.catch(onFailure);

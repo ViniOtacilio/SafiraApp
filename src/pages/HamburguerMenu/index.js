@@ -15,14 +15,28 @@ import {
 } from '@expo/vector-icons';
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class HamburguerMenu extends Component {
   componentWillUnmount() {}
+  
   onPressLogout() {
-    const onSuccess = ({ }) => {
+    console.log('cliquei')
+
+    const onSuccess = () => {
+      try {
+        AsyncStorage.setItem('userId', null);
+        AsyncStorage.setItem('username', null);
+      }
+      catch (e) {
+        console.log(e);
+      }
+      this.props.navigation.navigate("Login");
+      this.setState({isAuthenticated: false});
         console.log('deslogado');
     };
     APIKit.get("/logout").then(onSuccess)//.catch(onFailure);
+
   }
   render() {
     return (
@@ -35,9 +49,9 @@ class HamburguerMenu extends Component {
             <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Dashboard")} />
            </MenuHamburguerHeader>
            <MenuHamburguerBox>
-               <MenuHamburguerItem onPress={() => this.onPressLogout()}>
+               <MenuHamburguerItem>
                     <AntDesign name="logout" size={24} color="#1E2749" />
-                    <Text>Sair</Text>
+                    <Text onPress={this.onPressLogout.bind(this)}>Sair</Text>
                </MenuHamburguerItem>
            </MenuHamburguerBox>
       </Container>
