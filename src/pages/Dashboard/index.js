@@ -33,8 +33,8 @@ class Dashboard extends Component {
 
   componentWillUnmount() {}
 
-  componentDidMount() {
-    const userId = AsyncStorage.getItem("userId");
+  async componentDidMount() {
+    const userId = await AsyncStorage.getItem("userId");
     if(userId == null || userId == "null") {
       this.props.navigation.navigate("Login"); 
     }
@@ -43,7 +43,7 @@ class Dashboard extends Component {
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
     };
-
+    console.log(userId); 
     const user_id = 33;
     APIKit.get("/api/users/lancamento/?user_id=" + user_id).then(onSuccess); //.catch(onFailure);
   }
