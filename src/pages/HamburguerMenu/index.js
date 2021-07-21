@@ -21,7 +21,6 @@ class HamburguerMenu extends Component {
   componentWillUnmount() {}
   
   onPressLogout() {
-    console.log('cliquei')
 
     const onSuccess = () => {
       try {
@@ -31,9 +30,8 @@ class HamburguerMenu extends Component {
       catch (e) {
         console.log(e);
       }
-      this.props.navigation.navigate("Login");
       this.setState({isAuthenticated: false});
-        console.log('deslogado');
+      this.props.navigation.navigate("Login");
     };
     APIKit.get("/logout").then(onSuccess)//.catch(onFailure);
 

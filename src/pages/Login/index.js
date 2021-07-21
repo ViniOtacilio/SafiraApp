@@ -27,26 +27,22 @@ const initialState = {
 
 class Login extends Component {
   state = initialState;
-
-  // componentWillMount(){
-  //   const value = AsyncStorage.getItem('userId');
-  //     if (value !== null){
-  //       this.setState({
-  //       isAuthenticated: true
-  //       }); 
-  //       this.props.navigation.navigate("Dashboard");
-  //     } 
-  //   }
   componentWillUnmount() {}
 
-  componentDidMount() {
-    const value = AsyncStorage.getItem('userId');
-    if (value !== null || value !== "null"){
-      this.setState({
-      isAuthenticated: true
-      }); 
-      this.props.navigation.navigate("Dashboard");
-    } 
+  async componentDidMount() {
+    // this.getUserData();
+    const userId = await AsyncStorage.getItem('userId');
+
+    setTimeout(() => {
+      const { navigate } = this.props.navigation;
+      if(userId == null || userId == "null"){
+          navigate("Login");
+      }
+      else{
+
+          navigate("Dashboard");
+      } 
+  },2000);
   }
 
   onEmailChange = (email) => {

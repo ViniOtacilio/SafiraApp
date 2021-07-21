@@ -34,21 +34,16 @@ class Dashboard extends Component {
   componentWillUnmount() {}
 
   componentDidMount() {
-    const value = AsyncStorage.getItem('userId');
-    if (value == null || value == "null"){
-      this.setState({
-        isAuthenticated: false
-        }); 
-        this.props.navigation.navigate("Login"); 
-    } 
-
+    const userId = AsyncStorage.getItem("userId");
+    if(userId == null || userId == "null") {
+      this.props.navigation.navigate("Login"); 
+    }
     const onSuccess = ({ data }) => {
-      const value = AsyncStorage.getItem("userId");
       const value2 = AsyncStorage.getItem("userName");
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
-      console.log(value)
     };
+
     const user_id = 33;
     APIKit.get("/api/users/lancamento/?user_id=" + user_id).then(onSuccess); //.catch(onFailure);
   }
