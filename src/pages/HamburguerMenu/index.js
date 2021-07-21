@@ -17,6 +17,13 @@ import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 
 class HamburguerMenu extends Component {
+  componentWillUnmount() {}
+  onPressLogout() {
+    const onSuccess = ({ }) => {
+        console.log('deslogado');
+    };
+    APIKit.get("/logout").then(onSuccess)//.catch(onFailure);
+  }
   render() {
     return (
       <Container>
@@ -28,7 +35,7 @@ class HamburguerMenu extends Component {
             <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Dashboard")} />
            </MenuHamburguerHeader>
            <MenuHamburguerBox>
-               <MenuHamburguerItem onPress={() => this.props.navigation.navigate("Dashboard")}>
+               <MenuHamburguerItem onPress={() => this.onPressLogout()}>
                     <AntDesign name="logout" size={24} color="#1E2749" />
                     <Text>Sair</Text>
                </MenuHamburguerItem>

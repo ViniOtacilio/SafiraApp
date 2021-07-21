@@ -54,6 +54,10 @@ class Dashboard extends Component {
             } else {
                data.tipo_de_transacao = 'Saída';
             }
+            if (data.value) {
+              data.value = data.value.replace('.', ",").substring(0, 5);
+              console.log(data.value);
+            }
             return (
               <HistoricItem key={'historic-item-' + index}>
                 <MaterialIcons key={'historic-icon-' +index} name="attach-money" size={32} color="black" />
