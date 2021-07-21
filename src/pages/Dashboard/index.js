@@ -47,6 +47,7 @@ class Dashboard extends Component {
       const value2 = AsyncStorage.getItem("userName");
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
+      console.log('teste do id')
       console.log(value)
     };
     const user_id = 33;
@@ -78,7 +79,6 @@ class Dashboard extends Component {
             }
             if (data.value) {
               data.value = data.value.replace(".", ",").substring(0, 5);
-              console.log(data.value);
             }
             return (
               <HistoricItem key={"historic-item-" + index}>

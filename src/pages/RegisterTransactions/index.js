@@ -106,7 +106,7 @@ class RegisterTransactions extends Component {
             <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
             <Title>Olá, Fulano!</Title>
           </UserBox>
-          <SimpleLineIcons name="menu" size={24} color="#FAFAFF" />
+          <SimpleLineIcons name="menu" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("HamburguerMenu")} />
         </Header>
         <BalanceBox>
           <BalanceBoxIcon>
