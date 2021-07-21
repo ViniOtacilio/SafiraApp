@@ -12,9 +12,14 @@ const normalizeTranslate = {
 }
 
 const getLanguageByDevice = () => {
+  if (Platform.OS == 'web') {
+    return;
+  }
+  else {
   return Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale // Adquire o idioma no device iOS
     : NativeModules.I18nManager.localeIdentifier // Adquire o idioma no device Android
+  }
 }
 
 I18n.translations = {

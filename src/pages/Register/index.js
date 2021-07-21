@@ -15,6 +15,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import { StyleSheet, View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { translate } from '../../locales'
+
 
 
 const initialState = {
@@ -57,13 +59,14 @@ class Register extends Component {
     const onSuccess = ({ data }) => {
       try {
         AsyncStorage.setItem('userId', data.userId);
-        AsyncStorage.setItem('username', data.userName);
+        var value = AsyncStorage.setItem('username', data.userName);
       }
       catch (e) {
         console.log(e);
       }
       this.props.navigation.navigate("Dashboard");
       this.setState({isAuthorized: true});
+      console.log(value);
     };
 
     const onFailure = (error) => {
@@ -102,7 +105,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            placeholder="E-mail"
+            placeholder="{translate('placeholderEmail')}"
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
