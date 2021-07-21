@@ -40,10 +40,24 @@ const initialState = {
 class RegisterTransactions extends Component {
   state = initialState;
 
+  constructor() {
+    super();
+    this.state = { userId: '', isAuthenticated: false, userName: '' };
+  }
+
   componentWillUnmount() {}
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log(this.state);
+    const userId = await AsyncStorage.getItem("userId");
+
+    if(userId == null || userId == "null") {
+      this.props.navigation.navigate("Login"); 
+    } else {
+      this.setState({ userId: userId });
+     // this.setState({ userName: userName });
+      this.setState({ isAuthenticated: true });
+    }
   }
 
   onValueChange = (value) => {
@@ -71,6 +85,8 @@ class RegisterTransactions extends Component {
   };
 
   onPressSave() {
+    console.log('teste do id')
+    console.log(this.state.userId)
     const { value, tipo_de_transacao, categoriaid, titulo_lancamento, comentario } = this.state;
     const user_id = 135;
     const payload = { value, tipo_de_transacao, user_id, categoriaid, titulo_lancamento, comentario };
