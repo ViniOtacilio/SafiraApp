@@ -44,8 +44,8 @@ class Dashboard extends Component {
       this.setState({ x: data });
     };
     console.log(userId); 
-    const user_id = 33;
-    APIKit.get("/api/users/lancamento/?user_id=" + user_id).then(onSuccess); //.catch(onFailure);
+
+    APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess); //.catch(onFailure);
   }
 
   render() {
