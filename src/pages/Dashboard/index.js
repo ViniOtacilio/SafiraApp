@@ -73,7 +73,6 @@ class Dashboard extends Component {
             }
             if (data.value) {
               data.value = data.value.replace(".", ",").substring(0, 5);
-              console.log(data.value);
             }
             return (
               <HistoricItem key={"historic-item-" + index}>
