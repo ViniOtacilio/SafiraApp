@@ -44,6 +44,8 @@ class Dashboard extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
+      console.log(userName);
+      console.log(this.state.userName);
     };
     
     console.log(userId, userName); 
