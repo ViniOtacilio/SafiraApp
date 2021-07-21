@@ -50,12 +50,13 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(this.state.userName);
     return (
       <Container>
         <DashboardHeader>
           <UserBox>
             <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
-            <Title>Olá, {this.state.userName}!</Title>
+            <Title>Olá, FUlano!</Title>
           </UserBox>
           <SimpleLineIcons
             name="menu"
