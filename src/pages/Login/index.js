@@ -11,26 +11,37 @@ import {
   ErrorText
 } from "./styles";
 import { AppLoading } from "expo";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, aSYN } from "react-native";
 import APIKit from "../../utils/APIKit";
 import { render } from "react-dom";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const initialState = {
   email: "",
   password: "",
   errors: {},
   errorState: false,
-  isAuthorized: false,
+  isAuthenticated: false,
 };
 
 class Login extends Component {
   state = initialState;
 
+  componentWillMount(){
+    const value = AsyncStorage.getItem('userId');
+      if (value !== null){
+        this.setState({
+        isAuthenticated: true
+        }); 
+        this.props.navigation.navigate("Dashboard");
+      } 
+    }
   componentWillUnmount() {}
 
-  componentDidMount() {
-    console.log(this.state);
-  }
+  // componentDidMount() {
+    
+  // }
 
   onEmailChange = (email) => {
     this.setState({ email });
@@ -43,19 +54,22 @@ class Login extends Component {
   onPressLogin() {
     const { email, password } = this.state;
     const payload = { email, password };
-    console.log(payload);
     this.setState({ errorState: false });
 
     const onSuccess = ({ data }) => {
-      // Set JSON Web Token on success
-      // setClientToken(data.token);
-      console.log(data);
+      try {
+        AsyncStorage.setItem('userId', data.userId);
+        AsyncStorage.setItem('username', data.userName);
+      }
+      catch (e) {
+        console.log(e);
+      }
+
       this.props.navigation.navigate("Dashboard");
-      // this.setState({isLoading: false, isAuthorized: true});
+      this.setState({isAuthenticated: true});
     };
 
     const onFailure = (error) => {
-      // console.log("A partir daqui é erro :");
       // console.log(error && error.response);
       // this.setState({ errors: error.response.data });
       // this.setState({ errors: "Erro no login" });

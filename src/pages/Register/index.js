@@ -14,6 +14,8 @@ import APIKit from "../../utils/APIKit";
 import { AntDesign } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import { StyleSheet, View } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const initialState = {
   name: "",
@@ -53,11 +55,15 @@ class Register extends Component {
     this.setState({errorState: false});
 
     const onSuccess = ({ data }) => {
-      // Set JSON Web Token on success
-      // setClientToken(data.token);
-      // console.log(data);
+      try {
+        AsyncStorage.setItem('userId', data.userId);
+        AsyncStorage.setItem('username', data.userName);
+      }
+      catch (e) {
+        console.log(e);
+      }
       this.props.navigation.navigate("Dashboard");
-      // this.setState({isLoading: false, isAuthorized: true});
+      this.setState({isAuthorized: true});
     };
 
     const onFailure = (error) => {

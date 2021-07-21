@@ -20,8 +20,19 @@ import {
 } from '@expo/vector-icons';
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const initialState = {
+  isAuthenticated: false,
+};
 class Dashboard extends Component {
+  componentDidMount() {
+    const value = AsyncStorage.getItem('userId');
+    const value2 = AsyncStorage.getItem('userName');
+    this.setState({isAuthenticated: true});
+    console.log(value,value2);
+  }
+
   render() {
     return (
       <Container>
