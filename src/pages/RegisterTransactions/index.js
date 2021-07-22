@@ -24,6 +24,7 @@ import {
 } from '@expo/vector-icons';
 import SwitchSelector from "react-native-switch-selector";
 import RNPickerSelect from 'react-native-picker-select';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialState = {
   value: "",
@@ -187,9 +188,14 @@ class RegisterTransactions extends Component {
           <RNPickerSelect
               onValueChange={(categoriaid) => this.onCategoryIdChange(categoriaid)}
               items={[
-                  { label: 'Saúde', value: '1' },
-                  { label: 'Baseball', value: '2' },
-                  { label: 'Hockey', value: '3' },
+                  { label: 'Moradia', value: '1' },
+                  { label: 'Supermercado', value: '2' },
+                  { label: 'Transporte', value: '3' },
+                  { label: 'Lazer', value: '4' },
+                  { label: 'Saúde', value: '5' },
+                  { label: 'Tv/Internet/Tel', value: '6' },
+                  { label: 'Restaurantes/Delivery', value: '7' },
+                  { label: 'Outros', value: '8' },
               ]}
               placeholder={{ label: "Selecione a categoria...", value: "categoria" }}
               style={{
