@@ -10,42 +10,39 @@ import {
   Text,
   ErrorText
 } from "./styles";
-import {
-  useFonts,
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic,
-} from "@expo-google-fonts/roboto";
 import { AppLoading } from "expo";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, aSYN } from "react-native";
 import APIKit from "../../utils/APIKit";
 import { render } from "react-dom";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const initialState = {
   email: "",
   password: "",
   errors: {},
   errorState: false,
-  isAuthorized: false,
-  // isLoading: false,
+  isAuthenticated: false,
 };
 
 class Login extends Component {
   state = initialState;
-
   componentWillUnmount() {}
 
-  componentDidMount() {
-    console.log(this.state);
+  async componentDidMount() {
+    // this.getUserData();
+    const userId = await AsyncStorage.getItem('userId');
+
+    setTimeout(() => {
+      const { navigate } = this.props.navigation;
+      if(userId == null || userId == "null"){
+          navigate("Login");
+      }
+      else{
+
+          navigate("Dashboard");
+      } 
+  },2000);
   }
 
   onEmailChange = (email) => {
@@ -59,19 +56,22 @@ class Login extends Component {
   onPressLogin() {
     const { email, password } = this.state;
     const payload = { email, password };
-    console.log(payload);
     this.setState({ errorState: false });
 
     const onSuccess = ({ data }) => {
-      // Set JSON Web Token on success
-      // setClientToken(data.token);
-      console.log(data);
+      try {
+        AsyncStorage.setItem('userId', data.userId);
+        AsyncStorage.setItem('username', data.userName);
+      }
+      catch (e) {
+        console.log(e);
+      }
+
       this.props.navigation.navigate("Dashboard");
-      // this.setState({isLoading: false, isAuthorized: true});
+      this.setState({isAuthenticated: true});
     };
 
     const onFailure = (error) => {
-      // console.log("A partir daqui é erro :");
       // console.log(error && error.response);
       // this.setState({ errors: error.response.data });
       // this.setState({ errors: "Erro no login" });
@@ -84,11 +84,6 @@ class Login extends Component {
     APIKit.post("/users/login", payload).then(onSuccess).catch(onFailure);
   }
 
-  // const Login = ({ navigation }) => {
-  //   const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
-  //   if(!Fonts) {
-  //     return <AppLoading />
-  //   }
   render() {
     return (
       <Container>
@@ -104,6 +99,7 @@ class Login extends Component {
         </InputBox>
         <InputBox>
           <Input
+            secureTextEntry={true}
             placeholder="Senha"
             value={this.state.password}
             autoCapitalize="none"
@@ -132,17 +128,5 @@ class Login extends Component {
     );
   }
 }
-
-const Styles = StyleSheet.create({
-  Title: {
-    fontFamily: "Roboto_400Regular",
-  },
-  Container: {
-    fontFamily: "Roboto_100Thin",
-  },
-  Button: {
-    fontFamily: "Roboto_300Light",
-  },
-});
 
 export default Login;

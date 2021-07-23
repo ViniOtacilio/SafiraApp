@@ -12,23 +12,12 @@ import {
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { AntDesign } from "@expo/vector-icons";
-import {
-  useFonts,
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic,
-} from "@expo-google-fonts/roboto";
 import { AppLoading } from "expo";
 import { StyleSheet, View } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { translate } from '../../locales'
+
+
 
 const initialState = {
   name: "",
@@ -38,7 +27,6 @@ const initialState = {
   errors: {},
   errorState: false,
   isAuthorized: false,
-  // isLoading: false,
 };
 
 class Register extends Component {
@@ -69,11 +57,16 @@ class Register extends Component {
     this.setState({errorState: false});
 
     const onSuccess = ({ data }) => {
-      // Set JSON Web Token on success
-      // setClientToken(data.token);
-      // console.log(data);
+      try {
+        AsyncStorage.setItem('userId', data.userId);
+        var value = AsyncStorage.setItem('username', data.userName);
+      }
+      catch (e) {
+        console.log(e);
+      }
       this.props.navigation.navigate("Dashboard");
-      // this.setState({isLoading: false, isAuthorized: true});
+      this.setState({isAuthorized: true});
+      console.log(value);
     };
 
     const onFailure = (error) => {
@@ -88,11 +81,6 @@ class Register extends Component {
 
     APIKit.post("/api/users/register", payload).then(onSuccess).catch(onFailure);
   }
-
-  // const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
-  // if(!Fonts) {
-  //   return <AppLoading />
-  // }
 
   render() {
     return (
@@ -117,7 +105,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            placeholder="E-mail"
+            placeholder="{translate('placeholderEmail')}"
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -126,6 +114,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
+            secureTextEntry={true}
             placeholder="Senha"
             value={this.state.password}
             autoCapitalize="none"
@@ -135,6 +124,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
+            secureTextEntry={true}
             placeholder="Confirmar senha"
             value={this.state.passwordRepeated}
             autoCapitalize="none"
@@ -158,48 +148,5 @@ class Register extends Component {
     );
   }
 }
-
-const Styles = StyleSheet.create({
-  Title: {
-    fontFamily: "Roboto_400Regular",
-  },
-  Container: {
-    fontFamily: "Roboto_100Thin",
-  },
-  Button: {
-    fontFamily: "Roboto_300Light",
-  },
-});
-
-// const Register = ({ navigation }) => {
-//   const Fonts = useFonts({ Roboto_100Thin, Roboto_300Light, Roboto_400Regular });
-//   if(!Fonts) {
-//     return <AppLoading />
-//   }
-//   return (
-//     <Container>
-//       <HeaderBox>
-//         <AntDesign name="arrowleft" size={30} color="#FAFAFF" onPress={ () => navigation.navigate('Login') } />
-//         <Title style={ Styles.Title }>Criar Conta</Title>
-//         <Title></Title>
-//       </HeaderBox>
-//       <InputBox>
-//         <Input placeholder="Nome" style={ Styles.Container }></Input>
-//       </InputBox>
-//       <InputBox>
-//         <Input placeholder="E-mail" style={ Styles.Container }></Input>
-//       </InputBox>
-//       <InputBox>
-//         <Input placeholder="Senha" style={ Styles.Container }></Input>
-//       </InputBox>
-//       <InputBox>
-//         <Input placeholder="Confirmar senha" style={ Styles.Container }></Input>
-//       </InputBox>
-//       <Button>
-//         <ButtonText style={ Styles.Button }>Criar</ButtonText>
-//       </Button>
-//     </Container>
-//   );
-// };
 
 export default Register;
