@@ -51,12 +51,13 @@ class RegisterTransactions extends Component {
   async componentDidMount() {
     console.log(this.state);
     const userId = await AsyncStorage.getItem("userId");
+    const userName = await AsyncStorage.getItem("username");
 
     if(userId == null || userId == "null") {
       this.props.navigation.navigate("Login"); 
     } else {
       this.setState({ userId: userId });
-     // this.setState({ userName: userName });
+      this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
     }
   }
@@ -121,7 +122,7 @@ class RegisterTransactions extends Component {
         <Header>
           <UserBox>
             <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
-            <Title>Olá, Fulano!</Title>
+            <Title>Olá, {this.state.userName}!</Title>
           </UserBox>
           <SimpleLineIcons name="menu" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("HamburguerMenu")} />
         </Header>

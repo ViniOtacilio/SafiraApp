@@ -35,7 +35,7 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     const userId = await AsyncStorage.getItem("userId");
-    const userName = await AsyncStorage.getItem("userName");
+    const userName = await AsyncStorage.getItem("username");
 
     if(userId == null || userId == "null") {
       this.props.navigation.navigate("Login"); 
@@ -44,23 +44,28 @@ class Dashboard extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
-      console.log(userName);
-      console.log(this.state.userName);
     };
-    
-    console.log(userId, userName); 
 
+    //const onSuccessSaldo = ({ data }) => {
+      //this.setState({ userName: userName });
+      //this.setState({ isAuthenticated: true });
+      //this.setState({ x: data });
+      //console.log(userName);
+      //console.log(this.state.userName);
+      //console.log(data);
+    //};
+    
+    //APIKit.get("/api/users/saldo").then(onSuccessSaldo);
     APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess); //.catch(onFailure);
   }
 
   render() {
-    console.log(this.state.userName);
     return (
       <Container>
         <DashboardHeader>
           <UserBox>
             <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
-            <Title>Olá, FUlano!</Title>
+            <Title>Olá, {this.state.userName}!</Title>
           </UserBox>
           <SimpleLineIcons
             name="menu"
