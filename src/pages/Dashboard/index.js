@@ -21,6 +21,7 @@ import {
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { translate } from '../../locales'
 
 const initialState = {
   isAuthenticated: false,
@@ -60,7 +61,7 @@ class Dashboard extends Component {
         <DashboardHeader>
           <UserBox>
             <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
-            <Title>Olá, {this.state.userName}!</Title>
+            <Title>{translate('hello')}, {this.state.userName}!</Title>
           </UserBox>
           <SimpleLineIcons
             name="menu"
@@ -72,8 +73,8 @@ class Dashboard extends Component {
           {this.state.saldo.map((data, index) => {
             data.value = data.value.replace(".", ",");
             var saldo = data.value.split(',');
-            return (
-              <Text key={index}>Saldo: R${saldo[0].concat(',', saldo[1].substring(0,2))}</Text>
+              return (
+                  <Text key={index}>{translate('balance')}: R${saldo[0].concat(',', saldo[1].substring(0, 2))}</Text>
             )
           })}
         <HistoricBox>

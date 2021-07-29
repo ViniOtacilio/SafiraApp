@@ -96,7 +96,7 @@ class Register extends Component {
         </HeaderBox>
         <InputBox>
           <Input
-            placeholder="Nome"
+            placeholder={translate('placeholderName')}
             value={this.state.name}
             autoCapitalize="none"
             autoCorrect={false}
@@ -115,7 +115,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Senha"
+            placeholder={translate('placeholderPassword')}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -125,7 +125,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Confirmar senha"
+            placeholder={translate('placeholderConfirmPassword')}
             value={this.state.passwordRepeated}
             autoCapitalize="none"
             autoCorrect={false}
@@ -141,7 +141,7 @@ class Register extends Component {
         </Button>
         {this.state.errorState && (
           <View>
-            <ErrorText>Erro no Cadastro</ErrorText>
+           <ErrorText>{translate('registrationError')}</ErrorText>
           </View>
         )}
       </Container>
