@@ -28,7 +28,7 @@ const initialState = {
 class Dashboard extends Component {
   constructor() {
     super();
-    this.state = { x: [], isAuthenticated: false, userName: '' };
+    this.state = { x: [], isAuthenticated: false, userName: '', saldo: [] };
   }
 
   componentWillUnmount() {}
@@ -46,17 +46,12 @@ class Dashboard extends Component {
       this.setState({ x: data });
     };
 
-    //const onSuccessSaldo = ({ data }) => {
-      //this.setState({ userName: userName });
-      //this.setState({ isAuthenticated: true });
-      //this.setState({ x: data });
-      //console.log(userName);
-      //console.log(this.state.userName);
-      //console.log(data);
-    //};
+    const onSuccessSaldo = ({ data }) => {
+      this.setState({ saldo: data });
+    };
     
-    //APIKit.get("/api/users/saldo").then(onSuccessSaldo);
-    APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess); //.catch(onFailure);
+    APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
+    APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
   }
 
   render() {
@@ -74,7 +69,13 @@ class Dashboard extends Component {
             onPress={() => this.props.navigation.navigate("HamburguerMenu")}
           />
         </DashboardHeader>
-        <Text>Saldo: R$5.000,00</Text>
+          {this.state.saldo.map((data, index) => {
+            data.value = data.value.replace(".", ",");
+            var saldo = data.value.split(',');
+            return (
+              <Text key={index}>Saldo: R${saldo[0].concat(',', saldo[1].substring(0,2))}</Text>
+            )
+          })}
         <HistoricBox>
           {this.state.x.map((data, index) => {
             if (data.tipo_de_transacao == 1) {
@@ -83,7 +84,8 @@ class Dashboard extends Component {
               data.tipo_de_transacao = "Saída";
             }
             if (data.value) {
-              data.value = data.value.replace(".", ",").substring(0, 5);
+              data.value = data.value.replace(".", ",");
+              var value = data.value.split(',');
             }
             return (
               <HistoricItem key={"historic-item-" + index}>
@@ -98,7 +100,7 @@ class Dashboard extends Component {
                     {data.tipo_de_transacao}
                   </HistoricTextTitle>
                   <HistoricText key={"historic-text-" + index}>
-                    {data.titulo_lancamento + " - " + "R$" + data.value}
+                    {data.titulo_lancamento + " - " + "R$" + value[0].concat(',', value[1].substring(0,2))}
                   </HistoricText>
                 </HistoricTextBox>
               </HistoricItem>
