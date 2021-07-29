@@ -13,7 +13,7 @@ const normalizeTranslate = {
 
 const getLanguageByDevice = () => {
   if (Platform.OS == 'web') {
-    return;
+    return 'pt_BR';
   }
   else {
   return Platform.OS === 'ios'

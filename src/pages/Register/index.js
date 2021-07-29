@@ -92,7 +92,7 @@ class Register extends Component {
             color="#FAFAFF"
             onPress={() => this.props.navigation.navigate("Login")}
           />
-          <Title>  Criar Conta</Title>
+          <Title>Criar Conta</Title>
         </HeaderBox>
         <InputBox>
           <Input
@@ -105,7 +105,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            placeholder="{translate('placeholderEmail')}"
+            placeholder={translate('placeholderEmail')}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
