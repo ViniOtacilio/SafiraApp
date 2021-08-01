@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"; 
 import {
   Container,
   DashboardHeader,
@@ -10,6 +10,7 @@ import {
   HistoricTextBox,
   HistoricTextTitle,
   HistoricText,
+  IconBox
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import {
@@ -29,7 +30,13 @@ const initialState = {
 class Dashboard extends Component {
   constructor() {
     super();
-    this.state = { x: [], isAuthenticated: false, userName: '', saldo: [] };
+    this.state = { x: [], isAuthenticated: false, userName: '', saldo: [], lastRefresh: Date(Date.now()).toString(), shouldUpdate: false};
+    this.refreshScreen = this.refreshScreen.bind(this)
+  }
+
+  refreshScreen() {
+    this.setState({ lastRefresh: Date(Date.now()).toString() });
+    this.setState({ shouldUpdate: true});
   }
 
   componentWillUnmount() {}
@@ -54,6 +61,35 @@ class Dashboard extends Component {
     APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
     APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
   }
+  
+  async componentDidUpdate() {
+  const userId = await AsyncStorage.getItem("userId");
+  const userName = await AsyncStorage.getItem("username");
+  
+
+
+    if(userId == null || userId == "null") {
+      this.props.navigation.navigate("Login"); 
+    }
+    
+    const onSuccess = ({ data }) => {
+      this.setState({ userName: userName });
+      this.setState({ isAuthenticated: true });
+      this.setState({ x: data });
+    };
+
+    const onSuccessSaldo = ({ data }) => {
+      this.setState({ saldo: data });
+    };
+
+    if(this.state.shouldUpdate == true) {
+      console.log('entrou aqui?')
+      APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
+      APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
+      this.setState({ shouldUpdate: false});
+    }
+  }
+
 
   render() {
     return (
@@ -77,7 +113,7 @@ class Dashboard extends Component {
                   <Text key={index}>{translate('balance')}: R${saldo[0].concat(',', saldo[1].substring(0, 2))}</Text>
             )
           })}
-        <HistoricBox>
+      <HistoricBox>
           {this.state.x.map((data, index) => {
             if (data.tipo_de_transacao == 1) {
               data.tipo_de_transacao = "Entrada";
@@ -108,13 +144,22 @@ class Dashboard extends Component {
             );
           })}
         </HistoricBox>
+        <IconBox>
         <Ionicons
           name="ios-add-circle-outline"
           size={44}
           color="#FAFAFF"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "right" }}
           onPress={() => this.props.navigation.navigate("RegisterTransactions")}
         />
+          <Ionicons
+          name="refresh-circle-outline"
+          size={44}
+          color="#FAFAFF"
+          style={{ textAlign: "left" }}
+          onPress={this.refreshScreen}
+        />  
+        </IconBox>
       </Container>
     );
   }

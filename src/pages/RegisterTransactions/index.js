@@ -58,7 +58,7 @@ class RegisterTransactions extends Component {
 
   constructor() {
     super();
-      this.state = { x: [], isAuthenticated: false, userName: '', saldo: [] };
+      this.state = { x: [], isAuthenticated: false, userName: '', saldo: [], shouldUpdate: false };
   }
 
     componentWillUnmount() { }
@@ -106,7 +106,7 @@ class RegisterTransactions extends Component {
     console.log('teste do id')
     console.log(this.state.userId)
     const { value, tipo_de_transacao, categoriaid, titulo_lancamento, comentario } = this.state;
-    const user_id = 135;
+    const user_id = this.state.userId;
     const payload = { value, tipo_de_transacao, user_id, categoriaid, titulo_lancamento, comentario };
     console.log(payload);
     this.setState({errorState: false});
@@ -115,6 +115,8 @@ class RegisterTransactions extends Component {
       // Set JSON Web Token on success
       // setClientToken(data.token);
       // console.log(data);
+      // let shouldUpdate;
+      AsyncStorage.setItem('shouldUpdate', true);
       this.props.navigation.navigate("Dashboard");
       // this.setState({isLoading: false, isAuthorized: true});
     };
@@ -123,6 +125,7 @@ class RegisterTransactions extends Component {
       // console.log("A partir daqui é erro :")
       // console.log(error && error.response);
       // this.setState({ errors: error.response.data });
+      console.log(error);
       this.setState({ errorState: true });
       };
 
@@ -132,7 +135,7 @@ class RegisterTransactions extends Component {
 
     // Show spinner when call is made
     // this.setState({isLoading: true});
-     APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
+    //  APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
      APIKit.post("/api/users/novoLancamento", payload).then(onSuccess).catch(onFailure);
     }
 

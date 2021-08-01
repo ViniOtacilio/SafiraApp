@@ -46,13 +46,13 @@ class Register extends Component {
     this.setState({ password });
   };
 
-  onPasswordRepeatedChange = (passwordRepeated) => {
-    this.setState({ passwordRepeated });
+  onPasswordRepeatedChange = (repeatedPassword) => {
+    this.setState({ repeatedPassword });
   };
 
   onPressLogin() {
-    const { name, email, password, passwordRepeated } = this.state;
-    const payload = { name, email, password, passwordRepeated };
+    const { name, email, password, repeatedPassword } = this.state;
+    const payload = { name, email, password, repeatedPassword };
     // console.log(payload);
     this.setState({errorState: false});
 
@@ -126,7 +126,7 @@ class Register extends Component {
           <Input
             secureTextEntry={true}
             placeholder={translate('placeholderConfirmPassword')}
-            value={this.state.passwordRepeated}
+            value={this.state.repeatedPassword}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={this.onPasswordRepeatedChange}
