@@ -92,11 +92,11 @@ class Register extends Component {
             color="#FAFAFF"
             onPress={() => this.props.navigation.navigate("Login")}
           />
-          <Title>  Criar Conta</Title>
+          <Title>Criar Conta</Title>
         </HeaderBox>
         <InputBox>
           <Input
-            placeholder="Nome"
+            placeholder={translate('placeholderName')}
             value={this.state.name}
             autoCapitalize="none"
             autoCorrect={false}
@@ -105,7 +105,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            placeholder="{translate('placeholderEmail')}"
+            placeholder={translate('placeholderEmail')}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -115,7 +115,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Senha"
+            placeholder={translate('placeholderPassword')}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -125,7 +125,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Confirmar senha"
+            placeholder={translate('placeholderConfirmPassword')}
             value={this.state.passwordRepeated}
             autoCapitalize="none"
             autoCorrect={false}
@@ -141,7 +141,7 @@ class Register extends Component {
         </Button>
         {this.state.errorState && (
           <View>
-            <ErrorText>Erro no Cadastro</ErrorText>
+           <ErrorText>{translate('registrationError')}</ErrorText>
           </View>
         )}
       </Container>

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\locales",
+    "\\src\\pages",
+    "\\src\\pages\\Dashboard",
+    "\\src\\pages\\HamburguerMenu",
+    "\\src\\pages\\Login",
+    "\\src\\pages\\Register",
+    "\\src\\pages\\RegisterTransactions",
+    "\\src\\utils"
+  ],
+  "SelectedNode": "\\src\\pages\\Register\\index.js",
+  "PreviewInSolutionExplorer": false
+}

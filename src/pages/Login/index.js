@@ -15,6 +15,7 @@ import { StyleSheet, View, aSYN } from "react-native";
 import APIKit from "../../utils/APIKit";
 import { render } from "react-dom";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { translate } from '../../locales'
 
 
 const initialState = {
@@ -33,7 +34,7 @@ class Login extends Component {
     // this.getUserData();
     const userId = await AsyncStorage.getItem('userId');
 
-    setTimeout(() => {
+   
       const { navigate } = this.props.navigation;
       if(userId == null || userId == "null"){
           navigate("Login");
@@ -42,7 +43,7 @@ class Login extends Component {
 
           navigate("Dashboard");
       } 
-  },2000);
+ 
   }
 
   onEmailChange = (email) => {
@@ -90,7 +91,7 @@ class Login extends Component {
         <Title>$AFIRA</Title>
         <InputBox>
           <Input
-            placeholder="E-mail"
+            placeholder={translate('placeholderEmail')}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -100,7 +101,7 @@ class Login extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Senha"
+            placeholder={translate('placeholderPassword')}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -120,8 +121,8 @@ class Login extends Component {
           </ButtonText>
         </Button>
         {this.state.errorState && (
-          <View>
-            <ErrorText>Erro no Login</ErrorText>
+                <View>
+                    <ErrorText>{translate('loginError')}</ErrorText>
           </View>
         )}
       </Container>
