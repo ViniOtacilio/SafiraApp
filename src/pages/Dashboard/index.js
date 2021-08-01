@@ -21,14 +21,14 @@ import {
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { translate } from '../../locales'
 
 const initialState = {
   isAuthenticated: false,
 };
-class Dashboard extends Component {
+class DashboardClass extends Component {
   constructor() {
     super();
     this.state = { x: [], isAuthenticated: false, userName: '', saldo: [] };
@@ -58,12 +58,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    useFocusEffect(
-      React.useCallback(() => {
-        console.log('enter');
-        return () => alert('exit');
-      }, []),
-    );
     return (
       <Container>
         <DashboardHeader>
@@ -126,6 +120,24 @@ class Dashboard extends Component {
       </Container>
     );
   }
+}
+
+
+const Dashboard = () => {
+  const navigation = useNavigation();
+  useFocusEffect(
+    React.useCallback(() => {
+      const transactionsUpdate = async () => {
+        const userId = await AsyncStorage.getItem("userId");
+        console.log(userId)
+        console.log('enter');
+     }
+     transactionsUpdate();
+    }, []),
+  );
+  return (
+    <DashboardClass navigation={navigation}></DashboardClass>
+  );
 }
 
 export default Dashboard;
