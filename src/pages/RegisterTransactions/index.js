@@ -106,7 +106,7 @@ class RegisterTransactions extends Component {
     console.log('teste do id')
     console.log(this.state.userId)
     const { value, tipo_de_transacao, categoriaid, titulo_lancamento, comentario } = this.state;
-    const user_id = 135;
+    const user_id = this.state.userId;
     const payload = { value, tipo_de_transacao, user_id, categoriaid, titulo_lancamento, comentario };
     console.log(payload);
     this.setState({errorState: false});
@@ -132,7 +132,7 @@ class RegisterTransactions extends Component {
 
     // Show spinner when call is made
     // this.setState({isLoading: true});
-     APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
+     APIKit.get("/api/users/saldo/?user_id=" + this.state.userId).then(onSuccessSaldo);
      APIKit.post("/api/users/novoLancamento", payload).then(onSuccess).catch(onFailure);
     }
 

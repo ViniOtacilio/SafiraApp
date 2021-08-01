@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import {
   Container,
   DashboardHeader,
@@ -131,12 +131,16 @@ const Dashboard = () => {
         const userId = await AsyncStorage.getItem("userId");
         console.log(userId)
         console.log('enter');
+        const onSuccess = ({ data }) => {
+          console.log(data)
+        };    
+        APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
      }
      transactionsUpdate();
     }, []),
   );
   return (
-    <DashboardClass navigation={navigation}></DashboardClass>
+    <DashboardClass navigation={navigation} ></DashboardClass>
   );
 }
 
