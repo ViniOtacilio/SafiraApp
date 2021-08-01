@@ -21,6 +21,8 @@ import {
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const initialState = {
   isAuthenticated: false,
@@ -55,6 +57,12 @@ class Dashboard extends Component {
   }
 
   render() {
+    useFocusEffect(
+      React.useCallback(() => {
+        console.log('enter');
+        return () => alert('exit');
+      }, []),
+    );
     return (
       <Container>
         <DashboardHeader>
