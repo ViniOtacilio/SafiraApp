@@ -133,8 +133,12 @@ const Dashboard = () => {
         console.log('enter');
         const onSuccess = ({ data }) => {
           console.log(data)
+        }; 
+        const onSuccessSaldo = ({ data }) => {
+          console.log(data)
         };    
         APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
+        APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
      }
      transactionsUpdate();
     }, []),
