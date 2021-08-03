@@ -65,3 +65,8 @@ export const HistoricTextTitle = styled.Text`
 export const HistoricText = styled.Text`
 
 `;
+export const IconBox = styled.View`
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+`;

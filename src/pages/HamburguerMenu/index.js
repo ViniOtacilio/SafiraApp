@@ -16,6 +16,7 @@ import {
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { translate } from '../../locales'
 
 class HamburguerMenu extends Component {
   constructor() {
@@ -67,7 +68,7 @@ class HamburguerMenu extends Component {
            <MenuHamburguerBox>
                <MenuHamburguerItem>
                     <AntDesign name="logout" size={24} color="#1E2749" />
-                    <Text onPress={this.onPressLogout.bind(this)}>Sair</Text>
+                    <Text onPress={this.onPressLogout.bind(this)}>{translate('logOut')}</Text>
                </MenuHamburguerItem>
            </MenuHamburguerBox>
       </Container>

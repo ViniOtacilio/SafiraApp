@@ -46,27 +46,28 @@ class Register extends Component {
     this.setState({ password });
   };
 
-  onPasswordRepeatedChange = (passwordRepeated) => {
-    this.setState({ passwordRepeated });
+  onPasswordRepeatedChange = (repeatedPassword) => {
+    this.setState({ repeatedPassword });
   };
 
-  onPressLogin() {
-    const { name, email, password, passwordRepeated } = this.state;
-    const payload = { name, email, password, passwordRepeated };
+   async onPressLogin() {
+    const { name, email, password, repeatedPassword } = this.state;
+    const payload = { name, email, password, repeatedPassword };
     // console.log(payload);
     this.setState({errorState: false});
 
-    const onSuccess = ({ data }) => {
+    const onSuccess = async ({ data }) => {
       try {
-        AsyncStorage.setItem('userId', data.userId);
-        var value = AsyncStorage.setItem('username', data.userName);
+        console.log(data);
+        let userID = data.userId.toString();
+        await AsyncStorage.setItem('userId', userID);
+         AsyncStorage.setItem('username', data.userName);
       }
       catch (e) {
         console.log(e);
       }
       this.props.navigation.navigate("Dashboard");
       this.setState({isAuthorized: true});
-      console.log(value);
     };
 
     const onFailure = (error) => {
@@ -92,11 +93,11 @@ class Register extends Component {
             color="#FAFAFF"
             onPress={() => this.props.navigation.navigate("Login")}
           />
-          <Title>  Criar Conta</Title>
+          <Title>Criar Conta</Title>
         </HeaderBox>
         <InputBox>
           <Input
-            placeholder="Nome"
+            placeholder={translate('placeholderName')}
             value={this.state.name}
             autoCapitalize="none"
             autoCorrect={false}
@@ -105,7 +106,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            placeholder="{translate('placeholderEmail')}"
+            placeholder={translate('placeholderEmail')}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -115,7 +116,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Senha"
+            placeholder={translate('placeholderPassword')}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -125,8 +126,8 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder="Confirmar senha"
-            value={this.state.passwordRepeated}
+            placeholder={translate('placeholderConfirmPassword')}
+            value={this.state.repeatedPassword}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={this.onPasswordRepeatedChange}
@@ -141,7 +142,7 @@ class Register extends Component {
         </Button>
         {this.state.errorState && (
           <View>
-            <ErrorText>Erro no Cadastro</ErrorText>
+           <ErrorText>{translate('registrationError')}</ErrorText>
           </View>
         )}
       </Container>
