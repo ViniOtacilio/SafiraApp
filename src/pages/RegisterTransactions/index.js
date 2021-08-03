@@ -58,7 +58,7 @@ class RegisterTransactions extends Component {
 
   constructor() {
     super();
-      this.state = { x: [], isAuthenticated: false, userName: '', saldo: [], shouldUpdate: false };
+      this.state = { x: [], isAuthenticated: false, userName: '', saldo: []};
   }
 
     componentWillUnmount() { }
@@ -115,8 +115,6 @@ class RegisterTransactions extends Component {
       // Set JSON Web Token on success
       // setClientToken(data.token);
       // console.log(data);
-      // let shouldUpdate;
-      AsyncStorage.setItem('shouldUpdate', true);
       this.props.navigation.navigate("Dashboard");
       // this.setState({isLoading: false, isAuthorized: true});
     };
@@ -276,7 +274,7 @@ class RegisterTransactions extends Component {
           />
           </SelectBox>*/}
 
-        <SimpleLineIcons name="check"  size={44} color="#FAFAFF" style={{textAlign: 'center', cursor: 'pointer'}} 
+        <SimpleLineIcons name="check"  size={44} color="#FAFAFF" style={{textAlign: 'center'}} 
           onPress={this.onPressSave.bind(this)} />
           {this.state.errorState && (
                 <ErrorText>{translate('transactionError')}</ErrorText>

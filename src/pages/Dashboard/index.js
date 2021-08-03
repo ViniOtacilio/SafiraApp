@@ -30,13 +30,13 @@ const initialState = {
 class Dashboard extends Component {
   constructor() {
     super();
-    this.state = { x: [], isAuthenticated: false, userName: '', saldo: [], lastRefresh: Date(Date.now()).toString(), shouldUpdate: false};
+    this.state = { x: [], isAuthenticated: false, userName: '', saldo: [], lastRefresh: Date(Date.now()).toString(), shouldUpdate: ""};
     this.refreshScreen = this.refreshScreen.bind(this)
   }
 
   refreshScreen() {
     this.setState({ lastRefresh: Date(Date.now()).toString() });
-    this.setState({ shouldUpdate: true});
+    this.setState({ shouldUpdate: "true"});
   }
 
   componentWillUnmount() {}
@@ -82,7 +82,7 @@ class Dashboard extends Component {
       this.setState({ saldo: data });
     };
 
-    if(this.state.shouldUpdate == true) {
+    if(this.state.shouldUpdate == "true") {
       console.log('entrou aqui?')
       APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
       APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
