@@ -37,6 +37,7 @@ class DashboardClass extends Component {
   componentWillUnmount() {}
 
   async componentDidMount() {
+    console.log('teste aq')
     console.log(this.props.transactionsData)
     const userId = await AsyncStorage.getItem("userId");
     const userName = await AsyncStorage.getItem("username");
@@ -126,24 +127,27 @@ class DashboardClass extends Component {
 
 const Dashboard = () => {
   const navigation = useNavigation();
-  const transactionsData = ['teste'];
+  const [transactionsData, setTransactionsData] = useState(0);
   useFocusEffect(
     React.useCallback(() => {
+      setTransactionsData(1)
+      const onSuccess = ({ data }) => {
+        console.log(data)
+      }; 
+      const onSuccessSaldo = ({ data }) => {
+        console.log(data)
+      };  
       const transactionsUpdate = async () => {
         const userId = await AsyncStorage.getItem("userId");
-        console.log(userId)
         console.log('enter');
-        const onSuccess = ({ data }) => {
-          console.log(data)
-        }; 
-        const onSuccessSaldo = ({ data }) => {
-          console.log(data)
-        };    
+        console.log(transactionsData)
         APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
         APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
      }
+     console.log('teste teste')
+     console.log(transactionsData)
      transactionsUpdate();
-    }, transactionsData),
+    }, []),
   );
   return (
     <DashboardClass navigation={navigation} transactionsData={transactionsData} ></DashboardClass>
