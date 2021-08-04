@@ -18,6 +18,7 @@ import {
   Ionicons,
   FontAwesome,
   MaterialIcons,
+  AntDesign
 } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
@@ -91,14 +92,7 @@ class Dashboard extends Component {
     }
   }
 
-
   render() {
-    useFocusEffect(
-      React.useCallback(() => {
-        console.log('enter');
-        return () => alert('exit');
-      }, []),
-    );
     return (
       <Container>
         <DashboardHeader>
@@ -159,7 +153,13 @@ class Dashboard extends Component {
           style={{ textAlign: "right" }}
           onPress={() => this.props.navigation.navigate("RegisterTransactions")}
         />
-          <Ionicons
+        <AntDesign 
+          name="filter" 
+          size={38} 
+          color="#FAFAFF"
+          onPress={() => this.props.navigation.navigate("Filter")} 
+        />
+        <Ionicons
           name="refresh-circle-outline"
           size={44}
           color="#FAFAFF"

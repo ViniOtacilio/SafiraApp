@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import RegisterTransactions from './pages/RegisterTransactions';
 import HamburguerMenu from './pages/HamburguerMenu';
+import Filter from './pages/Filter';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="Dashboard" component={ Dashboard } />
         <Stack.Screen name="RegisterTransactions" component={ RegisterTransactions } />
         <Stack.Screen name="HamburguerMenu" component={ HamburguerMenu } />
+        <Stack.Screen name="Filter" component={ Filter } />
       </Stack.Navigator>
     </NavigationContainer>
   );
