@@ -125,6 +125,11 @@ class Dashboard extends Component {
               data.value = data.value.replace(".", ",");
               var value = data.value.split(',');
             }
+            if (data.data_lancamento) {
+              var formatted_date = data.data_lancamento.split('T');
+              var formatted_date_split = formatted_date[0].split('-');
+              var formatted_date_br = formatted_date_split[2] + '/' + formatted_date_split[1] + '/' + formatted_date_split[0];
+            }
             return (
               <HistoricItem key={"historic-item-" + index}>
                 <MaterialIcons
@@ -135,10 +140,10 @@ class Dashboard extends Component {
                 />
                 <HistoricTextBox key={"historic-text-box-" + index}>
                   <HistoricTextTitle key={"historic-text-title-" + index}>
-                    {data.tipo_de_transacao}
+                    {data.tipo_de_transacao + ' - ' + data.titulo_lancamento}
                   </HistoricTextTitle>
                   <HistoricText key={"historic-text-" + index}>
-                    {data.titulo_lancamento + " - " + "R$" + value[0].concat(',', value[1].substring(0,2))}
+                    {"R$" + value[0].concat(',', value[1].substring(0,2)) + ' - ' + formatted_date_br}
                   </HistoricText>
                 </HistoricTextBox>
               </HistoricItem>
