@@ -226,7 +226,7 @@ class RegisterTransactions extends Component {
                   { label: restaurante, value: '7' },
                   { label: outros, value: '8' },
               ]}
-                    placeholder={{ label: selecioneCtg, value: "categoria" }}
+              placeholder={{ label: selecioneCtg, value: "categoria" }}
               style={{
                 inputAndroid: {
                   backgroundColor: '#FAFAFF',

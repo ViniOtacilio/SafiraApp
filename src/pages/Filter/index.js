@@ -22,7 +22,19 @@ import { StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { translate } from '../../locales'
 
+
+const initialState = {
+  start_date: "",
+  end_date: "",
+  categorias: "",
+  errors: {},
+  errorState: false,
+  isAuthorized: false,
+};
+
 class Filter extends Component {
+  state = initialState;
+
   constructor() {
     super();
     this.state = { userId: '', isAuthenticated: false, userName: '' };
@@ -43,7 +55,30 @@ class Filter extends Component {
     }
   }
   
-  onPressLogout() {
+  onStartDateChange = (start_date) => {
+    this.setState({ start_date });
+  };
+
+  onEndDateChange = (end_date) => {
+    this.setState({ end_date });
+  };
+
+  onCategorysChange = (categorias) => {
+    this.setState({ categorias });
+  };
+
+  onPressFilter() {
+    const { start_date, end_date, categorias } = this.state;
+    this.setState({errorState: false});
+    var userId = this.state.userId;
+    const onSuccess = ({ data }) => {
+      console.log(data);
+      this.props.navigation.navigate("Dashboard");
+    };
+    console.log('teste aqui do filtro')
+    APIKit
+      .get("/api/users/lancamento/?user_id=" + userId + "&start_date=" + start_date + "&end_date=" + end_date + "&categorias=" + categorias)
+      .then(onSuccess);
   }
 
   render() {
@@ -62,6 +97,8 @@ class Filter extends Component {
                     placeholder={'Data Início'}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    value={this.state.start_date}
+                    onChangeText={this.onStartDateChange}
                 ></Input>
             </InputBox>
             <InputBox>
@@ -69,11 +106,13 @@ class Filter extends Component {
                     placeholder={'Data Fim'}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    value={this.state.end_date}
+                    onChangeText={this.onEndDateChange}
                 ></Input>
             </InputBox>
             <SelectBox>
             <RNPickerSelect
-                onValueChange={(categoriaid) => console.log(categoriaid)}
+                onValueChange={(categoriaid) => this.onCategorysChange(categoriaid)}
                 items={[
                     { label: 'moradia', value: '1' },
                     { label: 'supermercado', value: '2' },
@@ -114,7 +153,7 @@ class Filter extends Component {
             />
           </SelectBox>
             <Button>
-              <ButtonText>
+              <ButtonText onPress={this.onPressFilter.bind(this)}>
                 Filtrar
               </ButtonText>
             </Button>   
