@@ -181,7 +181,6 @@ class Filter extends Component {
             </Button>  
             <FilterInfoBox>
             {this.state.filterData.map((data, index) => {
-              console.log(data.value)
               if (data.value) {
                 data.value = data.value.replace(".", ",");
                 var value = data.value.split(',');
@@ -192,7 +191,8 @@ class Filter extends Component {
               if (data.tipo_de_transacao) {
                 if (data.tipo_de_transacao == 1) {
                   data.tipo_de_transacao = "Entrada";
-                } else {
+                } 
+                if (data.tipo_de_transacao == 2) {
                   data.tipo_de_transacao = "Saída";
                 }
               }

@@ -77,7 +77,7 @@ class Dashboard extends Component {
     const onSuccess = ({ data }) => {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
-      this.setState({ x: data });
+      this.setState({ x: data }); 
     };
 
     const onSuccessSaldo = ({ data }) => {
@@ -118,7 +118,8 @@ class Dashboard extends Component {
           {this.state.x.map((data, index) => {
             if (data.tipo_de_transacao == 1) {
               data.tipo_de_transacao = "Entrada";
-            } else {
+            } 
+            if (data.tipo_de_transacao == 2) {
               data.tipo_de_transacao = "Saída";
             }
             if (data.value) {
@@ -136,7 +137,7 @@ class Dashboard extends Component {
                   key={"historic-icon-" + index}
                   name="attach-money"
                   size={32}
-                  color="black"
+                  color="#FAFAFF"
                 />
                 <HistoricTextBox key={"historic-text-box-" + index}>
                   <HistoricTextTitle key={"historic-text-title-" + index}>

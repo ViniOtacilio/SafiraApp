@@ -37,12 +37,13 @@ export const Text = styled.Text`
 export const HistoricBox = styled.ScrollView`
     display: flex;
     flex-direction: column;
-    background: #FAFAFF;
+    background-color: rgb(39, 52, 105);
     width: 80%;
     max-height: 350px;
     margin: 0 auto;
     border-radius: 4px;
     padding: 8px;
+    border: 1px solid #FAFAFF;
 `;
 
 export const HistoricItem = styled.View`
@@ -55,15 +56,16 @@ export const HistoricItem = styled.View`
 `;
 
 export const HistoricTextBox = styled.View`
-
+    
 `;
 
 export const HistoricTextTitle = styled.Text`
     font-weight: bold;
+    color: #FAFAFF;
 `;
 
 export const HistoricText = styled.Text`
-
+    color: #FAFAFF;
 `;
 export const IconBox = styled.View`
     display: flex;
