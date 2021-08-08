@@ -106,8 +106,3 @@ export const FilterTextTitle = styled.Text`
 export const FilterText = styled.Text`
     color: #FAFAFF;
 `;
-
-export const FilterTextBold = styled.Text`
-    color: #FAFAFF;
-    font-weight: bold;
-`;

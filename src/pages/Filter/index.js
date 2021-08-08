@@ -9,7 +9,13 @@ import {
     Input,
     SelectBox,
     Button,
-    ButtonText
+    ButtonText,
+    FilterInfoBox,
+    FilterItem,
+    FilterTextBox,
+    FilterTextTitle,
+    FilterText,
+    FilterTextBold
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import {
@@ -21,6 +27,8 @@ import { AppLoading } from "expo";
 import { StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { translate } from '../../locales'
+import FilterBoxInfo from "../FilterBoxInfo";
+import { HistoricTextTitle } from "../Dashboard/styles";
 
 
 const initialState = {
@@ -37,7 +45,7 @@ class Filter extends Component {
 
   constructor() {
     super();
-    this.state = { userId: '', isAuthenticated: false, userName: '' };
+    this.state = { userId: '', isAuthenticated: false, userName: '', filterData: [""] };
   }
 
   componentWillUnmount() {}
@@ -72,16 +80,17 @@ class Filter extends Component {
     this.setState({errorState: false});
     var userId = this.state.userId;
     const onSuccess = ({ data }) => {
-      console.log(data);
-      this.props.navigation.navigate("Dashboard");
+      this.setState({ filterData: data });
+      console.log(this.state.filterData);
+    //  this.props.navigation.navigate("FilterBoxInfo", { user: 'Lucy' });
     };
-    console.log('teste aqui do filtro')
     APIKit
       .get("/api/users/lancamento/?user_id=" + userId + "&start_date=" + start_date + "&end_date=" + end_date + "&categorias=" + categorias)
       .then(onSuccess);
   }
 
   render() {
+  //  console.log(this.state.filterData)
     return (
       <Container>
           <FilterHeader>
@@ -156,7 +165,35 @@ class Filter extends Component {
               <ButtonText onPress={this.onPressFilter.bind(this)}>
                 Filtrar
               </ButtonText>
-            </Button>   
+            </Button>  
+            <FilterInfoBox>
+            {this.state.filterData.map((data, index) => {
+              console.log(data.value)
+              if (data.value) {
+                data.value = data.value.replace(".", ",");
+                var value = data.value.split(',');
+                value[1] = value[1].substring(0,2);
+                var value_br = "R$";
+                value_br += value;
+              }
+              if (data.tipo_de_transacao) {
+                if (data.tipo_de_transacao == 1) {
+                  data.tipo_de_transacao = "Entrada";
+                } else {
+                  data.tipo_de_transacao = "Saída";
+                }
+              }
+              return (
+                <FilterItem key={"filter-item-" + index}>
+                  <FilterTextBox key={"filter-text-box-" + index}>
+                    <FilterTextBold key={"filter-text-title-" + index}>{data.titulo_lancamento}</FilterTextBold>
+                    <FilterText> { value_br } </FilterText>
+                    <FilterText> { data.tipo_de_transacao } </FilterText>
+                  </FilterTextBox>
+                </FilterItem>
+              )
+              })}
+            </FilterInfoBox>
           </FilterBox>     
       </Container>
     );
