@@ -79,14 +79,27 @@ class Filter extends Component {
     const { start_date, end_date, categorias } = this.state;
     this.setState({errorState: false});
     var userId = this.state.userId;
+    var url_info = '';
+    if (start_date) {
+      url_info += "&start_date=";
+      url_info += start_date;
+    }
+    if (end_date) {
+      url_info += "&end_date=";
+      url_info += end_date;
+    }
+    if (categorias) {
+      url_info += "&categorias=";
+      url_info += categorias;
+    }
+    console.log('teste da url aqui')
+    console.log(url_info)
     const onSuccess = ({ data }) => {
       this.setState({ filterData: data });
       console.log(this.state.filterData);
     //  this.props.navigation.navigate("FilterBoxInfo", { user: 'Lucy' });
     };
-    APIKit
-      .get("/api/users/lancamento/?user_id=" + userId + "&start_date=" + start_date + "&end_date=" + end_date + "&categorias=" + categorias)
-      .then(onSuccess);
+    APIKit.get("/api/users/lancamento/?user_id=" + userId + url_info).then(onSuccess);
   }
 
   render() {
