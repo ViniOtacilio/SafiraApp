@@ -183,12 +183,24 @@ class Filter extends Component {
                   data.tipo_de_transacao = "Saída";
                 }
               }
+              if (data.titulo_lancamento) {
+                data.titulo_lancamento += ' - ';
+                data.titulo_lancamento += data.tipo_de_transacao;
+              }
+
+              if (data.data_lancamento) {
+                var formatted_date = data.data_lancamento.split('T');
+                var formatted_date_split = formatted_date[0].split('-');
+                var formatted_date_br = formatted_date_split[2] + '/' + formatted_date_split[1] + '/' + formatted_date_split[0];
+                value_br += ' - ';
+                value_br += formatted_date_br
+              }
+
               return (
                 <FilterItem key={"filter-item-" + index}>
                   <FilterTextBox key={"filter-text-box-" + index}>
-                    <FilterTextBold key={"filter-text-title-" + index}>{data.titulo_lancamento}</FilterTextBold>
+                    <FilterText> {data.titulo_lancamento} </FilterText>
                     <FilterText> { value_br } </FilterText>
-                    <FilterText> { data.tipo_de_transacao } </FilterText>
                   </FilterTextBox>
                 </FilterItem>
               )
