@@ -9,6 +9,7 @@ import RegisterTransactions from './pages/RegisterTransactions';
 import HamburguerMenu from './pages/HamburguerMenu';
 import Filter from './pages/Filter';
 import FilterBoxInfo from './pages/FilterBoxInfo';
+import TransactionDescription from './pages/TransactionDescription';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,8 @@ export default function App() {
         <Stack.Screen name="RegisterTransactions" component={ RegisterTransactions } />
         <Stack.Screen name="HamburguerMenu" component={ HamburguerMenu } />
         <Stack.Screen name="Filter" component={ Filter } />
-        <Stack.Screen name="FilterBoxInfo" component={ FilterBoxInfo} />
+        <Stack.Screen name="FilterBoxInfo" component={ FilterBoxInfo } />
+        <Stack.Screen name="TransactionDescription" component={ TransactionDescription } />
       </Stack.Navigator>
     </NavigationContainer>
   );

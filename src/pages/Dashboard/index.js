@@ -7,6 +7,7 @@ import {
   Text,
   HistoricBox,
   HistoricItem,
+  HistoricItemLeft,
   HistoricTextBox,
   HistoricTextTitle,
   HistoricText,
@@ -54,6 +55,7 @@ class Dashboard extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
+      console.log(data)
     };
 
     const onSuccessSaldo = ({ data }) => {
@@ -133,20 +135,27 @@ class Dashboard extends Component {
             }
             return (
               <HistoricItem key={"historic-item-" + index}>
-                <MaterialIcons
-                  key={"historic-icon-" + index}
-                  name="attach-money"
-                  size={32}
-                  color="#FAFAFF"
-                />
-                <HistoricTextBox key={"historic-text-box-" + index}>
-                  <HistoricTextTitle key={"historic-text-title-" + index}>
-                    {data.tipo_de_transacao + ' - ' + data.titulo_lancamento}
-                  </HistoricTextTitle>
-                  <HistoricText key={"historic-text-" + index}>
-                    {"R$" + value[0].concat(',', value[1].substring(0,2)) + ' - ' + formatted_date_br}
-                  </HistoricText>
-                </HistoricTextBox>
+                <HistoricItemLeft>
+                  <MaterialIcons
+                    key={"historic-icon-" + index}
+                    name="attach-money"
+                    size={24}
+                    color="#FAFAFF"
+                  />
+                  <HistoricTextBox key={"historic-text-box-" + index}>
+                    <HistoricTextTitle key={"historic-text-title-" + index}>
+                      {data.tipo_de_transacao + ' - ' + data.titulo_lancamento}
+                    </HistoricTextTitle>
+                    <HistoricText key={"historic-text-" + index}>
+                      {"R$" + value[0].concat(',', value[1].substring(0,2)) + ' - ' + formatted_date_br}
+                    </HistoricText>
+                  </HistoricTextBox>
+                </HistoricItemLeft>
+                <MaterialIcons 
+                  name="description" 
+                  size={24} 
+                  color="#FAFAFF" 
+                  onPress={() => this.props.navigation.navigate("TransactionDescription")}/>
               </HistoricItem>
             );
           })}

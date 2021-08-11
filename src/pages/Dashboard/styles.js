@@ -53,6 +53,13 @@ export const HistoricItem = styled.View`
     align-items: center;
     border-radius: 4px;
     margin: 20px 0;
+    justify-content: space-between;
+`;
+
+export const HistoricItemLeft = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `;
 
 export const HistoricTextBox = styled.View`
