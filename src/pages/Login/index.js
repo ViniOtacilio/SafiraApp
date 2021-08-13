@@ -113,6 +113,11 @@ class Login extends Component {
         >
           Criar Conta
         </Link>
+        <Link
+          onPress={() => this.props.navigation.navigate("ForgetPassword")}
+        >
+          Esqueceu sua senha?
+        </Link>
         <Button>
           <ButtonText
             onPress={this.onPressLogin.bind(this)}

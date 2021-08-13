@@ -10,6 +10,7 @@ import HamburguerMenu from './pages/HamburguerMenu';
 import Filter from './pages/Filter';
 import FilterBoxInfo from './pages/FilterBoxInfo';
 import TransactionDescription from './pages/TransactionDescription';
+import ForgetPassword from './pages/ForgetPassword';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={ Login } />
         <Stack.Screen name="Register" component={ Register } />
+        <Stack.Screen name="ForgetPassword" component={ ForgetPassword } />
         <Stack.Screen name="Dashboard" component={ Dashboard } />
         <Stack.Screen name="RegisterTransactions" component={ RegisterTransactions } />
         <Stack.Screen name="HamburguerMenu" component={ HamburguerMenu } />
