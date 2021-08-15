@@ -16,30 +16,44 @@ import { AntDesign } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import { StyleSheet, View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { translate } from '../../locales'
+import { translate } from '../../locales';
 
+const initialState = {
+  email: "",
+  errors: {},
+  errorState: false,
+  isAuthorized: false,
+};
 
 class ForgetPassword extends Component {
+  state = initialState;
 
   componentWillUnmount() {}
-
-  onNameChange = (name) => {
-    this.setState({ name });
-  };
 
   onEmailChange = (email) => {
     this.setState({ email });
   };
 
-  onPasswordChange = (password) => {
-    this.setState({ password });
-  };
+  async onPressRecover() {
+    const { email } = this.state;
+    const payload = { email };
+    console.log(payload);
+    this.setState({errorState: false});
 
-  onPasswordRepeatedChange = (repeatedPassword) => {
-    this.setState({ repeatedPassword });
-  };
+    const onSuccess = async ({ data }) => {
+      try {
+        console.log(data);
+      }
+      catch (e) {
+        console.log(e);
+      }
+    };
 
-   async onPressLogin() {
+    const onFailure = (error) => {
+      this.setState({ errorState: true });
+    };
+
+    APIKit.post("/api/users/forgotPassword", payload).then(onSuccess).catch(onFailure);
   }
 
   render() {
@@ -53,6 +67,8 @@ class ForgetPassword extends Component {
         </HeaderBox>
         <InputBox>
           <Input
+            value={this.state.email}
+            onChangeText={this.onEmailChange}
             placeholder={'E-mail'}
             autoCapitalize="none"
             autoCorrect={false}
@@ -60,6 +76,7 @@ class ForgetPassword extends Component {
         </InputBox>
         <Button>
           <ButtonText
+            onPress={this.onPressRecover.bind(this)}
           >
             Recuperar
           </ButtonText>

@@ -18,8 +18,6 @@ import { StyleSheet, View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { translate } from '../../locales'
 
-
-
 const initialState = {
   name: "",
   email: "",
