@@ -155,7 +155,7 @@ class Dashboard extends Component {
                   name="description" 
                   size={24} 
                   color="#FAFAFF" 
-                  onPress={() => this.props.navigation.navigate("TransactionDescription")}/>
+                  onPress={() => this.props.navigation.navigate("TransactionDescription", {id: data.id} )}/>
               </HistoricItem>
             );
           })}
