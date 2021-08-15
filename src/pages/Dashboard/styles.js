@@ -78,4 +78,5 @@ export const IconBox = styled.View`
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
+    align-items: center;
 `;

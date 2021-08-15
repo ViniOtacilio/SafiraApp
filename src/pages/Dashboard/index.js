@@ -22,7 +22,7 @@ import {
   AntDesign
 } from "@expo/vector-icons";
 import { AppLoading } from "expo";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from '@react-navigation/native';
 import { translate } from '../../locales'
