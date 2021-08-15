@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { translate } from '../../locales'
 import FilterBoxInfo from "../FilterBoxInfo";
 import { HistoricTextTitle } from "../Dashboard/styles";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const initialState = {
@@ -39,7 +40,7 @@ class Filter extends Component {
 
   constructor() {
     super();
-    this.state = { userId: '', isAuthenticated: false, userName: '' };
+    this.state = { userId: '', isAuthenticated: false, userName: '', date: new Date( Date.now() ) };
   }
 
   componentWillUnmount() {}
@@ -89,6 +90,11 @@ class Filter extends Component {
     this.props.navigation.navigate("Dashboard", { filterUrl: url_info });
   }
 
+  onChange = (event, selectedDate) => {
+    this.setState({ date: selectedDate }); 
+    console.log(this.state.date);
+  };
+
   render() {
     return (
       <Container>
@@ -100,6 +106,14 @@ class Filter extends Component {
             <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Dashboard")} />
            </FilterHeader>
           <FilterBox>
+          <DateTimePicker
+          testID="dateTimePicker"
+          value={ this.state.date }
+          mode={ 'date' }
+          is24Hour={true}
+          display="default"
+          onChange={this.onChange}
+        />
             <InputBox>
                 <Input
                     placeholder={'Data Início'}
