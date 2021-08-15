@@ -40,6 +40,7 @@ class Dashboard extends Component {
   refreshScreen() {
     this.setState({ lastRefresh: Date(Date.now()).toString() });
     this.setState({ shouldUpdate: "true"});
+    this.props.route.params = null;
   }
 
   componentWillUnmount() {}
@@ -55,7 +56,6 @@ class Dashboard extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
       this.setState({ x: data });
-      console.log(data)
     };
 
     const onSuccessSaldo = ({ data }) => {
@@ -67,6 +67,7 @@ class Dashboard extends Component {
   }
   
   async componentDidUpdate() {
+    
   const userId = await AsyncStorage.getItem("userId");
   const userName = await AsyncStorage.getItem("username");
   
@@ -91,6 +92,14 @@ class Dashboard extends Component {
       APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
       APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
       this.setState({ shouldUpdate: false});
+    }
+
+    if (this.props.route.params) {
+      const onSuccess = ({ data }) => {
+        this.setState({ x: data }); 
+      };
+      APIKit.get("/api/users/lancamento/?user_id=" + userId + this.props.route.params.filterUrl).then(onSuccess);  
+      this.props.route.params = null;
     }
   }
 

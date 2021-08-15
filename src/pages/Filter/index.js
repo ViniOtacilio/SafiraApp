@@ -10,12 +10,6 @@ import {
     SelectBox,
     Button,
     ButtonText,
-    FilterInfoBox,
-    FilterItem,
-    FilterTextBox,
-    FilterTextTitle,
-    FilterText,
-    FilterTextBold
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import {
@@ -45,7 +39,7 @@ class Filter extends Component {
 
   constructor() {
     super();
-    this.state = { userId: '', isAuthenticated: false, userName: '', filterData: [""] };
+    this.state = { userId: '', isAuthenticated: false, userName: '' };
   }
 
   componentWillUnmount() {}
@@ -92,18 +86,10 @@ class Filter extends Component {
       url_info += "&categorias=";
       url_info += categorias;
     }
-    console.log('teste da url aqui')
-    console.log(url_info)
-    const onSuccess = ({ data }) => {
-      this.setState({ filterData: data });
-      console.log(this.state.filterData);
-    //  this.props.navigation.navigate("FilterBoxInfo", { user: 'Lucy' });
-    };
-    APIKit.get("/api/users/lancamento/?user_id=" + userId + url_info).then(onSuccess);
+    this.props.navigation.navigate("Dashboard", { filterUrl: url_info });
   }
 
   render() {
-  //  console.log(this.state.filterData)
     return (
       <Container>
           <FilterHeader>
@@ -179,46 +165,6 @@ class Filter extends Component {
                 Filtrar
               </ButtonText>
             </Button>  
-            <FilterInfoBox>
-            {this.state.filterData.map((data, index) => {
-              if (data.value) {
-                data.value = data.value.replace(".", ",");
-                var value = data.value.split(',');
-                value[1] = value[1].substring(0,2);
-                var value_br = "R$";
-                value_br += value;
-              }
-              if (data.tipo_de_transacao) {
-                if (data.tipo_de_transacao == 1) {
-                  data.tipo_de_transacao = "Entrada";
-                } 
-                if (data.tipo_de_transacao == 2) {
-                  data.tipo_de_transacao = "Saída";
-                }
-              }
-              if (data.titulo_lancamento) {
-                data.titulo_lancamento += ' - ';
-                data.titulo_lancamento += data.tipo_de_transacao;
-              }
-
-              if (data.data_lancamento) {
-                var formatted_date = data.data_lancamento.split('T');
-                var formatted_date_split = formatted_date[0].split('-');
-                var formatted_date_br = formatted_date_split[2] + '/' + formatted_date_split[1] + '/' + formatted_date_split[0];
-                value_br += ' - ';
-                value_br += formatted_date_br
-              }
-
-              return (
-                <FilterItem key={"filter-item-" + index}>
-                  <FilterTextBox key={"filter-text-box-" + index}>
-                    <FilterText> {data.titulo_lancamento} </FilterText>
-                    <FilterText> { value_br } </FilterText>
-                  </FilterTextBox>
-                </FilterItem>
-              )
-              })}
-            </FilterInfoBox>
           </FilterBox>     
       </Container>
     );
