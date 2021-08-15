@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   Container,
+  CloseIcon,
   HeaderBox,
   Title,
   Input,
@@ -86,13 +87,10 @@ class Register extends Component {
   render() {
     return (
       <Container>
+        <CloseIcon>
+          <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Login")} />
+        </CloseIcon>
         <HeaderBox>
-          <AntDesign
-            name="arrowleft"
-            size={30}
-            color="#FAFAFF"
-            onPress={() => this.props.navigation.navigate("Login")}
-          />
           <Title>Criar Conta</Title>
         </HeaderBox>
         <InputBox>

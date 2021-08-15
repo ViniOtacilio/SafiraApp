@@ -7,6 +7,12 @@ export const Container = styled.View`
     justify-content: center;
 `;
 
+export const CloseIcon = styled.View`
+    position: absolute;
+    top: 40px;
+    right: 20px;
+`;
+
 export const HeaderBox = styled.Text`
     display: flex;
     align-items: center;
@@ -17,8 +23,9 @@ export const HeaderBox = styled.Text`
 
 export const Title = styled.Text`
     color: #FAFAFF;
-    font-size: 40px;
+    font-size: 26px;
     margin-left: 20px;
+    text-align: center;
 `;
 
 export const InputBox = styled.View`
@@ -42,7 +49,7 @@ export const ButtonText = styled.Text`
     height: 40px;
     line-height: 40px;
     color: #FAFAFF;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 `;
 
