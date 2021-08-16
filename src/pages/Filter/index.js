@@ -18,17 +18,18 @@ import {
 } from '@expo/vector-icons';
 import RNPickerSelect from 'react-native-picker-select';
 import { AppLoading } from "expo";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Platform, Text } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { translate } from '../../locales'
 import FilterBoxInfo from "../FilterBoxInfo";
 import { HistoricTextTitle } from "../Dashboard/styles";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';   
+
 
 
 const initialState = {
-  start_date: "",
-  end_date: "",
+  // start_date: new Date( Date.now() ),
   categorias: "",
   errors: {},
   errorState: false,
@@ -40,7 +41,7 @@ class Filter extends Component {
 
   constructor() {
     super();
-    this.state = { userId: '', isAuthenticated: false, userName: '', date: new Date( Date.now() ) };
+    this.state = { userId: '', isAuthenticated: false, userName: '', date: new Date( Date.now() ), showStartDate: false, showFinalDate: false, start_date: new Date(Date.now()), end_date: new Date( Date.now() ) };
   }
 
   componentWillUnmount() {}
@@ -56,14 +57,55 @@ class Filter extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
     }
+
   }
-  
-  onStartDateChange = (start_date) => {
-    this.setState({ start_date });
+
+    // // Teste
+    // showMode = (currentMode) => {
+    //   this.setState({show: true})
+    //   this.setState({mode: currentMode})
+    // };
+    // showDatepickerStartTest = () => {
+    //   showMode('date');
+    // };
+    // // fim do teste
+
+  onChangeVisibilityStartDatePicker = () => {
+    this.setState({showStartDate: true})
+    // if(this.state.showStartDate == false) {
+    //   this.setState({showStartDate: true})
+    // }
+    // if(this.state.showStartDate == true ) {
+    //   this.setState({showStartDate: false})
+    // }
+  }
+
+  onChangeVisibilityFinalDatePicker = () => {
+    this.setState({showFinalDate: true})
+    // if(this.state.showFinalDate == false) {
+    //   this.setState({showFinalDate: true})
+    // }
+    // if(this.state.showFinalDate == true ) {
+    //   this.setState({showFinalDate: false})
+    // }
+  }
+
+  onStartDateChange = (event,value) => {
+    if(Platform.OS === 'ios')
+      this.setState({showStartDate: true});
+    else 
+    this.setState({showStartDate: false});
+
+    this.setState({ 'start_date': value });
   };
 
-  onEndDateChange = (end_date) => {
-    this.setState({ end_date });
+  onEndDateChange = (event,value) => {
+    if(Platform.OS === 'ios')
+      this.setState({showFinalDate: true});
+    else
+      this.setState({showFinalDate: false});
+
+    this.setState({ 'end_date': value });
   };
 
   onCategorysChange = (categorias) => {
@@ -77,11 +119,11 @@ class Filter extends Component {
     var url_info = '';
     if (start_date) {
       url_info += "&start_date=";
-      url_info += start_date;
+      url_info += moment(start_date).format('YYYY-MM-DD');
     }
     if (end_date) {
       url_info += "&end_date=";
-      url_info += end_date;
+      url_info += moment(end_date).format('YYYY-MM-DD');
     }
     if (categorias) {
       url_info += "&categorias=";
@@ -90,12 +132,40 @@ class Filter extends Component {
     this.props.navigation.navigate("Dashboard", { filterUrl: url_info });
   }
 
-  onChange = (event, selectedDate) => {
-    this.setState({ date: selectedDate }); 
-    console.log(this.state.date);
-  };
+  // onChange = (event, selectedDate) => {
+  //   this.setState({ date: selectedDate }); 
+  //   console.log(this.state.date);
+  // };
 
   render() {
+    let showStartedDate = this.state.showStartDate;
+    let showFinalDate = this.state.showFinalDate;
+    let finalDate;
+    let startDate;
+
+    if(showStartedDate) {
+      startDate = <DateTimePicker
+      testID="dateTimePickerStart"
+      value={ this.state.start_date }
+      mode={ 'data' }
+      is24Hour={true}
+      display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+      onChange={this.onStartDateChange}
+      // dateFormat="dayofweek day month"
+      />
+    }
+
+    if(showFinalDate) {
+      finalDate = <DateTimePicker
+      testID="dateTimePickerFinal"
+      value={ this.state.end_date }
+      mode={ 'data' }
+      is24Hour={true}
+      display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+      onChange={this.onEndDateChange}
+      // dateFormat="dayofweek day month"
+      />
+    }
     return (
       <Container>
           <FilterHeader>
@@ -106,15 +176,53 @@ class Filter extends Component {
             <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Dashboard")} />
            </FilterHeader>
           <FilterBox>
-          <DateTimePicker
-          testID="dateTimePicker"
-          value={ this.state.date }
-          mode={ 'date' }
+
+          <View>
+          <Button>
+              <ButtonText onPress={this.onChangeVisibilityStartDatePicker}>
+                Selecionar Data Inicial
+              </ButtonText>
+          </Button>  
+
+            <View>
+              <Text>Data Inicial: {moment(this.state.start_date).format('YYYY/MM/DD')}</Text>
+            </View>
+
+            {startDate}
+            </View>
+
+
+            <View>
+            <Button>
+              <ButtonText onPress={this.onChangeVisibilityFinalDatePicker}>
+                Selecionar Data Final
+              </ButtonText>
+          </Button>  
+            <View>
+              <Text>Data Final: {moment(this.state.end_date).format('YYYY/MM/DD')}</Text>
+            </View>
+            {finalDate}
+            </View>
+         {/* <DateTimePicker
+          testID="dateTimePickerStart"
+          // isVisible={this.showDatepickerStart}
+          value={ this.state.start_date }
+          mode={ 'data' }
+          is24Hour={true}
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={this.onStartDateChange}
+          /> */}
+          
+        {/* <DateTimePicker
+          isVisible = {this.showDatepickerFinal}
+          testID="dateTimePickerEnd"
+          value={ this.state.end_date }
+          mode={ 'data' }
           is24Hour={true}
           display="default"
-          onChange={this.onChange}
-        />
-            <InputBox>
+          onChange={this.onEndDateChange}
+        /> */}
+            {/* <InputBox>
                 <Input
                     placeholder={'Data Início'}
                     autoCapitalize="none"
@@ -131,7 +239,7 @@ class Filter extends Component {
                     value={this.state.end_date}
                     onChangeText={this.onEndDateChange}
                 ></Input>
-            </InputBox>
+            </InputBox> */}
             <SelectBox>
             <RNPickerSelect
                 onValueChange={(categoriaid) => this.onCategorysChange(categoriaid)}
@@ -148,6 +256,7 @@ class Filter extends Component {
                 placeholder={{ label: 'Selecione a categoria', value: "categoria" }}
                 style={{
                   inputAndroid: {
+                    color: 'gray',
                     backgroundColor: '#FAFAFF',
                     paddingTop: 8,
                     paddingBottom: 8,
@@ -172,6 +281,7 @@ class Filter extends Component {
                     right: 15,
                   },
                 }}
+                useNativeAndroidPickerStyle={false}
             />
           </SelectBox>
             <Button>

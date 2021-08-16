@@ -229,6 +229,7 @@ class RegisterTransactions extends Component {
               placeholder={{ label: selecioneCtg, value: "categoria" }}
               style={{
                 inputAndroid: {
+                  color: 'gray',
                   backgroundColor: '#FAFAFF',
                   paddingTop: 8,
                   paddingBottom: 8,
@@ -253,6 +254,7 @@ class RegisterTransactions extends Component {
                   right: 15,
                 },
               }}
+              useNativeAndroidPickerStyle={false}
           />
         </SelectBox>
         

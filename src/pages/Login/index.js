@@ -60,8 +60,9 @@ class Login extends Component {
     this.setState({ errorState: false });
 
     const onSuccess = ({ data }) => {
+      // let userId = data.userId.to
       try {
-        AsyncStorage.setItem('userId', data.userId);
+        AsyncStorage.setItem('userId', data.userId.toString());
         AsyncStorage.setItem('username', data.userName);
       }
       catch (e) {
