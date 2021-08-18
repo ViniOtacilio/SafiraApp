@@ -74,3 +74,9 @@ export const Button = styled.TouchableOpacity`
     margin-top: 20px;
 `;
 
+export const TextDate = styled.Text`
+    font-size: 16px;
+    color: #FAFAFF;
+    margin: 10px;
+`
+

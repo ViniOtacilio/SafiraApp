@@ -8,15 +8,12 @@ import {
   ButtonText,
   Button,
   Text,
-  ErrorText
+  ErrorText,
 } from "./styles";
-import { AppLoading } from "expo";
-import { StyleSheet, View, aSYN } from "react-native";
+import { View } from "react-native";
 import APIKit from "../../utils/APIKit";
-import { render } from "react-dom";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { translate } from '../../locales'
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { translate } from "../../locales";
 
 const initialState = {
   email: "",
@@ -31,19 +28,14 @@ class Login extends Component {
   componentWillUnmount() {}
 
   async componentDidMount() {
-    // this.getUserData();
-    const userId = await AsyncStorage.getItem('userId');
+    const userId = await AsyncStorage.getItem("userId");
 
-   
-      const { navigate } = this.props.navigation;
-      if(userId == null || userId == "null"){
-          navigate("Login");
-      }
-      else{
-
-          navigate("Dashboard");
-      } 
- 
+    const { navigate } = this.props.navigation;
+    if (userId == null || userId == "null") {
+      navigate("Login");
+    } else {
+      navigate("Dashboard");
+    }
   }
 
   onEmailChange = (email) => {
@@ -60,28 +52,20 @@ class Login extends Component {
     this.setState({ errorState: false });
 
     const onSuccess = ({ data }) => {
-      // let userId = data.userId.to
       try {
-        AsyncStorage.setItem('userId', data.userId.toString());
-        AsyncStorage.setItem('username', data.userName);
-      }
-      catch (e) {
+        AsyncStorage.setItem("userId", data.userId.toString());
+        AsyncStorage.setItem("username", data.userName);
+      } catch (e) {
         console.log(e);
       }
 
       this.props.navigation.navigate("Dashboard");
-      this.setState({isAuthenticated: true});
+      this.setState({ isAuthenticated: true });
     };
 
     const onFailure = (error) => {
-      // console.log(error && error.response);
-      // this.setState({ errors: error.response.data });
-      // this.setState({ errors: "Erro no login" });
       this.setState({ errorState: true });
     };
-
-    // Show spinner when call is made
-    // this.setState({isLoading: true});
 
     APIKit.post("/users/login", payload).then(onSuccess).catch(onFailure);
   }
@@ -92,7 +76,7 @@ class Login extends Component {
         <Title>$AFIRA</Title>
         <InputBox>
           <Input
-            placeholder={translate('placeholderEmail')}
+            placeholder={translate("placeholderEmail")}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -102,33 +86,25 @@ class Login extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder={translate('placeholderPassword')}
+            placeholder={translate("placeholderPassword")}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={this.onPasswordChange}
           ></Input>
         </InputBox>
-        <Link
-          onPress={() => this.props.navigation.navigate("Register")}
-        >
+        <Link onPress={() => this.props.navigation.navigate("Register")}>
           Criar Conta
         </Link>
-        <Link
-          onPress={() => this.props.navigation.navigate("ForgetPassword")}
-        >
+        <Link onPress={() => this.props.navigation.navigate("ForgetPassword")}>
           Esqueceu sua senha?
         </Link>
         <Button>
-          <ButtonText
-            onPress={this.onPressLogin.bind(this)}
-          >
-            Entrar
-          </ButtonText>
+          <ButtonText onPress={this.onPressLogin.bind(this)}>Entrar</ButtonText>
         </Button>
         {this.state.errorState && (
-                <View>
-                    <ErrorText>{translate('loginError')}</ErrorText>
+          <View>
+            <ErrorText>{translate("loginError")}</ErrorText>
           </View>
         )}
       </Container>

@@ -13,10 +13,9 @@ import {
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { AntDesign } from "@expo/vector-icons";
-import { AppLoading } from "expo";
-import { StyleSheet, View } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { translate } from '../../locales'
+import { View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { translate } from "../../locales";
 
 const initialState = {
   name: "",
@@ -49,51 +48,50 @@ class Register extends Component {
     this.setState({ repeatedPassword });
   };
 
-   async onPressLogin() {
+  async onPressLogin() {
     const { name, email, password, repeatedPassword } = this.state;
     const payload = { name, email, password, repeatedPassword };
-    // console.log(payload);
-    this.setState({errorState: false});
+    this.setState({ errorState: false });
 
     const onSuccess = async ({ data }) => {
       try {
         console.log(data);
         let userID = data.userId.toString();
-        await AsyncStorage.setItem('userId', userID);
-         AsyncStorage.setItem('username', data.userName);
-      }
-      catch (e) {
+        await AsyncStorage.setItem("userId", userID);
+        AsyncStorage.setItem("username", data.userName);
+      } catch (e) {
         console.log(e);
       }
       this.props.navigation.navigate("Dashboard");
-      this.setState({isAuthorized: true});
+      this.setState({ isAuthorized: true });
     };
 
     const onFailure = (error) => {
-      // console.log("A partir daqui é erro :")
-      // console.log(error && error.response);
-      // this.setState({ errors: error.response.data });
       this.setState({ errorState: true });
     };
 
-    // Show spinner when call is made
-    // this.setState({isLoading: true});
-
-    APIKit.post("/api/users/register", payload).then(onSuccess).catch(onFailure);
+    APIKit.post("/api/users/register", payload)
+      .then(onSuccess)
+      .catch(onFailure);
   }
 
   render() {
     return (
       <Container>
         <CloseIcon>
-          <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Login")} />
+          <AntDesign
+            name="close"
+            size={24}
+            color="#FAFAFF"
+            onPress={() => this.props.navigation.navigate("Login")}
+          />
         </CloseIcon>
         <HeaderBox>
           <Title>Criar Conta</Title>
         </HeaderBox>
         <InputBox>
           <Input
-            placeholder={translate('placeholderName')}
+            placeholder={translate("placeholderName")}
             value={this.state.name}
             autoCapitalize="none"
             autoCorrect={false}
@@ -102,7 +100,7 @@ class Register extends Component {
         </InputBox>
         <InputBox>
           <Input
-            placeholder={translate('placeholderEmail')}
+            placeholder={translate("placeholderEmail")}
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -112,7 +110,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder={translate('placeholderPassword')}
+            placeholder={translate("placeholderPassword")}
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -122,7 +120,7 @@ class Register extends Component {
         <InputBox>
           <Input
             secureTextEntry={true}
-            placeholder={translate('placeholderConfirmPassword')}
+            placeholder={translate("placeholderConfirmPassword")}
             value={this.state.repeatedPassword}
             autoCapitalize="none"
             autoCorrect={false}
@@ -130,15 +128,11 @@ class Register extends Component {
           ></Input>
         </InputBox>
         <Button>
-          <ButtonText
-            onPress={this.onPressLogin.bind(this)}
-          >
-            Criar
-          </ButtonText>
+          <ButtonText onPress={this.onPressLogin.bind(this)}>Criar</ButtonText>
         </Button>
         {this.state.errorState && (
           <View>
-           <ErrorText>{translate('registrationError')}</ErrorText>
+            <ErrorText>{translate("registrationError")}</ErrorText>
           </View>
         )}
       </Container>

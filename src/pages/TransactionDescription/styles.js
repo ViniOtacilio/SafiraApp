@@ -56,13 +56,14 @@ export const TransactionTitle = styled.Text`
 
 export const TransactionInfoBox = styled.View`
     flex-direction: row;
-    margin-bottom: 5px;
+    padding: 6px;
+    margin-bottom: 20px;
 `;
 
 export const TransactionInfoBold = styled.Text`
     color: #FAFAFF;
     margin: 0 8px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 `;
 
