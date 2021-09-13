@@ -2,15 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\locales",
     "\\src\\pages",
-    "\\src\\pages\\Dashboard",
-    "\\src\\pages\\HamburguerMenu",
-    "\\src\\pages\\Login",
-    "\\src\\pages\\Register",
-    "\\src\\pages\\RegisterTransactions",
-    "\\src\\utils"
+    "\\src\\pages\\ForgetPassword"
   ],
-  "SelectedNode": "\\src\\pages\\Register\\index.js",
+  "SelectedNode": "\\src\\pages\\ForgetPassword\\index.js",
   "PreviewInSolutionExplorer": false
 }
