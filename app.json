@@ -2,6 +2,7 @@
   "name": "SafiraFront",
   "displayName": "SafiraFront",
   "expo": {
+    "scheme": "safira",
     "name": "SafiraFront",
     "slug": "SafiraFront",
     "version": "1.0.0",

@@ -28,6 +28,13 @@ const initialState = {
 class ForgetPassword extends Component {
   state = initialState;
 
+  constructor() {
+    super();
+    this.state = {
+      message: '',
+    };
+  }
+
   componentWillUnmount() {}
 
   onEmailChange = (email) => {
@@ -42,6 +49,7 @@ class ForgetPassword extends Component {
 
     const onSuccess = async ({ data }) => {
       try {
+        this.setState({ message: "Cheque seu email." });
         console.log(data);
       }
       catch (e) {
@@ -75,6 +83,9 @@ class ForgetPassword extends Component {
             autoCorrect={false}
           ></Input>
         </InputBox>
+        <Text>
+          {this.state.message}
+        </Text>
         <Button>
           <ButtonText
             onPress={this.onPressRecover.bind(this)}
