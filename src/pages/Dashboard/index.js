@@ -224,7 +224,7 @@ class Dashboard extends Component {
             size={38}
             // color="#DAE3E5"
             color="#507DBC"
-            onPress={() => this.props.navigation.navigate("Filter")}
+            onPress={() => this.props.navigation.navigate("ReportsFilter")}
           />
           <Ionicons
             name="refresh-circle-outline"
