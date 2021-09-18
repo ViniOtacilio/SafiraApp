@@ -62,13 +62,10 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const Text = styled.Text`
-  background: #FAFAFF;
-    width: 100%;
-    border-radius: 4px;
     padding: 8px;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
-    margin-left: 20px;    
+    color: #fff; 
 `;
 
 export const ErrorText = styled.Text`
