@@ -2,17 +2,19 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
-    background: #1E2749;
-    padding: 60px 20px;
+    background: #f5f5f5;
+    padding: 35px 0px 10px 0px;
     justify-content: space-between;
 `;
 
 export const Header = styled.View`
-    flex: 1;
-    background: #1E2749;
-    flex-direction: row;
-    justify-content: space-between;
-    max-height: 30px;
+  flex: 1;
+  background: #507DBC;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 60px;
+  padding: 8px;
 `;
 
 export const UserBox = styled.View`
@@ -22,7 +24,7 @@ export const UserBox = styled.View`
 `;
 
 export const Title = styled.Text`
-    color: #FAFAFF;
+    color: #DAE3E5;
     font-size: 20px;
     margin: 0 8px;
 `;
@@ -44,12 +46,12 @@ export const Text = styled.Text`
     font-size: 24px;
     font-weight: bold;
     text-align: center; 
-    color: #FAFAFF; 
+    color: #DAE3E5; 
     align-self: center;
 `;
 
 export const Input = styled.TextInput`
-    background: #FAFAFF; 
+    background: #BBD1EA; 
     height: 40px;
     width: 80%;
     border-radius: 4px;

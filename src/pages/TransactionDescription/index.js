@@ -37,8 +37,8 @@ class TransactionDescription extends Component {
       this.setState({ isAuthenticated: true });
       this.setState({ data: data });
     };
-
-    APIKit.get(
+    console.log(this.props.route.params.id);
+    await APIKit.get(
       "/api/users/lancamento/?user_id=" +
         userId +
         "&id=" +
@@ -70,28 +70,28 @@ class TransactionDescription extends Component {
           {this.state.data.map((data, index) => {
             var categoria = "";
             if (data.categoriaid == 1) {
-              categoria = "moradia";
+              categoria = "Moradia";
             }
             if (data.categoriaid == 2) {
-              categoria = "supermercado";
+              categoria = "Supermercado";
             }
             if (data.categoriaid == 3) {
-              categoria = "transporte";
+              categoria = "Transporte";
             }
             if (data.categoriaid == 4) {
-              categoria = "lazer";
+              categoria = "Lazer";
             }
             if (data.categoriaid == 5) {
-              categoria = "saúde";
+              categoria = "Saúde";
             }
             if (data.categoriaid == 6) {
-              categoria = "contas";
+              categoria = "Contas";
             }
             if (data.categoriaid == 7) {
-              categoria = "restaurante";
+              categoria = "Restaurante";
             }
             if (data.categoriaid == 8) {
-              categoria = "outros";
+              categoria = "Outros";
             }
             if (data.value) {
               data.value = data.value.replace(".", ",");
@@ -115,29 +115,32 @@ class TransactionDescription extends Component {
             }
             return (
               <DescriptionInfoBox key={"description-info-box-" + index}>
-                <TransactionTitle>{data.titulo_lancamento}</TransactionTitle>
-                <TransactionInfoBox>
-                  <TransactionInfoBold>Categoria:</TransactionInfoBold>
+                <TransactionTitle>Detalhes da transação</TransactionTitle>
+              
+                <TransactionInfoBold>Nome do lançamento</TransactionInfoBold>
+                  <TransactionInfo>{data.titulo_lancamento}</TransactionInfo>
+
+                  <TransactionInfoBold>Categoria</TransactionInfoBold>
                   <TransactionInfo>{categoria}</TransactionInfo>
-                </TransactionInfoBox>
-                <TransactionInfoBox>
-                  <TransactionInfoBold>Valor:</TransactionInfoBold>
+                
+              
+                  <TransactionInfoBold>Valor</TransactionInfoBold>
                   <TransactionInfo>
                     {"R$" + value[0].concat(",", value[1].substring(0, 2))}
                   </TransactionInfo>
-                </TransactionInfoBox>
-                <TransactionInfoBox>
-                  <TransactionInfoBold>Data:</TransactionInfoBold>
+                
+              
+                  <TransactionInfoBold>Data</TransactionInfoBold>
                   <TransactionInfo>{formatted_date_br}</TransactionInfo>
-                </TransactionInfoBox>
-                <TransactionInfoBox>
-                  <TransactionInfoBold>Tipo da transação:</TransactionInfoBold>
+                
+              
+                  <TransactionInfoBold>Tipo da transação</TransactionInfoBold>
                   <TransactionInfo>{data.tipo_de_transacao}</TransactionInfo>
-                </TransactionInfoBox>
-                <TransactionInfoBox>
-                  <TransactionInfoBold>Comentário:</TransactionInfoBold>
+                
+              
+                  <TransactionInfoBold>Comentário</TransactionInfoBold>
                   <TransactionInfo>{data.comentario}</TransactionInfo>
-                </TransactionInfoBox>
+                
               </DescriptionInfoBox>
             );
           })}

@@ -82,7 +82,7 @@ class Register extends Component {
           <AntDesign
             name="close"
             size={24}
-            color="#FAFAFF"
+            color="#507DBC"
             onPress={() => this.props.navigation.navigate("Login")}
           />
         </CloseIcon>
@@ -92,6 +92,7 @@ class Register extends Component {
         <InputBox>
           <Input
             placeholder={translate("placeholderName")}
+            placeholderTextColor="#fff" 
             value={this.state.name}
             autoCapitalize="none"
             autoCorrect={false}
@@ -101,6 +102,7 @@ class Register extends Component {
         <InputBox>
           <Input
             placeholder={translate("placeholderEmail")}
+            placeholderTextColor="#fff" 
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -111,6 +113,7 @@ class Register extends Component {
           <Input
             secureTextEntry={true}
             placeholder={translate("placeholderPassword")}
+            placeholderTextColor="#fff" 
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}
@@ -121,6 +124,7 @@ class Register extends Component {
           <Input
             secureTextEntry={true}
             placeholder={translate("placeholderConfirmPassword")}
+            placeholderTextColor="#fff" 
             value={this.state.repeatedPassword}
             autoCapitalize="none"
             autoCorrect={false}

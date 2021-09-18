@@ -1,17 +1,23 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-    flex: 1;
-    background: #1E2749;
-    padding: 60px 20px;
+  ${'' /* flex: 1; */}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f5f5f5;
+  padding: 35px 0px 10px 0px;
 `;
 
 export const DescriptionHeader = styled.View`
-    flex: 1;
-    background: #1E2749;
-    flex-direction: row;
-    justify-content: space-between;
-    max-height: 30px;
+  ${'' /* flex: 1; */}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 8px;
+  background: #507DBC;
 `;
 
 export const UserBox = styled.View`
@@ -21,37 +27,42 @@ export const UserBox = styled.View`
 `;
 
 export const Title = styled.Text`
-    color: #FAFAFF;
+    color: #DAE3E5;
     font-size: 20px;
     margin: 0 8px;
 `;
 
 export const DescriptionBox = styled.View`
+    display: flex;
     flex-direction: row;
     padding: 12px 0;
-    width: 80%;
+    ${'' /* width: 80%; */}
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin-top: 20px 10px;
 `;
 
-export const DescriptionInfoBox = styled.ScrollView`
+export const DescriptionInfoBox = styled.View`
     width: 100%;
-    margin: 40px 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ${'' /* margin: 40px 0 auto;
     padding: 12px 0;
-    background: #273469;
-    border: 1px solid #FAFAFF;
+    background: #507DBC;
+    border: 1px solid #DAE3E5;
     border-radius: 4px;
-    min-height: 400px;
+    min-height: 400px; */}
 `;
 
 export const TransactionTitle = styled.Text`
-    color: #FAFAFF;
+    color: #507DBC;
     margin-bottom: 20px;
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
 `;
 
 export const TransactionInfoBox = styled.View`
@@ -61,14 +72,14 @@ export const TransactionInfoBox = styled.View`
 `;
 
 export const TransactionInfoBold = styled.Text`
-    color: #FAFAFF;
-    margin: 0 8px;
+    color: #507DBC;
+    margin: 16px 8px 8px 8px;
     font-size: 16px;
     font-weight: bold;
 `;
 
 export const TransactionInfo = styled.Text`
-    color: #FAFAFF;
+    color: #000;
     margin: 0 8px;
     font-size: 14px;
 `;

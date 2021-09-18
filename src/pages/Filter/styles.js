@@ -2,13 +2,13 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
-    background: #1E2749;
+    background: #f5f5f5;
     padding: 60px 20px;
 `;
 
 export const FilterHeader = styled.View`
     flex: 1;
-    background: #1E2749;
+    background: #f5f5f5;
     flex-direction: row;
     justify-content: space-between;
     max-height: 30px;
@@ -21,7 +21,7 @@ export const UserBox = styled.View`
 `;
 
 export const Title = styled.Text`
-    color: #FAFAFF;
+    color: #DAE3E5;
     font-size: 20px;
     margin: 0 8px;
 `;
@@ -43,7 +43,7 @@ export const InputBox = styled.View`
 `;
 
 export const Input = styled.TextInput`
-    background: #FAFAFF;
+    background: #DAE3E5;
     height: 32px;
     width: 100%;
     border-radius: 4px;
@@ -61,14 +61,14 @@ export const ButtonText = styled.Text`
     text-align: center;
     height: 30px;
     line-height: 30px;
-    color: #FAFAFF;
+    color: #DAE3E5;
     font-size: 18px;
     font-weight: bold;
 `;
 
 export const Button = styled.TouchableOpacity`
     background: transparent;
-    border: 1px solid #FAFAFF;
+    border: 1px solid #DAE3E5;
     border-radius: 4px;
     width: 80%;
     margin-top: 20px;
@@ -76,7 +76,7 @@ export const Button = styled.TouchableOpacity`
 
 export const TextDate = styled.Text`
     font-size: 16px;
-    color: #FAFAFF;
+    color: #DAE3E5;
     margin: 10px;
 `
 

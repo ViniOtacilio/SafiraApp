@@ -137,13 +137,13 @@ class Filter extends Component {
       <Container>
         <FilterHeader>
           <UserBox>
-            <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
+            <FontAwesome name="user-circle" size={26} color="#DAE3E5" />
             <Title>Olá, {this.state.userName}!</Title>
           </UserBox>
           <AntDesign
             name="close"
             size={24}
-            color="#FAFAFF"
+            color="#DAE3E5"
             onPress={() => this.props.navigation.navigate("Dashboard")}
           />
         </FilterHeader>
@@ -195,7 +195,7 @@ class Filter extends Component {
               style={{
                 inputAndroid: {
                   color: "gray",
-                  backgroundColor: "#FAFAFF",
+                  backgroundColor: "#DAE3E5",
                   paddingTop: 8,
                   paddingBottom: 8,
                   paddingLeft: 8,
@@ -205,7 +205,7 @@ class Filter extends Component {
                   height: 40,
                 },
                 inputIOS: {
-                  backgroundColor: "#FAFAFF",
+                  backgroundColor: "#DAE3E5",
                   paddingTop: 8,
                   paddingBottom: 8,
                   paddingLeft: 8,

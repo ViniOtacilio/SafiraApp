@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { View, Text } from "react-native";
 import {
   Container,
   DashboardHeader,
   UserBox,
   Title,
-  Text,
+  TextSaldo,
   HistoricBox,
   HistoricItem,
   HistoricItemLeft,
@@ -111,9 +112,15 @@ class Dashboard extends Component {
   render() {
     return (
       <Container>
+        {/* DashboardHeader devia ser um componente Header */}
         <DashboardHeader>
           <UserBox>
-            <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
+            <FontAwesome
+              name="user-circle"
+              size={26}
+              // color="#DAE3E5"
+              color="#DAE3E5"
+            />
             <Title>
               {translate("hello")}, {this.state.userName}!
             </Title>
@@ -121,20 +128,26 @@ class Dashboard extends Component {
           <SimpleLineIcons
             name="menu"
             size={24}
-            color="#FAFAFF"
+            // color="#DAE3E5"
+            color="#DAE3E5"
             onPress={() => this.props.navigation.navigate("HamburguerMenu")}
           />
         </DashboardHeader>
-        {this.state.saldo.map((data, index) => {
-          data.value = data.value.replace(".", ",");
-          var saldo = data.value.split(",");
-          return (
-            <Text key={index}>
-              {translate("balance")}: R$
-              {saldo[0].concat(",", saldo[1].substring(0, 2))}
-            </Text>
-          );
-        })}
+        <View>
+          {this.state.saldo.map((data, index) => {
+            data.value = data.value.replace(".", ",");
+            var saldo = data.value.split(",");
+            return (
+              <TextSaldo
+                style={{ margin: 0, padding: 0, includeFontPadding: false }}
+                key={index}
+              >
+                {translate("balance")}: R$
+                {saldo[0].concat(",", saldo[1].substring(0, 2))}
+              </TextSaldo>
+            );
+          })}
+        </View>
         <HistoricBox>
           {this.state.x.map((data, index) => {
             if (data.tipo_de_transacao == 1) {
@@ -164,7 +177,8 @@ class Dashboard extends Component {
                     key={"historic-icon-" + index}
                     name="attach-money"
                     size={24}
-                    color="#FAFAFF"
+                    // color="#DAE3E5"
+                    color="#507DBC"
                   />
                   <HistoricTextBox key={"historic-text-box-" + index}>
                     <HistoricTextTitle key={"historic-text-title-" + index}>
@@ -181,11 +195,13 @@ class Dashboard extends Component {
                 <MaterialIcons
                   name="description"
                   size={24}
-                  color="#FAFAFF"
-                  onPress={() =>
-                    this.props.navigation.navigate("TransactionDescription", {
+                  // color="#DAE3E5"
+                  color="#507DBC"
+                  onPress={() =>{
+                    console.log(data.id);
+                    this.props.navigation.navigate('TransactionDescription', {
                       id: data.id,
-                    })
+                    })}
                   }
                 />
               </HistoricItem>
@@ -196,7 +212,8 @@ class Dashboard extends Component {
           <Ionicons
             name="ios-add-circle-outline"
             size={44}
-            color="#FAFAFF"
+            // color="#DAE3E5"
+            color="#507DBC"
             style={{ textAlign: "right" }}
             onPress={() =>
               this.props.navigation.navigate("RegisterTransactions")
@@ -205,13 +222,15 @@ class Dashboard extends Component {
           <AntDesign
             name="filter"
             size={38}
-            color="#FAFAFF"
+            // color="#DAE3E5"
+            color="#507DBC"
             onPress={() => this.props.navigation.navigate("Filter")}
           />
           <Ionicons
             name="refresh-circle-outline"
             size={44}
-            color="#FAFAFF"
+            // color="#DAE3E5"
+            color="#507DBC"
             style={{ textAlign: "left" }}
             onPress={this.refreshScreen}
           />

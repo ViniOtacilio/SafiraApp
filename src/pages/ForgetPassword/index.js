@@ -60,16 +60,17 @@ class ForgetPassword extends Component {
     return (
       <Container>
         <CloseIcon>
-          <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Login")} />
+          <AntDesign name="close" size={24} color="#507DBC" onPress={() => this.props.navigation.navigate("Login")} />
         </CloseIcon>
         <HeaderBox>
-          <Title>Recuperar Senha</Title>
+          <Title style={{textAlignVertical: "center",textAlign: "center"}}>Recuperar Senha</Title>
         </HeaderBox>
         <InputBox>
           <Input
             value={this.state.email}
             onChangeText={this.onEmailChange}
             placeholder={'E-mail'}
+            placeholderTextColor="#fff"
             autoCapitalize="none"
             autoCorrect={false}
           ></Input>

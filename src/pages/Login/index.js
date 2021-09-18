@@ -77,6 +77,7 @@ class Login extends Component {
         <InputBox>
           <Input
             placeholder={translate("placeholderEmail")}
+            placeholderTextColor="#fff"
             value={this.state.email}
             autoCapitalize="none"
             autoCorrect={false}
@@ -87,6 +88,7 @@ class Login extends Component {
           <Input
             secureTextEntry={true}
             placeholder={translate("placeholderPassword")}
+            placeholderTextColor="#fff"
             value={this.state.password}
             autoCapitalize="none"
             autoCorrect={false}

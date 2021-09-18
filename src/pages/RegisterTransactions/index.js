@@ -149,7 +149,7 @@ class RegisterTransactions extends Component {
             <AntDesign
               name="arrowleft"
               size={30}
-              color="#FAFAFF"
+              color="#507DBC"
               onPress={() => this.props.navigation.navigate("Dashboard")}
             />
           </BalanceBoxIcon>
@@ -173,10 +173,10 @@ class RegisterTransactions extends Component {
             onPress={(tipo_de_transacao) =>
               this.onTypeOfTransactionChange(tipo_de_transacao)
             }
-            textColor={"#E4D9FF"}
+            textColor={"#BBD1EA"}
             selectedColor={"#30343F"}
-            buttonColor={"#E4D9FF"}
-            borderColor={"#E4D9FF"}
+            buttonColor={"#BBD1EA"}
+            borderColor={"#BBD1EA"}
             hasPadding
             options={[
               { label: entrada, value: "1" },
@@ -225,8 +225,9 @@ class RegisterTransactions extends Component {
             placeholder={{ label: selecioneCtg, value: "categoria" }}
             style={{
               inputAndroid: {
+                textAlign: "center",
                 color: "gray",
-                backgroundColor: "#FAFAFF",
+                backgroundColor: "#BBD1EA",
                 paddingTop: 8,
                 paddingBottom: 8,
                 paddingLeft: 8,
@@ -236,7 +237,7 @@ class RegisterTransactions extends Component {
                 height: 40,
               },
               inputIOS: {
-                backgroundColor: "#FAFAFF",
+                backgroundColor: "#BBD1EA",
                 paddingTop: 8,
                 paddingBottom: 8,
                 paddingLeft: 8,
@@ -256,7 +257,7 @@ class RegisterTransactions extends Component {
         <SimpleLineIcons
           name="check"
           size={44}
-          color="#FAFAFF"
+          color="#507DBC"
           style={{ textAlign: "center" }}
           onPress={this.onPressSave.bind(this)}
         />

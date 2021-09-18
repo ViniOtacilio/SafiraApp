@@ -52,19 +52,19 @@ class HamburguerMenu extends Component {
       <Container>
         <MenuHamburguerHeader>
           <UserBox>
-            <FontAwesome name="user-circle" size={26} color="#FAFAFF" />
+            <FontAwesome name="user-circle" size={26} color="#DAE3E5" />
             <Title>Olá, {this.state.userName}!</Title>
           </UserBox>
           <AntDesign
             name="close"
             size={24}
-            color="#FAFAFF"
+            color="#DAE3E5"
             onPress={() => this.props.navigation.navigate("Dashboard")}
           />
         </MenuHamburguerHeader>
         <MenuHamburguerBox>
           <MenuHamburguerItem>
-            <AntDesign name="logout" size={24} color="#1E2749" />
+            <AntDesign name="logout" size={24} color="#f5f5f5" />
             <Text onPress={this.onPressLogout.bind(this)}>
               {translate("logOut")}
             </Text>
