@@ -144,7 +144,7 @@ class Filter extends Component {
             name="close"
             size={24}
             color="#DAE3E5"
-            onPress={() => this.props.navigation.navigate("Dashboard")}
+            onPress={() => this.props.navigation.navigate("ReportsFilter")}
           />
         </FilterHeader>
         <FilterBox>

@@ -2,80 +2,110 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
-    background: #1E2749;
-    align-items: center;
-    justify-content: center;
-`;
-
-export const CloseIcon = styled.View`
-    position: absolute;
-    top: 40px;
-    right: 20px;
-`;
-
-export const HeaderBox = styled.Text`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0 40px;
-    width: 70%;
-`;
-
-export const Title = styled.Text`
-    color: #FAFAFF;
-    font-size: 26px;
-    margin-left: 20px;
-`;
-
-export const InputBox = styled.View`
-    flex-direction: row;
-    padding: 12px 0;
-    width: 80%;
     justify-content: space-between;
+    background: #f5f5f5;
+    padding: 35px 0px 10px 0px;
 `;
 
-export const Input = styled.TextInput`
-    background: #FAFAFF;
-    height: 44px;
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 18px;
+export const ReportsHeader = styled.View`
+  flex: 1;
+  ${"" /* background: #1E2749; */}
+  background: #507DBC;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 60px;
+  padding: 8px;
+  padding-left: 30px;
 `;
 
-export const ButtonText = styled.Text`
-    text-align: center;
-    height: 40px;
-    line-height: 40px;
-    color: #FAFAFF;
-    font-size: 16px;
-    font-weight: bold;
+export const ReportsTitleBox = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
 `;
 
-export const Button = styled.TouchableOpacity`
-    background: transparent;
-    border: 1px solid #FAFAFF;
-    border-radius: 4px;
-    width: 80%;
-    margin-top: 30px;
+export const ReportsTitle = styled.Text`
+  font-size: 20px;
+  color: rgb(218, 227, 229);
 `;
 
-export const Text = styled.Text`
-  background: #FAFAFF;
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 18px;
-    text-align: center;
-    margin-left: 20px;    
+export const AdvancedFilterLink = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: #507DBC;
 `;
 
-export const ErrorText = styled.Text`
-    background: transparent;
-    color: red;
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 16px;
-    text-align: center;     
+export const FilterMonthlyBox = styled.View`
+  display: flex;
+  flex-direction: column;
+  ${"" /* background-color: rgb(39, 52, 105); */}
+  background-color: #fff;
+  width: 80%;
+  margin: 10px auto 0;
+  border-radius: 4px;
+  padding: 8px;
+`;
+
+export const FilterMonthlyBox1 = styled.ScrollView`
+  display: flex;
+  flex-direction: column;
+  ${"" /* background-color: rgb(39, 52, 105); */}
+  background-color: #fff;
+  width: 80%;
+  margin: 10px auto 0;
+  border-radius: 4px;
+  padding: 8px;
+  max-height: 200px;
+`;
+
+export const ReportsSubTitle = styled.Text`
+  font-size: 16px;
+  color: grey;
+`;
+
+export const ReceitaText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: green;
+`;
+
+export const DespesaText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: red;
+`;
+
+export const SaldoText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: blue;
+`;
+
+export const CategoriaText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: grey;
 `;
