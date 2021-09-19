@@ -17,16 +17,95 @@ export const ReportsHeader = styled.View`
   max-height: 60px;
   padding: 8px;
   padding-left: 30px;
+`;
+
+export const ReportsTitleBox = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+`;
+
+export const ReportsTitle = styled.Text`
   font-size: 20px;
   color: rgb(218, 227, 229);
 `;
 
 export const AdvancedFilterLink = styled.Text`
-  padding: 0 0 20px 0;
+  padding: 10px 0;
   margin: 0;
   font-size: 16px;
   text-align: center;
   font-weight: bold;
   ${"" /* color: #DAE3E5;  */}
   color: #507DBC;
+`;
+
+export const FilterMonthlyBox = styled.View`
+  display: flex;
+  flex-direction: column;
+  ${"" /* background-color: rgb(39, 52, 105); */}
+  background-color: #fff;
+  width: 80%;
+  margin: 10px auto 0;
+  border-radius: 4px;
+  padding: 8px;
+`;
+
+export const FilterMonthlyBox1 = styled.ScrollView`
+  display: flex;
+  flex-direction: column;
+  ${"" /* background-color: rgb(39, 52, 105); */}
+  background-color: #fff;
+  width: 80%;
+  margin: 10px auto 0;
+  border-radius: 4px;
+  padding: 8px;
+  max-height: 200px;
+`;
+
+export const ReportsSubTitle = styled.Text`
+  font-size: 16px;
+  color: grey;
+`;
+
+export const ReceitaText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: green;
+`;
+
+export const DespesaText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: red;
+`;
+
+export const SaldoText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: blue;
+`;
+
+export const CategoriaText = styled.Text`
+  padding: 10px 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  ${"" /* color: #DAE3E5;  */}
+  color: grey;
 `;

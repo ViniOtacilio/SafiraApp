@@ -2,16 +2,23 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
+    justify-content: space-between;
     background: #f5f5f5;
-    padding: 60px 20px;
+    padding: 35px 0px 10px 0px;
 `;
 
 export const FilterHeader = styled.View`
     flex: 1;
-    background: #f5f5f5;
+    ${"" /* background: #1E2749; */}
+    background: #507DBC;
     flex-direction: row;
     justify-content: space-between;
-    max-height: 30px;
+    align-items: center;
+    max-height: 60px;
+    padding: 8px;
+    padding-left: 30px;
+    font-size: 20px;
+    color: rgb(218, 227, 229);
 `;
 
 export const UserBox = styled.View`
@@ -34,21 +41,6 @@ export const FilterBox = styled.View`
     justify-content: center;
     align-items: center;
     margin: auto;
-`;
-
-export const InputBox = styled.View`
-    flex-direction: row;
-    padding: 12px 0;
-    width: 80%;
-`;
-
-export const Input = styled.TextInput`
-    background: #DAE3E5;
-    height: 32px;
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 16px;
 `;
 
 export const SelectBox = styled.View`
