@@ -22,14 +22,15 @@ class ChangePassword extends Component {
     return (
       <Container>
         <CloseIcon>
-          <AntDesign name="close" size={24} color="#FAFAFF" onPress={() => this.props.navigation.navigate("Login")} />
+          <AntDesign name="close" size={24} color="#507DBC" onPress={() => this.props.navigation.navigate("Login")} />
         </CloseIcon>
         <HeaderBox>
           <Title>Mudar Senha</Title>
         </HeaderBox>
         <InputBox>
           <Input
-            
+            placeholder={'Nova senha'}
+            placeholderTextColor="#fff"
           ></Input>
         </InputBox>
         <Text>
