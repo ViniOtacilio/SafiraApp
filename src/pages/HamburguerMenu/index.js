@@ -47,6 +47,11 @@ class HamburguerMenu extends Component {
     };
     APIKit.get("/logout").then(onSuccess); //.catch(onFailure);
   }
+
+  onPressCategoria() {
+    this.props.navigation.navigate("CustomCategory");
+  }
+
   render() {
     return (
       <Container>
@@ -63,6 +68,12 @@ class HamburguerMenu extends Component {
           />
         </MenuHamburguerHeader>
         <MenuHamburguerBox>
+        <MenuHamburguerItem>
+            <AntDesign name="edit" size={24} color="#f5f5f5" />
+            <Text onPress={this.onPressCategoria.bind(this)}>
+              Categorias
+            </Text>
+          </MenuHamburguerItem>
           <MenuHamburguerItem>
             <AntDesign name="logout" size={24} color="#f5f5f5" />
             <Text onPress={this.onPressLogout.bind(this)}>

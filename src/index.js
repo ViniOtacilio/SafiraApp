@@ -13,6 +13,7 @@ import TransactionDescription from './pages/TransactionDescription';
 import ForgetPassword from './pages/ForgetPassword';
 import ChangePassword from './pages/ChangePassword';
 import ReportsFilter from './pages/ReportsFilter';
+import CustomCategory from './pages/Category';
 
 const prefix = Linking.makeUrl("/");
 
@@ -42,6 +43,7 @@ export default function App() {
         <Stack.Screen name="TransactionDescription" component={ TransactionDescription } />
         <Stack.Screen name="ReportsFilter" component={ ReportsFilter } />
         <Stack.Screen name="ChangePassword" component={ ChangePassword } />
+        <Stack.Screen name="CustomCategory" component={ CustomCategory } />
       </Stack.Navigator>
     </NavigationContainer>
   );
