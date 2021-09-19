@@ -24,7 +24,7 @@ export const ReportsTitleBox = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px 10px;
 `;
 
 export const ReportsTitle = styled.Text`

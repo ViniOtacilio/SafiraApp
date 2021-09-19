@@ -83,6 +83,14 @@ class ReportsFilter extends Component {
         despesa: 0,
         saldo: 0,
         month: '',
+        moradiaGastos: 0,
+        supermercadoGastos: 0,
+        transporteGastos: 0,
+        lazerGastos: 0,
+        saudeGastos: 0,
+        contasGastos: 0,
+        restauranteGastos: 0,
+        outrosGastos: 0,
         isAuthenticated: false,
     };
   }
@@ -186,6 +194,15 @@ class ReportsFilter extends Component {
         var receita = 0;
         var despesa = 0;
         var saldo = 0;
+        var moradiaGastos = 0;
+        var supermercadoGastos = 0;
+        var transporteGastos = 0;
+        var lazerGastos = 0;
+        var saudeGastos = 0;
+        var contasGastos = 0;
+        var restauranteGastos = 0;
+        var outrosGastos = 0;
+        console.log(data)
         data.map(function(item) {
             //entrada
             if (item.tipo_de_transacao == 1) {
@@ -197,14 +214,63 @@ class ReportsFilter extends Component {
                 //console.log(parseFloat(item.value))
                 despesa += parseFloat(item.value);
             }
+            if (item.categoriaid == 1) {
+                if (item.tipo_de_transacao == 2) {
+                    moradiaGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 2) {
+                if (item.tipo_de_transacao == 2) {
+                    supermercadoGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 3) {
+                if (item.tipo_de_transacao == 2) {
+                    transporteGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 4) {
+                if (item.tipo_de_transacao == 2) {
+                    lazerGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 5) {
+                if (item.tipo_de_transacao == 2) {
+                    saudeGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 6) {
+                if (item.tipo_de_transacao == 2) {
+                    contasGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 7) {
+                if (item.tipo_de_transacao == 2) {
+                    restauranteGastos += parseFloat(item.value);
+                }
+            }
+            if (item.categoriaid == 8) {
+                if (item.tipo_de_transacao == 2) {
+                    outrosGastos += parseFloat(item.value);
+                }
+            }
         });
         saldo = receita - despesa;
         this.setState({ receita: receita });
         this.setState({ despesa: despesa });
         this.setState({ saldo: saldo });
+        this.setState({ moradiaGastos: moradiaGastos });
+        this.setState({ supermercadoGastos: supermercadoGastos });
+        this.setState({ transporteGastos: transporteGastos });
+        this.setState({ lazerGastos: lazerGastos });
+        this.setState({ saudeGastos: saudeGastos });
+        this.setState({ contasGastos: contasGastos });
+        this.setState({ restauranteGastos: restauranteGastos });
+        this.setState({ outrosGastos: outrosGastos });
         console.log('receita: ' + this.state.receita);
         console.log('despesa: ' + this.state.despesa);
         console.log('saldo: ' + this.state.saldo);
+        console.log('outros: ' + this.state.outrosGastos);
     };
 
     const userId = await AsyncStorage.getItem("userId");
@@ -272,25 +338,28 @@ class ReportsFilter extends Component {
                 </ReportsSubTitle>
             </ReportsTitleBox>
             <CategoriaText>
-                Moradia: R$200,00
+                Moradia: R${this.state.moradiaGastos}
             </CategoriaText>
             <CategoriaText>
-                Supermercado: R$200,00
+                Supermercado: R${this.state.supermercadoGastos}
             </CategoriaText>
             <CategoriaText>
-                Transporte: R$200,00
+                Transporte: R${this.state.transporteGastos}
             </CategoriaText>
             <CategoriaText>
-                Lazer: R$200,00
+                Lazer: R${this.state.lazerGastos}
             </CategoriaText>
             <CategoriaText>
-                Saúde: R$200,00
+                Saúde: R${this.state.saudeGastos}
             </CategoriaText>
             <CategoriaText>
-                Contas: R$200,00
+                Contas: R${this.state.contasGastos}
             </CategoriaText>
             <CategoriaText>
-                Restaurente / Delivery: R$200,00
+                Restaurente / Delivery: R${this.state.restauranteGastos}
+            </CategoriaText>
+            <CategoriaText>
+                Outros: R${this.state.outrosGastos}
             </CategoriaText>
         </FilterMonthlyBox1>
 
