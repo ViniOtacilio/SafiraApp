@@ -21,10 +21,10 @@ const Stack = createStackNavigator();
 export default function App() {
 
   const linking = {
-    prefixes: ['safira://'],
+    prefixes: [prefix],
     config: {
       screens: {
-        ForgetPassword: 'forgetpassword',
+        ChangePassword: 'changepassword',
       },
     },
   };

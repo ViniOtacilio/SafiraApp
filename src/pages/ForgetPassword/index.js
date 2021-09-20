@@ -50,9 +50,11 @@ class ForgetPassword extends Component {
     const onSuccess = async ({ data }) => {
       try {
         this.setState({ message: "Cheque seu email." });
+        console.log('teste')
         console.log(data);
       }
       catch (e) {
+        this.setState({ message: "Erro." });
         console.log(e);
       }
     };
