@@ -5,9 +5,9 @@ import { API_URL } from '@env'
 // Create axios client, pre-configured with baseURL
 let APIKit = axios.create({
   // Production URL
-  // baseURL: 'http://52.67.109.30:3333/',
+   baseURL: 'http://52.67.109.30:3333/',
   // Local URL
-  baseURL: 'http://localhost:3333/',
+  //baseURL: 'http://localhost:3333/',
   timeout: 10000,
 });
 
