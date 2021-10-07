@@ -32,10 +32,69 @@ export const Title = styled.Text`
     margin: 0 8px;
 `;
 
-export const NewCategory = styled.View`
-  display: flex;
+export const PageTitle = styled.Text`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #507DBC;
+    font-size: 24px;
+    margin: 24px 8px;
 `;
 
-export const AddNewCatogory = styled.View `
+export const NewCategory = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const AddNewCategory = styled.View `
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
+export const ButtonText = styled.Text`
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background-color: #507DBC;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 4px;
+`;
+
+export const Button = styled.TouchableOpacity`
+    text-align: center;
+    background: transparent;
+    border: 1px solid #DAE3E5;
+    border-radius: 4px;
+    margin-top: 30px;
+`;
+
+export const InputBox = styled.View`
+    text-align: center;
+    flex-direction: row;
+    padding: 12px 0;
+    ${'' /* width: 80%; */}
+    justify-content: space-between;
+`;
+
+export const Input = styled.TextInput`
+    text-align: center;
+    background: #BBD1EA;
+    color: #808080;
+    height: 44px;
+    width: 280px;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 18px;
+`;

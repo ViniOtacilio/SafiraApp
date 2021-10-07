@@ -10488,6 +10488,11 @@ react-native-screens@~3.4.0:
   dependencies:
     warn-once "^0.1.0"
 
+react-native-scroll-menu@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-scroll-menu/-/react-native-scroll-menu-1.0.6.tgz#ee472713f770731ff04591d096fdd8a85d9d7b96"
+  integrity sha512-M+44/2RCKg2BtVS8IgCXWgGVsLFJdkIMEX/5Dv3iRNMLMnsjtgnAO5+zmQWeGmdOqT5swySfZYPewBiGfKBKBQ==
+
 react-native-switch-selector@^2.1.4:
   version "2.1.4"
   resolved "https://registry.npmjs.org/react-native-switch-selector/-/react-native-switch-selector-2.1.4.tgz"

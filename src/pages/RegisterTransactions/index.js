@@ -224,6 +224,9 @@ class RegisterTransactions extends Component {
             ]}
             placeholder={{ label: selecioneCtg, value: "categoria" }}
             style={{
+              placeholder: {
+                color: 'gray'
+              },
               inputAndroid: {
                 textAlign: "center",
                 color: "gray",
