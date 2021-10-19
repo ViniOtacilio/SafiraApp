@@ -109,3 +109,8 @@ export const CategoriaText = styled.Text`
   ${"" /* color: #DAE3E5;  */}
   color: grey;
 `;
+
+export const ScrollingButtonMenuBox = styled.View`
+  padding-right: 15px;
+  margin-left: -5px;
+`;

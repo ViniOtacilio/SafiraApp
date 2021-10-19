@@ -51,11 +51,14 @@ export const SelectBox = styled.View`
 
 export const ButtonText = styled.Text`
     text-align: center;
-    height: 30px;
-    line-height: 30px;
-    color: #DAE3E5;
-    font-size: 18px;
+    height: 35px;
+    line-height: 35px;
+    color: rgb(245, 245, 245);;
+    background-color: rgb(80, 125, 188);
+    font-size: 16px;
     font-weight: bold;
+    border: 1px solid rgb(80, 125, 188);
+    border-radius: 5px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -68,7 +71,7 @@ export const Button = styled.TouchableOpacity`
 
 export const TextDate = styled.Text`
     font-size: 16px;
-    color: #DAE3E5;
+    color: rgb(80, 125, 188);
     margin: 10px;
 `
 
