@@ -11,20 +11,23 @@ import {
   PageTitle,
   InputBox,
   Input,
+  ListAllCategories,
+  CategoryName
 } from "./styles";
 import APIKit from "../../utils/APIKit";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
+import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
 
-const initialState = {
-  newCategory: "",
-  isAuthenticated: false,
-  userName: "",
-  data: [],
-  showAddNewCategory: false,
-  errorState: false,
-};
+
+// const initialState = {
+//   newCategory: "",
+//   isAuthenticated: false,
+//   userName: "",
+//   data: [],
+//   showAddNewCategory: false,
+//   errorState: false,
+// };
 
 class CustomCategory extends Component {
   constructor() {
@@ -35,7 +38,7 @@ class CustomCategory extends Component {
       data: [],
       showAddNewCategory: false,
       errorState: false,
-      newCategory: "",
+      newCategoryName: "",
     };
   }
 
@@ -60,15 +63,14 @@ class CustomCategory extends Component {
     this.setState({ showAddNewCategory: true });
   };
 
-  onNewCategoryChange = (newCategory) => {
-    this.setState({ newCategory });
+  onNewCategoryChange = (newCategoryName) => {
+    this.setState({ newCategoryName });
   };
 
   async onPressCreateNewCategory() {
-    const { newCategory } = this.state;
+    const { newCategoryName } = this.state;
     const user_id = await AsyncStorage.getItem("userId");
-    const payload = { user_id, newCategory };
-    console.log(payload);
+    const payload = { user_id, newCategoryName };
     this.setState({ errorState: false });
 
     const onSuccess = async ({ data }) => {
@@ -88,9 +90,9 @@ class CustomCategory extends Component {
   }
 
   render() {
-    this.state.data.map((data, index) => {
-      console.log(data);
-    });
+    // this.state.data.map((data, index) => {
+    //   console.log(data);
+    // });
     return (
       <Container>
         <CategoryHeader>
@@ -108,6 +110,23 @@ class CustomCategory extends Component {
           />
         </CategoryHeader>
         <PageTitle>Categorias Personalizadas</PageTitle>
+        {/* Listando todas categorias*/}
+        {!this.state.showAddNewCategory && (
+          <ListAllCategories>
+          <CategoryName>Teste</CategoryName>
+          <Ionicons
+            name="close-outline"
+            size={32}
+            // color="#DAE3E5"
+            color="#507DBC"
+            style={{ textAlign: "right" }}
+            onPress={() =>
+              this.props.navigation.navigate("RegisterTransactions")
+            }
+          />
+        </ListAllCategories>
+          )}
+        {/* Criar nova categoria */}
         <NewCategory>
           {this.state.showAddNewCategory && (
             <AddNewCategory>
@@ -128,12 +147,13 @@ class CustomCategory extends Component {
               </Button>
             </AddNewCategory>
           )}
-          { !this.state.showAddNewCategory && (<Button>
-            <ButtonText onPress={this.showNewCategorySection.bind(this)}>
-              Criar nova categoria
-            </ButtonText>
-          </Button>)
-          }
+          {!this.state.showAddNewCategory && (
+            <Button>
+              <ButtonText onPress={this.showNewCategorySection.bind(this)}>
+                Criar nova categoria
+              </ButtonText>
+            </Button>
+          )}
         </NewCategory>
       </Container>
     );

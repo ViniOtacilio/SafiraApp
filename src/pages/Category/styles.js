@@ -98,3 +98,17 @@ export const Input = styled.TextInput`
     padding: 8px;
     font-size: 18px;
 `;
+
+export const ListAllCategories = styled.View `
+    flex-direction: row;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    background-color: red;
+`
+
+export const CategoryName = styled.Text`
+    color: #000;
+    font-size: 14px;
+    margin: 0 8px;
+`;

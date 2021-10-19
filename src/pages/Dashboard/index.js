@@ -118,7 +118,6 @@ class Dashboard extends Component {
             <FontAwesome
               name="user-circle"
               size={26}
-              // color="#DAE3E5"
               color="#DAE3E5"
             />
             <Title>
