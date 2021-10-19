@@ -12,6 +12,7 @@ import {
   SaldoText,
   CategoriaText,
   AdvancedFilterLink,
+  ScrollingButtonMenuBox
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { AntDesign } from "@expo/vector-icons";
@@ -300,13 +301,15 @@ class ReportsFilter extends Component {
             />
         </ReportsHeader>
 
-        <ScrollingButtonMenu
-            items={menus}
-            style={{padding:30}}
-            onPress={(e) => {
-                this.onPressFilter(e.id);
-            }}
-        />
+        <ScrollingButtonMenuBox>
+            <ScrollingButtonMenu
+                items={menus}
+                style={{padding:15}}
+                onPress={(e) => {
+                    this.onPressFilter(e.id);
+                }}
+            />
+        </ScrollingButtonMenuBox>
 
         <FilterMonthlyBox>
             <ReportsTitleBox>

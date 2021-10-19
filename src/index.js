@@ -24,7 +24,7 @@ export default function App() {
     prefixes: [prefix],
     config: {
       screens: {
-        ChangePassword: 'changepassword',
+        ChangePassword: 'changePassword'
       },
     },
   };
