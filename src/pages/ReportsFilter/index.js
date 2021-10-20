@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import {
   Container,
-  ReportsHeader,
+  Header,
+  UserBox,
+  HeaderTitle,
   ReportsTitleBox,
-  ReportsTitle,
   FilterMonthlyBox,
   FilterMonthlyBox1,
   ReportsSubTitle,
@@ -15,7 +16,7 @@ import {
   ScrollingButtonMenuBox
 } from "./styles";
 import APIKit from "../../utils/APIKit";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
@@ -101,10 +102,13 @@ class ReportsFilter extends Component {
   async componentDidMount() {
     const userId = await AsyncStorage.getItem("userId");
     const userName = await AsyncStorage.getItem("username");
-    console.log(userId)
 
     if (userId == null || userId == "null") {
       this.props.navigation.navigate("Login");
+    } else {
+      this.setState({ userId: userId });
+      this.setState({ userName: userName });
+      this.setState({ isAuthenticated: true });
     }
   }
 
@@ -289,17 +293,18 @@ class ReportsFilter extends Component {
   render() {
     return (
       <Container>
-        <ReportsHeader>
-            <ReportsTitle>
-                Relatórios
-            </ReportsTitle>
-            <AntDesign
-                name="close"
-                size={24}
-                color="#DAE3E5"
-                onPress={() => this.props.navigation.navigate("Dashboard")}
-            />
-        </ReportsHeader>
+        <Header>
+          <UserBox>
+            <FontAwesome name="user-circle" size={26} color="#DAE3E5" />
+            <HeaderTitle>Olá, {this.state.userName}!</HeaderTitle>
+          </UserBox>
+          <AntDesign
+            name="close"
+            size={24}
+            color="#DAE3E5"
+            onPress={() => this.props.navigation.navigate("Dashboard")}
+          />
+        </Header>
 
         <ScrollingButtonMenuBox>
             <ScrollingButtonMenu

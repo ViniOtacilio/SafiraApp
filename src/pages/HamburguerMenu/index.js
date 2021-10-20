@@ -68,11 +68,17 @@ class HamburguerMenu extends Component {
           />
         </MenuHamburguerHeader>
         <MenuHamburguerBox>
-        <MenuHamburguerItem>
-            <AntDesign name="edit" size={24} color="#f5f5f5" />
-            <Text onPress={this.onPressCategoria.bind(this)}>
-              Categorias
-            </Text>
+          <MenuHamburguerItem>
+              <AntDesign name="setting" size={24} color="#f5f5f5" />
+              <Text onPress={() => this.props.navigation.navigate("ManageRelease")}>
+                Gerenciar lançamentos
+              </Text>
+          </MenuHamburguerItem>
+          <MenuHamburguerItem>
+              <AntDesign name="edit" size={24} color="#f5f5f5" />
+              <Text onPress={this.onPressCategoria.bind(this)}>
+                Categorias
+              </Text>
           </MenuHamburguerItem>
           <MenuHamburguerItem>
             <AntDesign name="logout" size={24} color="#f5f5f5" />

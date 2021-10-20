@@ -8,17 +8,14 @@ export const Container = styled.View`
 `;
 
 export const FilterHeader = styled.View`
-    flex: 1;
-    ${"" /* background: #1E2749; */}
-    background: #507DBC;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    max-height: 60px;
-    padding: 8px;
-    padding-left: 30px;
-    font-size: 20px;
-    color: rgb(218, 227, 229);
+  flex: 1;
+  ${"" /* background: #1E2749; */}
+  background: #507DBC;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 60px;
+  padding: 8px;
 `;
 
 export const UserBox = styled.View`

@@ -7,7 +7,7 @@ export const Container = styled.View`
     padding: 35px 0px 10px 0px;
 `;
 
-export const ReportsHeader = styled.View`
+export const Header = styled.View`
   flex: 1;
   ${"" /* background: #1E2749; */}
   background: #507DBC;
@@ -16,7 +16,18 @@ export const ReportsHeader = styled.View`
   align-items: center;
   max-height: 60px;
   padding: 8px;
-  padding-left: 30px;
+`;
+
+export const UserBox = styled.View`
+    display: flex;
+    flex-direction: row;
+    max-height: 30px;
+`;
+
+export const HeaderTitle = styled.Text`
+    color: #DAE3E5;
+    font-size: 20px;
+    margin: 0 8px;
 `;
 
 export const ReportsTitleBox = styled.View`
@@ -27,10 +38,6 @@ export const ReportsTitleBox = styled.View`
   padding: 20px 10px;
 `;
 
-export const ReportsTitle = styled.Text`
-  font-size: 20px;
-  color: rgb(218, 227, 229);
-`;
 
 export const AdvancedFilterLink = styled.Text`
   padding: 10px 0;
