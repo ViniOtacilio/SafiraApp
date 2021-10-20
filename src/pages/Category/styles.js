@@ -100,15 +100,21 @@ export const Input = styled.TextInput`
 `;
 
 export const ListAllCategories = styled.View `
+    ${'' /* width: 80%; */}
+    margin: 16px 40px 16px 40px;
+    text-align: center;
     flex-direction: row;
     justify-content: center;
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    align-itens: center;
+    border: 1px solid #BBD1EA;
+    justify-content: space-between;
+
 `
 
 export const CategoryName = styled.Text`
     color: #000;
-    font-size: 14px;
+    font-size: 18px;
+    margin-right: 18px;
     margin: 0 8px;
+    align-self: center;
 `;
