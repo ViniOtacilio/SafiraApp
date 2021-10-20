@@ -119,7 +119,7 @@ class CustomCategory extends Component {
             size={32}
             // color="#DAE3E5"
             color="#507DBC"
-            style={{ textAlign: "right" }}
+            style={{ textAlign: "center" }}
             onPress={() =>
               this.props.navigation.navigate("RegisterTransactions")
             }
