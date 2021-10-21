@@ -105,7 +105,7 @@ export const ListAllCategories = styled.View `
     text-align: center;
     flex-direction: row;
     justify-content: center;
-    align-itens: center;
+    align-items: center;
     border: 1px solid #BBD1EA;
     justify-content: space-between;
 

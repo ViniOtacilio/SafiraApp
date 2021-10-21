@@ -9,7 +9,7 @@ import {
   MenuHamburguerItem,
 } from "./styles";
 import APIKit from "../../utils/APIKit";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
+import { FontAwesome, AntDesign, Entypo } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
 
@@ -68,6 +68,12 @@ class HamburguerMenu extends Component {
           />
         </MenuHamburguerHeader>
         <MenuHamburguerBox>
+          <MenuHamburguerItem>
+              <Entypo name="bar-graph" size={24} color="#f5f5f5" />
+              <Text onPress={() => this.props.navigation.navigate("MonthlyPlanning")}>
+                Planejamento Mensal
+              </Text>
+          </MenuHamburguerItem>
           <MenuHamburguerItem>
               <AntDesign name="setting" size={24} color="#f5f5f5" />
               <Text onPress={() => this.props.navigation.navigate("ManageRelease")}>
