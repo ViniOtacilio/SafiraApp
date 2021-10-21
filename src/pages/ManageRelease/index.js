@@ -4,7 +4,11 @@ import {
   Header,
   UserBox,
   HeaderTitle,
-
+  ContentBox,
+  PageTitle,
+  ReleaseContent,
+  ReleaseBox,
+  ReleaseTitle
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
@@ -58,6 +62,19 @@ class ManageRelease extends Component {
             onPress={() => this.props.navigation.navigate("Dashboard")}
           />
         </Header>
+        <ContentBox>
+        <PageTitle>Gerenciar Lançamentos</PageTitle>
+        <ReleaseContent>
+        <ReleaseBox>
+          <ReleaseTitle>Conta de celular</ReleaseTitle>
+          <AntDesign name="delete" size={20} color="#507DBC" />
+        </ReleaseBox>
+        <ReleaseBox>
+          <ReleaseTitle>Conta Netflix</ReleaseTitle>
+          <AntDesign name="delete" size={20} color="#507DBC" />
+        </ReleaseBox>
+        </ReleaseContent>
+        </ContentBox>
       </Container>
     );
   }
