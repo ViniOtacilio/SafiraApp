@@ -6,7 +6,10 @@ import {
   HeaderTitle,
   ContentBox,
   PageTitle,
-  Link
+  Input,
+  Text,
+  Button,
+  ButtonText
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
@@ -61,7 +64,69 @@ class ManagePlanning extends Component {
           />
         </Header>
         <ContentBox>
-            <PageTitle>Gerenciar Planejamento</PageTitle>
+            <PageTitle>Vou Gastar:</PageTitle>
+            <Input
+                placeholder="Moradia"
+                value="Moradia"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Supermercado"
+                value="Supermercado"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Transporte"
+                value="Transporte"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Lazer"
+                value="Lazer"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Saúde"
+                value="Saúde"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Contas"
+                value="Contas"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Restaurante/Delivery"
+                value="Restaurante/Delivery"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Input
+                placeholder="Outros"
+                value="Outros"
+                autoCapitalize="none"
+                autoCorrect={false}
+                >
+            </Input>
+            <Text>Total: R$</Text>
+            <Button>
+              <ButtonText>
+                Salvar
+              </ButtonText>
+            </Button>
         </ContentBox>
       </Container>
     );

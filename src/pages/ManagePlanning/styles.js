@@ -43,3 +43,46 @@ export const PageTitle = styled.Text`
     font-size: 24px;
     margin: 24px 8px;
 `;
+
+export const Input = styled.TextInput`
+    background: #BBD1EA; 
+    height: 40px;
+    width: 80%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto 5px;
+`;
+
+export const Text = styled.Text`
+    color: #507DBC;
+    font-size: 18px;
+    margin: 0 auto;
+    width: 80%;
+`;
+
+export const ButtonText = styled.Text`
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background-color: #507DBC;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 4px;
+`;
+
+export const Button = styled.TouchableOpacity`
+    text-align: center;
+    background: transparent;
+    border: 1px solid #DAE3E5;
+    border-radius: 4px;
+    margin: auto;
+`;
