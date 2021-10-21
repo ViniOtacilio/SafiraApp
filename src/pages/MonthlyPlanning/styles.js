@@ -48,10 +48,41 @@ export const PageTitle = styled.Text`
 `;
 
 export const Link = styled.Text`
-  padding: 10px 0;
+  padding: 5px 0;
   margin: 0;
   font-size: 16px;
   text-align: center;
   font-weight: bold;
   color: #507DBC;
+`;
+
+export const ScrollingButtonMenuBox = styled.View`
+  padding-right: 15px;
+  margin-left: -5px;
+`;
+
+export const PlanningContent = styled.View`
+
+`;
+
+export const PlanningBox = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  border: 1px solid #507DBC;
+  border-radius: 10px;
+  margin: 0 auto auto;
+  padding: 5px;
+  margin-bottom: 10px;
+`;
+
+export const PlanningTitle = styled.Text`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #507DBC;
+    font-size: 16px;
 `;
