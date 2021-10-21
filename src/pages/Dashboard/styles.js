@@ -45,13 +45,12 @@ export const HistoricBox = styled.ScrollView`
   display: flex;
   flex-direction: column;
   ${"" /* background-color: rgb(39, 52, 105); */}
-  background-color: #fff;
+  background-color: transparent;
   width: 80%;
   max-height: 350px;
   margin: 0 auto;
   border-radius: 4px;
   padding: 8px;
-  border: 1px solid #000;
 `;
 
 export const HistoricItem = styled.View`
@@ -60,8 +59,10 @@ export const HistoricItem = styled.View`
   width: 100%;
   align-items: center;
   border-radius: 4px;
-  margin: 20px 0;
+  margin: 10px 0;
   justify-content: space-between;
+  border: 1px solid #507DBC;
+  padding: 8px;
 `;
 
 export const HistoricItemLeft = styled.View`
@@ -70,7 +71,9 @@ export const HistoricItemLeft = styled.View`
   align-items: center;
 `;
 
-export const HistoricTextBox = styled.View``;
+export const HistoricTextBox = styled.View`
+  margin-left: 8px;
+`;
 
 export const HistoricTextTitle = styled.Text`
   font-weight: bold;
