@@ -118,3 +118,6 @@ export const CategoryName = styled.Text`
     margin: 0 8px;
     align-self: center;
 `;
+
+export const EachCustomCategorie = styled.View `
+`

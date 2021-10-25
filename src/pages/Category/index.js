@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, View } from "react";
 import {
   Container,
   UserBox,
@@ -12,22 +12,13 @@ import {
   InputBox,
   Input,
   ListAllCategories,
-  CategoryName
+  CategoryName,
+  EachCustomCategorie
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
-
-
-// const initialState = {
-//   newCategory: "",
-//   isAuthenticated: false,
-//   userName: "",
-//   data: [],
-//   showAddNewCategory: false,
-//   errorState: false,
-// };
 
 class CustomCategory extends Component {
   constructor() {
@@ -55,7 +46,14 @@ class CustomCategory extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
     }
-    const onSuccess = ({ data }) => {};
+
+    const onSuccess = ({ data }) => {
+      this.setState({ data: data });
+    };
+
+    APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId).then(onSuccess).catch('fail', userId);
+
+
   }
 
   showNewCategorySection = () => {
@@ -113,7 +111,10 @@ class CustomCategory extends Component {
         {/* Listando todas categorias*/}
         {!this.state.showAddNewCategory && (
           <ListAllCategories>
-          <CategoryName>Teste</CategoryName>
+          {this.state.data.map((data, index) => {
+            console.log(this.state.data);
+          <EachCustomCategorie key={"custom-category" + index}>
+          <CategoryName key={"custom-category-name" + index}>{data.Nome}</CategoryName>
           <Ionicons
             name="close-outline"
             size={32}
@@ -124,8 +125,10 @@ class CustomCategory extends Component {
               this.props.navigation.navigate("RegisterTransactions")
             }
           />
-        </ListAllCategories>
-          )}
+          </EachCustomCategorie>
+          })}
+          </ListAllCategories>
+         )}
         {/* Criar nova categoria */}
         <NewCategory>
           {this.state.showAddNewCategory && (
