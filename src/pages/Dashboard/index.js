@@ -147,6 +147,8 @@ class Dashboard extends Component {
             );
           })}
         </View>
+        
+
         <HistoricBox>
           {this.state.x.map((data, index) => {
             if (data.tipo_de_transacao == 1) {
@@ -207,6 +209,8 @@ class Dashboard extends Component {
             );
           })}
         </HistoricBox>
+
+
         <IconBox>
           <Ionicons
             name="ios-add-circle-outline"

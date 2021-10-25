@@ -15,6 +15,8 @@ import ChangePassword from './pages/ChangePassword';
 import ReportsFilter from './pages/ReportsFilter';
 import CustomCategory from './pages/Category';
 import ManageRelease from './pages/ManageRelease';
+import MonthlyPlanning from './pages/MonthlyPlanning';
+import ManagePlanning from './pages/ManagePlanning';
 
 const prefix = Linking.makeUrl("/");
 
@@ -46,6 +48,8 @@ export default function App() {
         <Stack.Screen name="ChangePassword" component={ ChangePassword } />
         <Stack.Screen name="CustomCategory" component={ CustomCategory } />
         <Stack.Screen name="ManageRelease" component={ ManageRelease } />
+        <Stack.Screen name="MonthlyPlanning" component={ MonthlyPlanning } />
+        <Stack.Screen name="ManagePlanning" component={ ManagePlanning } />
       </Stack.Navigator>
     </NavigationContainer>
   );
