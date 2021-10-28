@@ -26,7 +26,7 @@ let menus = [
     {
         name: 'JAN',
         id: 1,
-        backgroundColor: 'red',
+        backgroundColor: '#388E3C',
         borderColor: '#388E3C',
     },
     {

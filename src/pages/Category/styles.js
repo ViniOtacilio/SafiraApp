@@ -102,11 +102,10 @@ export const Input = styled.TextInput`
 export const ListAllCategories = styled.View `
     ${'' /* width: 80%; */}
     margin: 16px 40px 16px 40px;
+    display: flex;
     text-align: center;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #BBD1EA;
+    flex-direction: column;
+    ${'' /* justify-content: center; */}
     justify-content: space-between;
 
 `
@@ -120,4 +119,11 @@ export const CategoryName = styled.Text`
 `;
 
 export const EachCustomCategorie = styled.View `
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid #BBD1EA;
 `

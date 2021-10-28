@@ -83,7 +83,7 @@ class HamburguerMenu extends Component {
           <MenuHamburguerItem>
               <AntDesign name="edit" size={24} color="#f5f5f5" />
               <Text onPress={this.onPressCategoria.bind(this)}>
-                Categorias
+                Categorias Personalizadas
               </Text>
           </MenuHamburguerItem>
           <MenuHamburguerItem>

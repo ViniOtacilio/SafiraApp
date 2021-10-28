@@ -30,7 +30,27 @@ class CustomCategory extends Component {
       showAddNewCategory: false,
       errorState: false,
       newCategoryName: "",
+      lastRefresh: Date(Date.now()).toString(),
+      shouldUpdate: ""
     };
+    this.refreshScreen = this.refreshScreen.bind(this);
+  }
+
+  refreshScreen() {
+    this.setState({ lastRefresh: Date(Date.now()).toString() });
+    this.setState({ shouldUpdate: "true" });
+    this.props.route.params = null;
+  }
+
+  deleteCustomCategory(id) {
+    const payload = {id};
+    APIKit.post("/api/categorias/deleteCustomCategory/" + id)
+      .then(this.refreshScreen)
+      .catch(onFailure);
+
+      const onFailure = (error) => {
+        this.setState({ errorState: true });
+      };
   }
 
   componentWillUnmount() {}
@@ -87,6 +107,17 @@ class CustomCategory extends Component {
       .catch(onFailure);
   }
 
+  // async componentDidUpdate() {
+  //   if (this.props.route.params) {
+  //     const userId = await AsyncStorage.getItem("userId");
+  //     const onSuccess = ({ data }) => {
+  //       this.setState({ data: data });
+  //     };
+  //     APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId).then(onSuccess).catch('fail', userId);
+  //     this.props.route.params = null;
+  //   }
+  // }
+
   render() {
     // this.state.data.map((data, index) => {
     //   console.log(data);
@@ -111,11 +142,12 @@ class CustomCategory extends Component {
         {/* Listando todas categorias*/}
         {!this.state.showAddNewCategory && (
           <ListAllCategories>
-          {this.state.data.map((data, index) => {
-            console.log(this.state.data);
-          <EachCustomCategorie key={"custom-category" + index}>
-          <CategoryName key={"custom-category-name" + index}>{data.Nome}</CategoryName>
-          <Ionicons
+          {this.state.data.map((item, key) => {
+          return(
+          <EachCustomCategorie key={"custom-category" + key}>
+          <CategoryName key={"custom-category-name" + key}>{item.nome}</CategoryName>
+          <AntDesign name="delete" size={20} color="#507DBC" onPress={()=> this.deleteCustomCategory(item.id)}/>
+          {/* <Ionicons
             name="close-outline"
             size={32}
             // color="#DAE3E5"
@@ -124,8 +156,8 @@ class CustomCategory extends Component {
             onPress={() =>
               this.props.navigation.navigate("RegisterTransactions")
             }
-          />
-          </EachCustomCategorie>
+          /> */}
+          </EachCustomCategorie>);
           })}
           </ListAllCategories>
          )}

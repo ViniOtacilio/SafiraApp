@@ -15,7 +15,7 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
   max-height: 60px;
-  padding: 8px;
+  padding: 8px 8px 0px 8px;
 `;
 
 export const UserBox = styled.View`
@@ -57,6 +57,7 @@ export const FilterMonthlyBox = styled.View`
   width: 80%;
   margin: 10px auto 0;
   border-radius: 4px;
+  border: 2px solid #507DBC;
   padding: 8px;
 `;
 
@@ -68,6 +69,7 @@ export const FilterMonthlyBox1 = styled.ScrollView`
   width: 80%;
   margin: 10px auto 0;
   border-radius: 4px;
+  border: 2px solid #507DBC;
   padding: 8px;
   max-height: 200px;
 `;
@@ -75,6 +77,7 @@ export const FilterMonthlyBox1 = styled.ScrollView`
 export const ReportsSubTitle = styled.Text`
   font-size: 16px;
   color: grey;
+  font-weight: bold;
 `;
 
 export const ReceitaText = styled.Text`
@@ -118,6 +121,7 @@ export const CategoriaText = styled.Text`
 `;
 
 export const ScrollingButtonMenuBox = styled.View`
+  margin-top: -70px;
   padding-right: 15px;
   margin-left: -5px;
 `;
