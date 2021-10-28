@@ -13,12 +13,13 @@ import {
   Input,
   ListAllCategories,
   CategoryName,
-  EachCustomCategorie
+  EachCustomCategorie,
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
+import { RefreshControl } from "react-native";
 
 class CustomCategory extends Component {
   constructor() {
@@ -30,27 +31,45 @@ class CustomCategory extends Component {
       showAddNewCategory: false,
       errorState: false,
       newCategoryName: "",
-      lastRefresh: Date(Date.now()).toString(),
-      shouldUpdate: ""
+      refreshing: false,
     };
-    this.refreshScreen = this.refreshScreen.bind(this);
   }
 
-  refreshScreen() {
-    this.setState({ lastRefresh: Date(Date.now()).toString() });
-    this.setState({ shouldUpdate: "true" });
-    this.props.route.params = null;
-  }
+  onRefresh = async () => {
+    this.setState({ refreshing: true });
+    try {
+      const userId = await AsyncStorage.getItem("userId");
+      const userName = await AsyncStorage.getItem("username");
+
+      if (userId == null || userId == "null") {
+        this.props.navigation.navigate("Login");
+      } else {
+        this.setState({ userId: userId });
+        this.setState({ userName: userName });
+        this.setState({ isAuthenticated: true });
+      }
+
+      const onSuccess = ({ data }) => {
+        this.setState({ data: data });
+        this.setState({ refreshing: false });
+      };
+
+      await APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId)
+        .then(onSuccess)
+        .catch("fail", userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   deleteCustomCategory(id) {
-    const payload = {id};
     APIKit.post("/api/categorias/deleteCustomCategory/" + id)
-      .then(this.refreshScreen)
+      .then(this.onRefresh)
       .catch(onFailure);
 
-      const onFailure = (error) => {
-        this.setState({ errorState: true });
-      };
+    const onFailure = (error) => {
+      this.setState({ errorState: true });
+    };
   }
 
   componentWillUnmount() {}
@@ -71,13 +90,12 @@ class CustomCategory extends Component {
       this.setState({ data: data });
     };
 
-    APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId).then(onSuccess).catch('fail', userId);
-
-
+    APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId)
+      .then(onSuccess)
+      .catch("fail", userId);
   }
 
   showNewCategorySection = () => {
-    console.log("Ta funfando");
     this.setState({ showAddNewCategory: true });
   };
 
@@ -93,6 +111,8 @@ class CustomCategory extends Component {
 
     const onSuccess = async ({ data }) => {
       try {
+        this.onRefresh();
+        this.setState({ showAddNewCategory: false });
         console.log(data);
       } catch (e) {
         console.log(e);
@@ -107,21 +127,7 @@ class CustomCategory extends Component {
       .catch(onFailure);
   }
 
-  // async componentDidUpdate() {
-  //   if (this.props.route.params) {
-  //     const userId = await AsyncStorage.getItem("userId");
-  //     const onSuccess = ({ data }) => {
-  //       this.setState({ data: data });
-  //     };
-  //     APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId).then(onSuccess).catch('fail', userId);
-  //     this.props.route.params = null;
-  //   }
-  // }
-
   render() {
-    // this.state.data.map((data, index) => {
-    //   console.log(data);
-    // });
     return (
       <Container>
         <CategoryHeader>
@@ -142,25 +148,31 @@ class CustomCategory extends Component {
         {/* Listando todas categorias*/}
         {!this.state.showAddNewCategory && (
           <ListAllCategories>
-          {this.state.data.map((item, key) => {
-          return(
-          <EachCustomCategorie key={"custom-category" + key}>
-          <CategoryName key={"custom-category-name" + key}>{item.nome}</CategoryName>
-          <AntDesign name="delete" size={20} color="#507DBC" onPress={()=> this.deleteCustomCategory(item.id)}/>
-          {/* <Ionicons
-            name="close-outline"
-            size={32}
-            // color="#DAE3E5"
-            color="#507DBC"
-            style={{ textAlign: "center" }}
-            onPress={() =>
-              this.props.navigation.navigate("RegisterTransactions")
-            }
-          /> */}
-          </EachCustomCategorie>);
-          })}
+            {this.state.data.map((item, key) => {
+              return (
+                <EachCustomCategorie
+                  refreshControl={
+                    <RefreshControl
+                      refreshing={this.state.refreshing}
+                      onRefresh={this.onRefresh}
+                    />
+                  }
+                  key={"custom-category" + key}
+                >
+                  <CategoryName key={"custom-category-name" + key}>
+                    {item.nome}
+                  </CategoryName>
+                  <AntDesign
+                    name="delete"
+                    size={20}
+                    color="#507DBC"
+                    onPress={() => this.deleteCustomCategory(item.id)}
+                  />
+                </EachCustomCategorie>
+              );
+            })}
           </ListAllCategories>
-         )}
+        )}
         {/* Criar nova categoria */}
         <NewCategory>
           {this.state.showAddNewCategory && (
