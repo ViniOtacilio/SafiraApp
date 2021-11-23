@@ -67,56 +67,48 @@ class ManagePlanning extends Component {
             <PageTitle>Vou Gastar:</PageTitle>
             <Input
                 placeholder="Moradia"
-                value="Moradia"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Supermercado"
-                value="Supermercado"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Transporte"
-                value="Transporte"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Lazer"
-                value="Lazer"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Saúde"
-                value="Saúde"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Contas"
-                value="Contas"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Restaurante/Delivery"
-                value="Restaurante/Delivery"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
             </Input>
             <Input
                 placeholder="Outros"
-                value="Outros"
                 autoCapitalize="none"
                 autoCorrect={false}
                 >
