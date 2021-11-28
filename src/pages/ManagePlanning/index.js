@@ -8,6 +8,7 @@ import {
   PageTitle,
   Input,
   Text,
+  ButtonBox,
   Button,
   ButtonText
 } from "./styles";
@@ -17,9 +18,26 @@ import { View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
 
+const initialState = {
+  mes: "",
+  categoriaInputMoradia: "",
+  categoriaInputSupermercado: "",
+  categoriaInputTransporte: "",
+  categoriaInputLazer: "",
+  categoriaInputSaude: "",
+  categoriaInputContas: "",
+  categoriaInputRD: "",
+  categoriaInputOutros: "",
+  errors: {},
+  errorState: false,
+  isAuthorized: false,
+};
+
 class ManagePlanning extends Component {
 
-    constructor() {
+  state = initialState;
+    
+      constructor() {
         super();
         this.state = {
           userId: "",
@@ -47,6 +65,139 @@ class ManagePlanning extends Component {
           this.setState({ isAuthenticated: true });
         }
       }
+
+      onMesChange = (mes) => {
+        this.setState({ mes });
+      };
+
+      onCategoriaInputChangeMoradia = (categoria) => {
+        this.setState({ 
+          categoriaInputMoradia: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 1,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeSupermercado = (categoria) => {
+        this.setState({ 
+          categoriaInputSupermercado: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 2,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeTransporte = (categoria) => {
+        this.setState({ 
+          categoriaInputTransporte: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 3,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeLazer = (categoria) => {
+        this.setState({ 
+          categoriaInputLazer: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 4,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeSaude = (categoria) => {
+        this.setState({ 
+          categoriaInputSaude: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 5,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeContas = (categoria) => {
+        this.setState({ 
+          categoriaInputContas: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 6,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeRD = (categoria) => {
+        this.setState({ 
+          categoriaInputRD: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 7,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onCategoriaInputChangeOutros = (categoria) => {
+        this.setState({ 
+          categoriaInputOutros: {
+            "user_id": this.state.userId,
+            "mes": this.state.mes,
+            "categoria_id": 8,
+            "value": categoria, 
+          }
+        });
+      };
+
+      onPressSave() {
+        const {
+          categoriaInputMoradia,
+          categoriaInputSupermercado,
+          categoriaInputTransporte,
+          categoriaInputLazer,
+          categoriaInputSaude,
+          categoriaInputContas,
+          categoriaInputRD,
+          categoriaInputOutros,
+        } = this.state;
+        const payload = {
+          "plans": [
+            categoriaInputMoradia,
+            categoriaInputSupermercado,
+            categoriaInputTransporte,
+            categoriaInputLazer,
+            categoriaInputSaude,
+            categoriaInputContas,
+            categoriaInputRD,
+            categoriaInputOutros,
+          ]
+        }
+        console.log(payload)
+        this.setState({ errorState: false });
+    
+        const onSuccess = ({ data }) => {
+          this.props.navigation.navigate("MonthlyPlanning");
+          console.log('deu bom')
+        };
+    
+        const onFailure = (error) => {
+          this.setState({ errorState: true });
+          console.log('deu ruim')
+        };
+
+        APIKit.post("/api/planejamento/createPlanejamento", payload)
+          .then(onSuccess)
+          .catch(onFailure);
+      }
       
   render() {
     return (
@@ -66,59 +217,78 @@ class ManagePlanning extends Component {
         <ContentBox>
             <PageTitle>Vou Gastar:</PageTitle>
             <Input
-                placeholder="Moradia"
+                placeholder="mês-ano(mm-aaaa)"
+                value={this.state.mes}
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onMesChange}
+                >
+            </Input>
+            <Input
+                placeholder="Moradia"
+                value={this.categoriainputMoradia}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeMoradia}
                 >
             </Input>
             <Input
                 placeholder="Supermercado"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeSupermercado}
                 >
             </Input>
             <Input
                 placeholder="Transporte"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeTransporte}
                 >
             </Input>
             <Input
                 placeholder="Lazer"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeLazer}
                 >
             </Input>
             <Input
                 placeholder="Saúde"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeSaude}
                 >
             </Input>
             <Input
                 placeholder="Contas"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeContas}
                 >
             </Input>
             <Input
                 placeholder="Restaurante/Delivery"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeRD}
                 >
             </Input>
             <Input
                 placeholder="Outros"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onChangeText={this.onCategoriaInputChangeOutros}
                 >
             </Input>
             <Text>Total: R$</Text>
-            <Button>
-              <ButtonText>
-                Salvar
-              </ButtonText>
-            </Button>
+            <ButtonBox>
+              <Button onPress={this.onPressSave.bind(this)}>
+                <ButtonText>
+                  Salvar
+                </ButtonText>
+              </Button>
+            </ButtonBox>
         </ContentBox>
       </Container>
     );

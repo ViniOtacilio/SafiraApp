@@ -60,6 +60,13 @@ export const Text = styled.Text`
     font-size: 18px;
     margin: 0 auto;
     width: 80%;
+    padding: 20px 0;
+`;
+
+export const ButtonBox = styled.View`
+    padding: 20px 0;
+    margin-top: -10px;
+    background-color: rgb(245, 245, 245);
 `;
 
 export const ButtonText = styled.Text`

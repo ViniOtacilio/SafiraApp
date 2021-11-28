@@ -91,8 +91,8 @@ class RegisterTransactions extends Component {
   };
 
   onPressSave() {
-    console.log("teste do id");
-    console.log(this.state.userId);
+    //console.log("teste do id");
+    //console.log(this.state.userId);
     const {
       value,
       tipo_de_transacao,
