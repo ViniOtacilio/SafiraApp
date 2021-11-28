@@ -73,7 +73,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeMoradia = (categoria) => {
         this.setState({ 
           categoriaInputMoradia: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 1,
             "value": categoria, 
@@ -84,7 +84,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeSupermercado = (categoria) => {
         this.setState({ 
           categoriaInputSupermercado: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 2,
             "value": categoria, 
@@ -95,7 +95,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeTransporte = (categoria) => {
         this.setState({ 
           categoriaInputTransporte: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 3,
             "value": categoria, 
@@ -106,7 +106,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeLazer = (categoria) => {
         this.setState({ 
           categoriaInputLazer: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 4,
             "value": categoria, 
@@ -117,7 +117,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeSaude = (categoria) => {
         this.setState({ 
           categoriaInputSaude: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 5,
             "value": categoria, 
@@ -128,7 +128,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeContas = (categoria) => {
         this.setState({ 
           categoriaInputContas: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 6,
             "value": categoria, 
@@ -139,7 +139,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeRD = (categoria) => {
         this.setState({ 
           categoriaInputRD: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 7,
             "value": categoria, 
@@ -150,7 +150,7 @@ class ManagePlanning extends Component {
       onCategoriaInputChangeOutros = (categoria) => {
         this.setState({ 
           categoriaInputOutros: {
-            "user_id": this.state.userId,
+            "user_id": parseInt(this.state.userId),
             "mes": this.state.mes,
             "categoria_id": 8,
             "value": categoria, 
