@@ -22,54 +22,52 @@ import ScrollingButtonMenu from 'react-native-scroll-menu';
 let menus = [
   {
       name: 'Dez/21',
-      id: 'dez-21',
-      backgroundColor: 'red',
-      borderColor: '#388E3C',
+      id: '12-2021',
   },
   {
       name: 'Jan/22',
-      id: 'jan-22',
+      id: '01-2022',
   },
   {
       name: 'Fev/22',
-      id: 'fev-22',
+      id: '02-2022',
   },
   {
       name: 'Mar/22',
-      id: 'mar-22',
+      id: '03-2022',
   }
   ,
   {
       name: 'Abr/22',
-      id: 'abr-22',
+      id: '04-2022',
   },
   {
       name: 'Mai/22',
-      id: 'mai-22',
+      id: '05-2022',
   },
   {
       name: 'Jun/22',
-      id: 'jun-22',
+      id: '06-2022',
   },
   {
       name: 'Jul/22',
-      id: 'jul-22',
+      id: '07-2022',
   },
   {
       name: 'Ago/22',
-      id: 'ago-22',
+      id: '08-2022',
   },
   {
       name: 'Set/22',
-      id: 'set-22',
+      id: '09-2022',
   },
   {
       name: 'Out/22',
-      id: 'out-22',
+      id: '10-2022',
   },
   {
       name: 'Nov/22',
-      id: 'nov-22',
+      id: '11-2022',
   }
 ];
 
@@ -78,6 +76,7 @@ class MonthlyPlanning extends Component {
     constructor() {
         super();
         this.state = {
+          x: [],
           userId: "",
           isAuthenticated: false,
           userName: "",
@@ -103,6 +102,30 @@ class MonthlyPlanning extends Component {
           this.setState({ isAuthenticated: true });
         }
       }
+
+      async onPressFilter(id) {
+        console.log(id)
+
+        const onSuccess = ({ data }) => {
+            this.setState({ isAuthenticated: true });
+            this.setState({ x: data });
+            console.log(data);
+        };
+    
+        const userId = await AsyncStorage.getItem("userId");
+        console.log(userId)
+        console.log("/api/planejamento/getPlanejamento?user_id=" +
+        userId +
+        "&mes=" +
+        id)
+    
+        APIKit.get(
+            "/api/planejamento/getPlanejamento?user_id=" +
+            userId +
+            "&mes=" +
+            id
+        ).then(onSuccess);
+      }
       
   render() {
     return (
@@ -125,7 +148,7 @@ class MonthlyPlanning extends Component {
                     items={menus}
                     style={{padding:15}}
                     onPress={(e) => {
-                        console.log(e)
+                      this.onPressFilter(e.id);
                     }}
                 />
             </ScrollingButtonMenuBox>

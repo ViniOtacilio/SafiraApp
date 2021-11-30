@@ -26,8 +26,6 @@ let menus = [
     {
         name: 'JAN',
         id: 1,
-        backgroundColor: '#388E3C',
-        borderColor: '#388E3C',
     },
     {
         name: 'FEV',
