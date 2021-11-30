@@ -17,6 +17,8 @@ import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
+import { TextInputMask } from 'react-native-masked-text';
+import { StyleSheet } from 'react-native';
 
 const initialState = {
   mes: "",
@@ -28,6 +30,7 @@ const initialState = {
   categoriaInputContas: "",
   categoriaInputRD: "",
   categoriaInputOutros: "",
+  text: "",
   errors: {},
   errorState: false,
   isAuthorized: false,
@@ -159,6 +162,7 @@ class ManagePlanning extends Component {
       };
 
       onPressSave() {
+        console.log(this.state.mes)
         const {
           categoriaInputMoradia,
           categoriaInputSupermercado,
@@ -169,6 +173,7 @@ class ManagePlanning extends Component {
           categoriaInputRD,
           categoriaInputOutros,
         } = this.state;
+        
         const payload = {
           "plans": [
             categoriaInputMoradia,
@@ -181,7 +186,9 @@ class ManagePlanning extends Component {
             categoriaInputOutros,
           ]
         }
+
         console.log(payload)
+
         this.setState({ errorState: false });
     
         const onSuccess = ({ data }) => {
@@ -216,14 +223,18 @@ class ManagePlanning extends Component {
         </Header>
         <ContentBox>
             <PageTitle>Vou Gastar:</PageTitle>
-            <Input
-                placeholder="mês-ano(mm-aaaa)"
-                value={this.state.mes}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={this.onMesChange}
-                >
-            </Input>
+            <TextInputMask
+              type={'custom'}
+              placeholder="Data"
+              options={{
+                mask: '99-9999'
+              }}
+              value={this.state.mes}
+              style={styles.maskedInput}
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={this.onMesChange}
+            />
             <Input
                 placeholder="Moradia"
                 value={this.categoriainputMoradia}
@@ -293,6 +304,22 @@ class ManagePlanning extends Component {
       </Container>
     );
   }
+  
 }
+
+const styles = StyleSheet.create({
+  maskedInput: {
+    backgroundColor: 'rgb(187, 209, 234)',
+    marginBottom: 5,
+    height: 40,
+    fontSize: 18,
+    padding: 8,
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderRadius: 4,
+    textAlign: "center",
+  },
+});
 
 export default ManagePlanning;
