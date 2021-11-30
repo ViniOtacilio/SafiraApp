@@ -84,5 +84,5 @@ export const PlanningTitle = styled.Text`
     align-items: center;
     text-align: center;
     color: #507DBC;
-    font-size: 16px;
+    font-size: 15px;
 `;

@@ -21,55 +21,55 @@ import ScrollingButtonMenu from 'react-native-scroll-menu';
 
 let menus = [
   {
-      name: 'JAN',
-      id: 1,
+      name: 'Dez/21',
+      id: 'dez-21',
       backgroundColor: 'red',
       borderColor: '#388E3C',
   },
   {
-      name: 'FEV',
-      id: 2,
+      name: 'Jan/22',
+      id: 'jan-22',
   },
   {
-      name: 'MAR',
-      id: 3,
+      name: 'Fev/22',
+      id: 'fev-22',
   },
   {
-      name: 'ABR',
-      id: 4,
+      name: 'Mar/22',
+      id: 'mar-22',
   }
   ,
   {
-      name: 'MAI',
-      id: 5,
+      name: 'Abr/22',
+      id: 'abr-22',
   },
   {
-      name: 'JUN',
-      id: 6,
+      name: 'Mai/22',
+      id: 'mai-22',
   },
   {
-      name: 'JUL',
-      id: 7,
+      name: 'Jun/22',
+      id: 'jun-22',
   },
   {
-      name: 'AGO',
-      id: 8,
+      name: 'Jul/22',
+      id: 'jul-22',
   },
   {
-      name: 'SET',
-      id: 9,
+      name: 'Ago/22',
+      id: 'ago-22',
   },
   {
-      name: 'OUT',
-      id: 10,
+      name: 'Set/22',
+      id: 'set-22',
   },
   {
-      name: 'NOV',
-      id: 11,
+      name: 'Out/22',
+      id: 'out-22',
   },
   {
-      name: 'DEZ',
-      id: 12,
+      name: 'Nov/22',
+      id: 'nov-22',
   }
 ];
 
@@ -134,34 +134,42 @@ class MonthlyPlanning extends Component {
               <PlanningBox>
                 <PlanningTitle>Moradia</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Supermercado</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Transporte</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Lazer</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Saúde</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Contas</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Restaurante/Delivery</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Outros</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
               </PlanningBox>
             </PlanningContent>
 
