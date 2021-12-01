@@ -126,6 +126,11 @@ class MonthlyPlanning extends Component {
             id
         ).then(onSuccess);
       }
+
+      async onPressDelete(id) {
+        console.log('teste do delete');
+        console.log(id)
+      }
       
   render() {
     return (
@@ -157,42 +162,66 @@ class MonthlyPlanning extends Component {
               <PlanningBox>
                 <PlanningTitle>Moradia</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Supermercado</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Transporte</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Lazer</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Saúde</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Contas</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Restaurante/Delivery</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
               <PlanningBox>
                 <PlanningTitle>Outros</PlanningTitle>
                 <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" />
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                  onPress={(e) => {
+                    this.onPressDelete(e.id);
+                  }}/>
               </PlanningBox>
             </PlanningContent>
 
