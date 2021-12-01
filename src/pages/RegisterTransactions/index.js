@@ -91,8 +91,6 @@ class RegisterTransactions extends Component {
   };
 
   onPressSave() {
-    //console.log("teste do id");
-    //console.log(this.state.userId);
     const {
       value,
       tipo_de_transacao,
@@ -119,9 +117,6 @@ class RegisterTransactions extends Component {
       this.setState({ errorState: true });
     };
 
-    const onSuccessSaldo = ({ data }) => {
-      this.setState({ saldo: data });
-    };
     APIKit.post("/api/users/novoLancamento", payload)
       .then(onSuccess)
       .catch(onFailure);

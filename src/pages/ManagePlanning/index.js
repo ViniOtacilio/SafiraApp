@@ -175,7 +175,7 @@ class ManagePlanning extends Component {
           categoriaInputOutros,
         } = this.state;
         
-        const payload = {
+        var payload = {
           "plans": [
             categoriaInputMoradia,
             categoriaInputSupermercado,
@@ -187,19 +187,23 @@ class ManagePlanning extends Component {
             categoriaInputOutros,
           ]
         }
+        
+        var newPayload = payload.plans.filter(function(item) {
+          return item !== undefined;
+        });
 
-        console.log(payload)
+        payload = {
+          "plans": newPayload
+        }
 
         this.setState({ errorState: false });
     
         const onSuccess = ({ data }) => {
           this.props.navigation.navigate("MonthlyPlanning");
-          console.log('deu bom')
         };
     
         const onFailure = (error) => {
           this.setState({ errorState: true });
-          console.log('deu ruim')
         };
 
         APIKit.post("/api/planejamento/createPlanejamento", payload)
