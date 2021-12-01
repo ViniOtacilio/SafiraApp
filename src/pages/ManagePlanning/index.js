@@ -31,6 +31,7 @@ const initialState = {
   categoriaInputRD: "",
   categoriaInputOutros: "",
   text: "",
+  total: 0,
   errors: {},
   errorState: false,
   isAuthorized: false,
@@ -292,7 +293,7 @@ class ManagePlanning extends Component {
                 onChangeText={this.onCategoriaInputChangeOutros}
                 >
             </Input>
-            <Text>Total: R$</Text>
+            <Text></Text>
             <ButtonBox>
               <Button onPress={this.onPressSave.bind(this)}>
                 <ButtonText>
