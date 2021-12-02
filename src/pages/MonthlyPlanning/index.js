@@ -76,6 +76,7 @@ class MonthlyPlanning extends Component {
     constructor() {
         super();
         this.state = {
+          errorMessage: "",
           x: [],
           mes: "",
           userId: "",
@@ -105,10 +106,18 @@ class MonthlyPlanning extends Component {
       }
 
       async onPressFilter(id) {
-        this.setState({ mes: id })
+        this.setState({ x: [] });
+        this.setState({ errorMessage: "" });
+        this.setState({ mes: id });
+
         const onSuccess = ({ data }) => {
             this.setState({ isAuthenticated: true });
             this.setState({ x: data });
+            console.log(this.state.x);
+            if (this.state.x.length == 0) {
+              this.setState({ errorMessage: "Adicione lançamentos nesse mês para ter seu planejamento mensal completo!" });
+              console.log(this.state.errorMessage)
+            }
         };
     
         const userId = await AsyncStorage.getItem("userId");
@@ -118,7 +127,11 @@ class MonthlyPlanning extends Component {
             userId +
             "&mes=" +
             id
-        ).then(onSuccess);
+        )
+        .then(onSuccess);
+
+        this.setState({ x: [] });
+        this.setState({ errorMessage: "" });
       }
 
       async onPressDelete(categoria) {
@@ -205,6 +218,9 @@ class MonthlyPlanning extends Component {
             </ScrollingButtonMenuBox>
                 
             <PlanningContent>
+              <PlanningTitle>
+                {this.state.errorMessage}
+              </PlanningTitle>
               {this.state.x.map((data, index) => {
                 if (data.id_categoria === 1) {
                   if (data.valor_gasto) {
