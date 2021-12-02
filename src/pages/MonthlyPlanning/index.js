@@ -178,14 +178,16 @@ class MonthlyPlanning extends Component {
         const userId = await AsyncStorage.getItem("userId");
 
         var payload = {
-          "user_id": parseInt(userId),
-          "mes": this.state.mes,
-          "categoria_id": categoria_id,
+          "plan" : {
+            "user_id": parseInt(userId),
+            "mes": this.state.mes,
+            "categoria_id": categoria_id,
+          }
         }
 
         console.log(payload)
   
-        APIKit.post(
+        APIKit.get(
           "/api/planejamento/deletePlanejamento", payload)
         .then(onSuccess)
         .catch(onFailure);
