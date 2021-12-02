@@ -77,6 +77,7 @@ class MonthlyPlanning extends Component {
         super();
         this.state = {
           x: [],
+          mes: "",
           userId: "",
           isAuthenticated: false,
           userName: "",
@@ -104,10 +105,10 @@ class MonthlyPlanning extends Component {
       }
 
       async onPressFilter(id) {
+        this.setState({ mes: id })
         const onSuccess = ({ data }) => {
             this.setState({ isAuthenticated: true });
             this.setState({ x: data });
-            console.log(data)
         };
     
         const userId = await AsyncStorage.getItem("userId");
@@ -120,9 +121,61 @@ class MonthlyPlanning extends Component {
         ).then(onSuccess);
       }
 
-      async onPressDelete(id) {
-        console.log('teste do delete');
-        console.log(id)
+      async onPressDelete(categoria) {
+        var categoria_id = 0;
+
+        if (categoria == "Moradia") {
+          categoria_id = 1;
+        }
+        if (categoria == "Supermercado") {
+          categoria_id = 2;
+        }
+        if (categoria == "Transporte") {
+          categoria_id = 3;
+        }
+        if (categoria == "Lazer") {
+          categoria_id = 4;
+        }
+        if (categoria == "Saúde") {
+          categoria_id = 5;
+        }
+        if (categoria == "Contas") {
+          categoria_id = 6;
+        }
+        if (categoria == "Restaurante/Delivery") {
+          categoria_id = 7;
+        }
+        if (categoria == "Outros") {
+          categoria_id = 8;
+        }
+
+        console.log(categoria_id)
+
+        const onSuccess = ({ data }) => {
+          this.setState({ isAuthenticated: true });
+          this.setState({ x: data });
+          console.log(data)
+          console.log("deu bom")
+        };
+
+        const onFailure = (error) => {
+          console.log("deu ruim")
+        };
+  
+        const userId = await AsyncStorage.getItem("userId");
+
+        var payload = {
+          "user_id": parseInt(userId),
+          "mes": this.state.mes,
+          "categoria_id": categoria_id,
+        }
+
+        console.log(payload)
+  
+        APIKit.post(
+          "/api/planejamento/deletePlanejamento", payload)
+        .then(onSuccess)
+        .catch(onFailure);
       }
       
   render() {
@@ -167,8 +220,8 @@ class MonthlyPlanning extends Component {
                       <PlanningTitle>Moradia</PlanningTitle>
                       <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                       <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                        onPress={(e) => {
-                          this.onPressDelete(e.id);
+                        onPress={() => {
+                          this.onPressDelete(data.nome_categoria);
                         }}/>
                     </PlanningBox>
                   )
