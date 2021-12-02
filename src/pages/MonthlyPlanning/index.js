@@ -104,20 +104,13 @@ class MonthlyPlanning extends Component {
       }
 
       async onPressFilter(id) {
-        console.log(id)
-
         const onSuccess = ({ data }) => {
             this.setState({ isAuthenticated: true });
             this.setState({ x: data });
-            console.log(this.state.x);
+            console.log(data)
         };
     
         const userId = await AsyncStorage.getItem("userId");
-        console.log(userId)
-        console.log("/api/planejamento/getPlanejamento?user_id=" +
-        userId +
-        "&mes=" +
-        id)
     
         APIKit.get(
             "/api/planejamento/getPlanejamento?user_id=" +
@@ -159,70 +152,190 @@ class MonthlyPlanning extends Component {
             </ScrollingButtonMenuBox>
                 
             <PlanningContent>
-              <PlanningBox>
-                <PlanningTitle>Moradia</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Supermercado</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Transporte</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Lazer</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Saúde</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Contas</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Restaurante/Delivery</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
-              <PlanningBox>
-                <PlanningTitle>Outros</PlanningTitle>
-                <PlanningTitle>R$40/R$500</PlanningTitle>
-                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                  onPress={(e) => {
-                    this.onPressDelete(e.id);
-                  }}/>
-              </PlanningBox>
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria === 1) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Moradia</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria === 2) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Supermercado</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria == 3) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Transporte</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria == 4) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Lazer</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria == 5) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Saúde</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria == 6) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Contas</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria == 7) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Restaurante/Delivery</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
+              {this.state.x.map((data, index) => {
+                if (data.id_categoria == 8) {
+                  if (data.valor_gasto) {
+                    data.valor_gasto = data.valor_gasto.split(".");
+                    var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                  }
+                  if (data.valor_planejado) {
+                    data.valor_planejado = data.valor_planejado.split(".");
+                    var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                  }
+                  return (
+                    <PlanningBox key={"planning-box-" + index}>
+                      <PlanningTitle>Outros</PlanningTitle>
+                      <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                      <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                        onPress={(e) => {
+                          this.onPressDelete(e.id);
+                        }}/>
+                    </PlanningBox>
+                  )
+                }
+              })}
+
             </PlanningContent>
 
             <Link onPress={() => this.props.navigation.navigate("ManagePlanning")}>
