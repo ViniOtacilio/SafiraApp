@@ -57,7 +57,7 @@ export const Input = styled.TextInput`
 
 export const Text = styled.Text`
     color: #507DBC;
-    font-size: 18px;
+    font-size: 14px;
     margin: 0 auto;
     width: 80%;
     padding: 20px 0;

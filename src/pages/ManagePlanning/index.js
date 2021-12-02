@@ -22,6 +22,7 @@ import { StyleSheet } from 'react-native';
 
 const initialState = {
   mes: "",
+  errorMessage: "",
   categoriaInputMoradia: "",
   categoriaInputSupermercado: "",
   categoriaInputTransporte: "",
@@ -204,6 +205,8 @@ class ManagePlanning extends Component {
     
         const onFailure = (error) => {
           this.setState({ errorState: true });
+          this.setState({ errorMessage: "Erro ao adicionar planejamento mensal" });
+          console.log(error)
         };
 
         APIKit.post("/api/planejamento/createPlanejamento", payload)
@@ -297,7 +300,7 @@ class ManagePlanning extends Component {
                 onChangeText={this.onCategoriaInputChangeOutros}
                 >
             </Input>
-            <Text></Text>
+            <Text>{this.state.errorMessage}</Text>
             <ButtonBox>
               <Button onPress={this.onPressSave.bind(this)}>
                 <ButtonText>

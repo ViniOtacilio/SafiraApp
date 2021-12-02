@@ -120,7 +120,11 @@ class MonthlyPlanning extends Component {
         };
     
         const userId = await AsyncStorage.getItem("userId");
-    
+        
+        console.log( "/api/planejamento/getPlanejamento?user_id=" +
+        userId +
+        "&mes=" +
+        id)
         APIKit.get(
             "/api/planejamento/getPlanejamento?user_id=" +
             userId +
