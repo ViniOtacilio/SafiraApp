@@ -109,7 +109,7 @@ class MonthlyPlanning extends Component {
         const onSuccess = ({ data }) => {
             this.setState({ isAuthenticated: true });
             this.setState({ x: data });
-            console.log(data);
+            console.log(this.state.x);
         };
     
         const userId = await AsyncStorage.getItem("userId");
