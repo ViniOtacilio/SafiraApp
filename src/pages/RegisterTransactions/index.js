@@ -169,8 +169,6 @@ onChangeDiaPagamento = (text) => {
 }
 
   onPressSave() {
-    console.log("teste do id");
-    console.log(this.state.userId);
     const {
       value,
       tipo_de_transacao,
@@ -197,9 +195,6 @@ onChangeDiaPagamento = (text) => {
       this.setState({ errorState: true });
     };
 
-    const onSuccessSaldo = ({ data }) => {
-      this.setState({ saldo: data });
-    };
     APIKit.post("/api/users/novoLancamento", payload)
       .then(onSuccess)
       .catch(onFailure);

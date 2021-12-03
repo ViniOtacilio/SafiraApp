@@ -121,7 +121,7 @@ export const CategoriaText = styled.Text`
 `;
 
 export const ScrollingButtonMenuBox = styled.View`
-  margin-top: -70px;
+  margin-top: -20px;
   padding-right: 15px;
   margin-left: -5px;
 `;
