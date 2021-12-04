@@ -65,7 +65,7 @@ class Cards extends Component {
             console.log(error)
         };
 
-        APIKit.get("/api/cards/getCard?user_id=169")
+        APIKit.get("/api/cards/getCard?user_id=" + userId )
             .then(onSuccess)
             .catch(onFailure);
       }
