@@ -117,14 +117,12 @@ class MonthlyPlanning extends Component {
             if (this.state.x.length == 0) {
               this.setState({ errorMessage: "Adicione lançamentos e/ou um planejamento nesse mês para ter seu planejamento mensal completo!" });
             }
-            var hasPlans = this.state.x.some(function (item) { 
-              if (item.valor_planejado != null) {
-                return 'true';
-              } else {
-                return 'false';
+            var hasValuePlans = this.state.x.map(function (item) { 
+              if (item.valor_planejado == null) { 
+                return 'null';
               }
             });
-            if (hasPlans !== true) {
+            if (hasValuePlans == 'null') {
               this.setState({ errorMessage: "Adicione lançamentos e/ou um planejamento nesse mês para ter seu planejamento mensal completo!" });
             }
         };
