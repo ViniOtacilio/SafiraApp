@@ -147,6 +147,7 @@ class MonthlyPlanning extends Component {
       }
 
       async onPressDelete(categoria) {
+        console.log(this.state.mes)
         var categoria_id = 0;
 
         if (categoria == "Moradia") {
@@ -182,6 +183,7 @@ class MonthlyPlanning extends Component {
         };
 
         const onFailure = (error) => {
+          console.log(error)
           console.log("deu ruim")
         };
   
@@ -201,6 +203,9 @@ class MonthlyPlanning extends Component {
           "/api/planejamento/deletePlanejamento", payload)
         .then(onSuccess)
         .catch(onFailure);
+        
+        window.location.reload(true);
+        
       }
       
   render() {
