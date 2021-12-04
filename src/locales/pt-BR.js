@@ -9,7 +9,7 @@ const pt = {
     placeholderConfirmPassword: 'Confirmar senha',
     balance: 'Saldo',
     logOut: 'Sair',
-    transactionName: 'Nome lançamento',
+    transactionName: 'Nome do Lançamento',
     withdrawal: 'Despesa',
     deposit: 'Receita',
     amount: 'Valor',

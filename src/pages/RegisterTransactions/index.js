@@ -25,13 +25,13 @@ const initialState = {
   categoriaid: "",
   titulo_lancamento: "",
   comentario: "",
-  repetido: false,
-  parcela: 0,
-  diaPagamento: 0,
+  is_repetitivo: false,
+  qtd_parcelas: 0,
+  dia_cobranca: 0,
   errors: {},
   errorState: false,
   isAuthorized: false,
-  id_cartao: 0
+  card_id: 0
   //allCards: [{label: 'Cartão', value: 'nada'}]
 };
 
@@ -105,8 +105,8 @@ class RegisterTransactions extends Component {
     console.log(this.state.allCategories);
   }
 
-  onCartaoChange = (id_cartao) => {
-    this.setState({id_cartao});
+  onCartaoChange = (card_id) => {
+    this.setState({card_id});
   }
   onValueChange = (value) => {
     this.setState({ value });
@@ -132,8 +132,9 @@ class RegisterTransactions extends Component {
     this.setState({ comentario });
   };
 
-  onRepetidoChange = (repetido) => {
-    this.setState({ repetido })
+  onIsRepetitivoChange = (is_repetitivo) => {
+    let repetitivo = JSON.parse(is_repetitivo);
+    this.setState({ is_repetitivo: repetitivo })
   }
 
   onChangeParcela = (text) => {
@@ -149,7 +150,7 @@ class RegisterTransactions extends Component {
             alert("please enter numbers only");
         }
     }
-    this.setState({ parcela: newText });
+    this.setState({ qtd_parcelas: newText });
 }
 
 onChangeDiaPagamento = (text) => {
@@ -165,26 +166,43 @@ onChangeDiaPagamento = (text) => {
           alert("please enter numbers only");
       }
   }
-  this.setState({ diaPagamento: newText });
+  this.setState({ dia_cobranca: newText });
 }
 
   onPressSave() {
+    let is_parcelado = false;
     const {
       value,
       tipo_de_transacao,
       categoriaid,
       titulo_lancamento,
       comentario,
+      is_repetitivo,
+      qtd_parcelas,
+      dia_cobranca,
+      card_id
     } = this.state;
-    const user_id = this.state.userId;
+    const userid = this.state.userId;
+    if(this.state.parcela != null)
+    {
+      is_parcelado = true;
+    }
+    console.log(typeof(is_repetitivo));
     const payload = {
       value,
       tipo_de_transacao,
-      user_id,
+      userid,
       categoriaid,
       titulo_lancamento,
       comentario,
+      is_repetitivo,
+      qtd_parcelas,
+      is_parcelado,
+      dia_cobranca,
+      card_id
     };
+  
+    console.log(payload);
     this.setState({ errorState: false });
 
     const onSuccess = ({ data }) => {
@@ -281,17 +299,17 @@ onChangeDiaPagamento = (text) => {
           onChangeText={this.onCommentChange}
         ></Input>
         <Input 
-          placeholder="Número de parcelas (Se houver)"
+          placeholder="Número de parcelas (Opcional)"
           keyboardType='numeric'
           onChangeText={(text)=> this.onChangeParcela(text)}
-          value={this.state.parcela}
+          value={this.state.qtd_parcelas}
           maxLength={2}
         />
         <Input 
-          placeholder="Dia do pagamento (Se houver)"
+          placeholder="Dia do pagamento (Opcional)"
           keyboardType='numeric'
           onChangeText={(text)=> this.onChangeDiaPagamento(text)}
-          value={this.state.diaPagamento}
+          value={this.state.dia_cobranca}
           maxLength={2}
         />
         {/* Usuário seleciona cartão*/}
@@ -382,13 +400,13 @@ onChangeDiaPagamento = (text) => {
         <SelectBox>
           <RNPickerSelect
             onValueChange={(repetido_bool) =>
-              this.onRepetidoChange(repetido_bool)
+              this.onIsRepetitivoChange(repetido_bool)
             }
             items={[
               { label: "Sim", value: true },
               { label: "Não", value: false },
             ]}
-            placeholder={{ label: "Repetir mensalmente?", value: false }}
+            placeholder={{ label: "Repetir mensalmente?", value: null }}
             style={{
               placeholder: {
                 color: 'gray'

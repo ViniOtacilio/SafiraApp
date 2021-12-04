@@ -63,7 +63,7 @@ class ManageRelease extends Component {
           />
         </Header>
         <ContentBox>
-        <PageTitle>Gerenciar Lançamentos</PageTitle>
+        <PageTitle>Gerenciar Lançamentos Recorrentes</PageTitle>
         <ReleaseContent>
         <ReleaseBox>
           <ReleaseTitle>Conta de celular</ReleaseTitle>

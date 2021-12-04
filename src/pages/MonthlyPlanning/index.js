@@ -441,7 +441,7 @@ class MonthlyPlanning extends Component {
             </PlanningContent>
 
             <Link onPress={() => this.props.navigation.navigate("ManagePlanning")}>
-                Gerenciar Planejamento
+                Adicionar Planejamento
             </Link>
         </ContentBox>
       </Container>
