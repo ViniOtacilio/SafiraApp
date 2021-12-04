@@ -312,7 +312,6 @@ class ManagePlanning extends Component {
       </Container>
     );
   }
-  
 }
 
 const styles = StyleSheet.create({

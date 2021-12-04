@@ -17,6 +17,8 @@ import CustomCategory from './pages/Category';
 import ManageRelease from './pages/ManageRelease';
 import MonthlyPlanning from './pages/MonthlyPlanning';
 import ManagePlanning from './pages/ManagePlanning';
+import Cards from './pages/Cards';
+import CardAdd from './pages/CardAdd';
 
 const prefix = Linking.makeUrl("/");
 
@@ -50,6 +52,8 @@ export default function App() {
         <Stack.Screen name="ManageRelease" component={ ManageRelease } />
         <Stack.Screen name="MonthlyPlanning" component={ MonthlyPlanning } />
         <Stack.Screen name="ManagePlanning" component={ ManagePlanning } />
+        <Stack.Screen name="Cards" component={ Cards } />
+        <Stack.Screen name="CardAdd" component={ CardAdd } />
       </Stack.Navigator>
     </NavigationContainer>
   );

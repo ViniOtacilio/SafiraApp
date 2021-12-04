@@ -9,7 +9,7 @@ import {
   MenuHamburguerItem,
 } from "./styles";
 import APIKit from "../../utils/APIKit";
-import { FontAwesome, AntDesign, Entypo } from "@expo/vector-icons";
+import { FontAwesome, AntDesign, Entypo, Feather } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
 
@@ -77,7 +77,13 @@ class HamburguerMenu extends Component {
           <MenuHamburguerItem>
               <AntDesign name="setting" size={24} color="#f5f5f5" />
               <Text onPress={() => this.props.navigation.navigate("ManageRelease")}>
-                Gerenciar lançamentos
+                Gerenciar Lançamentos
+              </Text>
+          </MenuHamburguerItem>
+          <MenuHamburguerItem>
+              <Feather name="credit-card" size={24} color="#f5f5f5" />
+              <Text onPress={() => this.props.navigation.navigate("Cards")}>
+                Gerenciar Cartões
               </Text>
           </MenuHamburguerItem>
           <MenuHamburguerItem>
