@@ -25,9 +25,14 @@ const initialState = {
   categoriaid: "",
   titulo_lancamento: "",
   comentario: "",
+  repetido: false,
+  parcela: 0,
+  diaPagamento: 0,
   errors: {},
   errorState: false,
   isAuthorized: false,
+  id_cartao: 0
+  //allCards: [{label: 'Cartão', value: 'nada'}]
 };
 
 const entrada = translate("deposit");
@@ -47,13 +52,12 @@ class RegisterTransactions extends Component {
 
   constructor() {
     super();
-    this.state = { x: [], isAuthenticated: false, userName: "", saldo: [] };
+    this.state = { x: [], isAuthenticated: false, userName: "", saldo: [], allCards: [], allCategories: []};
   }
 
   componentWillUnmount() {}
 
   async componentDidMount() {
-    console.log(this.state);
     const userId = await AsyncStorage.getItem("userId");
     const userName = await AsyncStorage.getItem("username");
 
@@ -64,8 +68,46 @@ class RegisterTransactions extends Component {
       this.setState({ userName: userName });
       this.setState({ isAuthenticated: true });
     }
+
+    await APIKit.get("/api/cards/getCard?user_id=" + userId)
+      .then(this.getCard)
+      .catch();
+
+    await APIKit.get("/api/categorias?user_id=" + userId)
+      .then(this.getCategoria)
+      .catch();
+  
+    
   }
 
+  getCard = (data) => {
+    let cardData = data.data;
+    let auxArray = [];
+
+    cardData.forEach(function (item,index) {
+      var aux = {label: item.card_name, value: item.card_id}
+      auxArray.push(aux);
+    });
+    this.setState({ allCards: auxArray });
+  }
+  
+  getCategoria = (data) => {
+    //console.log(data.data);
+    let categoriaData = data.data;
+    let auxArray = [];
+
+    categoriaData.forEach(function (item,index) {
+      var aux = {label: item.nome, value: item.id}
+      auxArray.push(aux);
+    });
+    this.setState({ allCategories: auxArray });
+    //this.state.allCards = auxArray;
+    console.log(this.state.allCategories);
+  }
+
+  onCartaoChange = (id_cartao) => {
+    this.setState({id_cartao});
+  }
   onValueChange = (value) => {
     this.setState({ value });
   };
@@ -89,6 +131,42 @@ class RegisterTransactions extends Component {
   onCommentChange = (comentario) => {
     this.setState({ comentario });
   };
+
+  onRepetidoChange = (repetido) => {
+    this.setState({ repetido })
+  }
+
+  onChangeParcela = (text) => {
+    let newText = '';
+    let numbers = '0123456789';
+
+    for (var i=0; i < text.length; i++) {
+        if(numbers.indexOf(text[i]) > -1 ) {
+            newText = newText + text[i];
+        }
+        else {
+            // your call back function
+            alert("please enter numbers only");
+        }
+    }
+    this.setState({ parcela: newText });
+}
+
+onChangeDiaPagamento = (text) => {
+  let newText = '';
+  let numbers = '0123456789';
+
+  for (var i=0; i < text.length; i++) {
+      if(numbers.indexOf(text[i]) > -1 ) {
+          newText = newText + text[i];
+      }
+      else {
+          // your call back function
+          alert("please enter numbers only");
+      }
+  }
+  this.setState({ diaPagamento: newText });
+}
 
   onPressSave() {
     const {
@@ -202,21 +280,69 @@ class RegisterTransactions extends Component {
           autoCorrect={false}
           onChangeText={this.onCommentChange}
         ></Input>
+        <Input 
+          placeholder="Número de parcelas (Se houver)"
+          keyboardType='numeric'
+          onChangeText={(text)=> this.onChangeParcela(text)}
+          value={this.state.parcela}
+          maxLength={2}
+        />
+        <Input 
+          placeholder="Dia do pagamento (Se houver)"
+          keyboardType='numeric'
+          onChangeText={(text)=> this.onChangeDiaPagamento(text)}
+          value={this.state.diaPagamento}
+          maxLength={2}
+        />
+        {/* Usuário seleciona cartão*/}
+        <SelectBox>
+          <RNPickerSelect
+            onValueChange={(cartao) =>
+              this.onCartaoChange(cartao)
+            }
+            items={this.state.allCards}
+            placeholder={{ label: "Selecione um cartão", value: "cartao" }}
+            style={{
+              placeholder: {
+                color: 'gray'
+              },
+              inputAndroid: {
+                textAlign: "center",
+                color: "gray",
+                backgroundColor: "#BBD1EA",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                fontSize: 18,
+                borderRadius: 4,
+                height: 40,
+              },
+              inputIOS: {
+                backgroundColor: "#BBD1EA",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                fontSize: 18,
+                borderRadius: 4,
+                height: 40,
+              },
+              iconContainer: {
+                top: 5,
+                right: 15,
+              },
+            }}
+            useNativeAndroidPickerStyle={false}
+          />
+        </SelectBox>
+        {/* Usuário seleciona categoria*/}
         <SelectBox>
           <RNPickerSelect
             onValueChange={(categoriaid) =>
               this.onCategoryIdChange(categoriaid)
             }
-            items={[
-              { label: moradia, value: "1" },
-              { label: supermercado, value: "2" },
-              { label: transporte, value: "3" },
-              { label: lazer, value: "4" },
-              { label: saude, value: "5" },
-              { label: contas, value: "6" },
-              { label: restaurante, value: "7" },
-              { label: outros, value: "8" },
-            ]}
+            items={this.state.allCategories}
             placeholder={{ label: selecioneCtg, value: "categoria" }}
             style={{
               placeholder: {
@@ -252,6 +378,52 @@ class RegisterTransactions extends Component {
             useNativeAndroidPickerStyle={false}
           />
         </SelectBox>
+        {/* Usuário seleciona se quer repetir mensalmente*/}
+        <SelectBox>
+          <RNPickerSelect
+            onValueChange={(repetido_bool) =>
+              this.onRepetidoChange(repetido_bool)
+            }
+            items={[
+              { label: "Sim", value: true },
+              { label: "Não", value: false },
+            ]}
+            placeholder={{ label: "Repetir mensalmente?", value: false }}
+            style={{
+              placeholder: {
+                color: 'gray'
+              },
+              inputAndroid: {
+                textAlign: "center",
+                color: "gray",
+                backgroundColor: "#BBD1EA",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                fontSize: 18,
+                borderRadius: 4,
+                height: 40,
+              },
+              inputIOS: {
+                backgroundColor: "#BBD1EA",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                fontSize: 18,
+                borderRadius: 4,
+                height: 40,
+              },
+              iconContainer: {
+                top: 5,
+                right: 15,
+              },
+            }}
+            useNativeAndroidPickerStyle={false}
+          />
+        </SelectBox>
+
         <SimpleLineIcons
           name="check"
           size={44}
