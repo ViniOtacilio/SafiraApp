@@ -234,8 +234,7 @@ class MonthlyPlanning extends Component {
               </PlanningTitle>
               {this.state.x.map((data, index) => {
                 if (data.id_categoria === 1) {
-                  console.log(data.valor_planejado)
-                  if (data.valor_planejado !== 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       var valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto_final = valor_gasto[0] + "," + valor_gasto[1].slice(0, 2);
@@ -260,7 +259,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria === 2) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
@@ -285,7 +284,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria == 3) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
@@ -310,7 +309,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria == 4) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
@@ -335,7 +334,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria == 5) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
@@ -360,7 +359,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria == 6) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
@@ -385,7 +384,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria == 7) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
@@ -410,7 +409,7 @@ class MonthlyPlanning extends Component {
 
               {this.state.x.map((data, index) => {
                 if (data.id_categoria == 8) {
-                  if (data.valor_planejado == 'null') {
+                  if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
                       data.valor_gasto = data.valor_gasto.split(".");
                       var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);

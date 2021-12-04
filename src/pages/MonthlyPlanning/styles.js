@@ -70,7 +70,7 @@ export const PlanningBox = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 90%;
   border: 1px solid #507DBC;
   border-radius: 10px;
   margin: 0 auto auto;
