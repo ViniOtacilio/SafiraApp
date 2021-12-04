@@ -196,7 +196,7 @@ class ManagePlanning extends Component {
         payload = {
           "plans": newPayload
         }
-
+        console.log(payload)
         this.setState({ errorState: false });
     
         const onSuccess = ({ data }) => {

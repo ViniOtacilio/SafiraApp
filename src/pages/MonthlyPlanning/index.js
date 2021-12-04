@@ -169,8 +169,6 @@ class MonthlyPlanning extends Component {
           categoria_id = 8;
         }
 
-        console.log(categoria_id)
-
         const onSuccess = ({ data }) => {
           this.setState({ isAuthenticated: true });
           this.setState({ x: data });
@@ -271,8 +269,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Supermercado</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
@@ -296,8 +294,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Transporte</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
@@ -321,8 +319,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Lazer</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
@@ -346,8 +344,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Saúde</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
@@ -371,8 +369,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Contas</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
@@ -396,8 +394,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Restaurante/Delivery</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
@@ -421,8 +419,8 @@ class MonthlyPlanning extends Component {
                         <PlanningTitle>Outros</PlanningTitle>
                         <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
-                          onPress={(e) => {
-                            this.onPressDelete(e.id);
+                          onPress={() => {
+                            this.onPressDelete(data.nome_categoria);
                           }}/>
                       </PlanningBox>
                     )
