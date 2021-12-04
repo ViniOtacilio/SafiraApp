@@ -114,17 +114,23 @@ class MonthlyPlanning extends Component {
             this.setState({ isAuthenticated: true });
             this.setState({ x: data });
             console.log(this.state.x);
-            if (this.state.x.length == 0 || this.state.x.valor_planejado == undefined) {
+            if (this.state.x.length == 0) {
+              this.setState({ errorMessage: "Adicione lançamentos e/ou um planejamento nesse mês para ter seu planejamento mensal completo!" });
+            }
+            var hasPlans = this.state.x.some(function (item) { 
+              if (item.valor_planejado != null) {
+                return 'true';
+              } else {
+                return 'false';
+              }
+            });
+            if (hasPlans !== true) {
               this.setState({ errorMessage: "Adicione lançamentos e/ou um planejamento nesse mês para ter seu planejamento mensal completo!" });
             }
         };
     
         const userId = await AsyncStorage.getItem("userId");
         
-        console.log( "/api/planejamento/getPlanejamento?user_id=" +
-        userId +
-        "&mes=" +
-        id)
         APIKit.get(
             "/api/planejamento/getPlanejamento?user_id=" +
             userId +
@@ -228,19 +234,20 @@ class MonthlyPlanning extends Component {
               </PlanningTitle>
               {this.state.x.map((data, index) => {
                 if (data.id_categoria === 1) {
-                  if (data.valor_planejado == 'null') {
+                  console.log(data.valor_planejado)
+                  if (data.valor_planejado !== 'null') {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto = data.valor_gasto.split(".");
+                      var valor_gasto_final = valor_gasto[0] + "," + valor_gasto[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado = data.valor_planejado.split(".");
+                      var valor_planejado_final = valor_planejado[0] + "," + valor_planejado[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Moradia</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final + "/R$" + valor_planejado_final }</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
