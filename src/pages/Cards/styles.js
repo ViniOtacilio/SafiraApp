@@ -124,3 +124,32 @@ export const CardTitle = styled.Text`
     color: #507DBC;
     font-size: 15px;
 `;
+
+export const EachCard = styled.View `
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid #BBD1EA;
+`
+
+export const CardName = styled.Text`
+    color: #000;
+    font-size: 18px;
+    margin-right: 18px;
+    margin: 0 8px;
+    align-self: center;
+`;
+
+export const ListAllCards = styled.View `
+    ${'' /* width: 80%; */}
+    margin: 16px 40px 16px 40px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    ${'' /* justify-content: center; */}
+    justify-content: space-between;
+
+`

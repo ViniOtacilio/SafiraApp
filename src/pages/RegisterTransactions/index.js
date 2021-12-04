@@ -406,7 +406,7 @@ onChangeDiaPagamento = (text) => {
               { label: "Sim", value: true },
               { label: "Não", value: false },
             ]}
-            placeholder={{ label: "Repetir mensalmente?", value: null }}
+            placeholder={{ label: "Repetir mensalmente?", value: "" }}
             style={{
               placeholder: {
                 color: 'gray'
