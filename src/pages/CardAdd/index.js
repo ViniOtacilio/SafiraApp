@@ -77,7 +77,7 @@ class CardAdd extends Component {
         const onFailure = (error) => {
             console.log(error)
             console.log('aqui deu ruim')
-          };
+        };
 
         APIKit.post("/api/cards/createCard", payload)
             .then(onSuccess)
@@ -96,7 +96,7 @@ class CardAdd extends Component {
             name="close"
             size={24}
             color="#DAE3E5"
-            onPress={() => this.props.navigation.navigate("HamburguerMenu")}
+            onPress={() => this.props.navigation.navigate("Cards")}
           />
         </Header>
 

@@ -6,6 +6,8 @@ import {
   HeaderTitle,
   ContentBox,
   Link,
+  CardBox,
+  CardTitle,
   PageTitle,
   Input,
   Text,
@@ -22,18 +24,6 @@ import { TextInputMask } from 'react-native-masked-text';
 import { StyleSheet } from 'react-native';
 
 const initialState = {
-  mes: "",
-  errorMessage: "",
-  categoriaInputMoradia: "",
-  categoriaInputSupermercado: "",
-  categoriaInputTransporte: "",
-  categoriaInputLazer: "",
-  categoriaInputSaude: "",
-  categoriaInputContas: "",
-  categoriaInputRD: "",
-  categoriaInputOutros: "",
-  text: "",
-  total: 0,
   errors: {},
   errorState: false,
   isAuthorized: false,
@@ -46,14 +36,8 @@ class Cards extends Component {
       constructor() {
         super();
         this.state = {
-          userId: "",
           isAuthenticated: false,
-          userName: "",
-          date: new Date(Date.now()),
-          showStartDate: false,
-          showFinalDate: false,
-          start_date: new Date(Date.now()),
-          end_date: new Date(Date.now()),
+          x: [],
         };
       }
     
@@ -77,7 +61,33 @@ class Cards extends Component {
             this.setState({ x: data });
         };
 
-        APIKit.get("/api/cards/getCard?user_id=169").then(onSuccess);
+        const onFailure = (error) => {
+            console.log(error)
+        };
+
+        APIKit.get("/api/cards/getCard?user_id=169")
+            .then(onSuccess)
+            .catch(onFailure);
+      }
+
+      async onPressDelete() {
+        const user_id = await AsyncStorage.getItem("userId");
+        const card_name = 'cartao';
+        const payload = {
+            card_name,
+            user_id,
+        };
+        console.log(payload)
+        const onSuccess = ({ data }) => {
+            console.log('cartão deletado')
+        };
+
+        const onFailure = (error) => {
+            console.log('Erro para deletar cartão')
+        };
+        //APIKit.post("/api/cards/deleteCard")
+        //    .then(onSuccess)
+        //    .catch(onFailure);
       }
 
       
@@ -97,6 +107,14 @@ class Cards extends Component {
           />
         </Header>
         <ContentBox>
+            <PageTitle>Meus Cartões</PageTitle>
+            <CardBox>
+                <CardTitle>cartão 1</CardTitle>
+                <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
+                    onPress={() => {
+                        this.onPressDelete();
+                    }}/>
+            </CardBox>
             <Link onPress={() => this.props.navigation.navigate("CardAdd")}>
                 Adicionar Cartão
             </Link>

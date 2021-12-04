@@ -102,3 +102,25 @@ export const Link = styled.Text`
   font-weight: bold;
   color: #507DBC;
 `;
+
+export const CardBox = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  border: 1px solid #507DBC;
+  border-radius: 10px;
+  margin: 0 auto auto;
+  padding: 5px;
+  margin-bottom: 10px;
+`;
+
+export const CardTitle = styled.Text`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #507DBC;
+    font-size: 15px;
+`;
