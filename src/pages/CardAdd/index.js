@@ -72,18 +72,19 @@ class CardAdd extends Component {
         const onSuccess = ({ data }) => {
             console.log(data)
             console.log('aqui deu bom')
+            this.props.navigation.navigate("Cards");
         };
 
         const onFailure = (error) => {
             console.log(error)
             console.log('aqui deu ruim')
+            this.props.navigation.navigate("Cards");
         };
         console.log('/api/cards/createCard')
         APIKit.post("/api/cards/createCard", payload)
             .then(onSuccess)
             .catch(onFailure);
         
-        this.props.navigation.navigate("Cards");
       }
       
   render() {
