@@ -68,31 +68,6 @@ class TransactionDescription extends Component {
         </DescriptionHeader>
         <DescriptionBox>
           {this.state.data.map((data, index) => {
-            var categoria = "";
-            if (data.categoriaid == 1) {
-              categoria = "Moradia";
-            }
-            if (data.categoriaid == 2) {
-              categoria = "Supermercado";
-            }
-            if (data.categoriaid == 3) {
-              categoria = "Transporte";
-            }
-            if (data.categoriaid == 4) {
-              categoria = "Lazer";
-            }
-            if (data.categoriaid == 5) {
-              categoria = "Saúde";
-            }
-            if (data.categoriaid == 6) {
-              categoria = "Contas";
-            }
-            if (data.categoriaid == 7) {
-              categoria = "Restaurante";
-            }
-            if (data.categoriaid == 8) {
-              categoria = "Outros";
-            }
             if (data.value) {
               data.value = data.value.replace(".", ",");
               var value = data.value.split(",");
@@ -113,6 +88,24 @@ class TransactionDescription extends Component {
             if (data.tipo_de_transacao == 2) {
               data.tipo_de_transacao = "Saída";
             }
+            var parcelado = null;
+            if (data.parcelado == true) {
+              data.parcelado = "sim"
+              parcelado = true
+              console.log(parcelado)
+            }
+            if (data.parcelado == false) {
+              data.parcelado = "não"
+              parcelado = null
+              console.log(parcelado)
+            }
+            if (data.repetido == true) {
+              data.repetido = "sim"
+            }
+            if (data.repetido == false) {
+              data.repetido = "não"
+            }
+
             return (
               <DescriptionInfoBox key={"description-info-box-" + index}>
                 <TransactionTitle>Detalhes da transação</TransactionTitle>
@@ -121,7 +114,7 @@ class TransactionDescription extends Component {
                   <TransactionInfo>{data.titulo_lancamento}</TransactionInfo>
 
                   <TransactionInfoBold>Categoria</TransactionInfoBold>
-                  <TransactionInfo>{categoria}</TransactionInfo>
+                  <TransactionInfo>{ data.nome_categoria }</TransactionInfo>
                 
               
                   <TransactionInfoBold>Valor</TransactionInfoBold>
@@ -140,6 +133,24 @@ class TransactionDescription extends Component {
               
                   <TransactionInfoBold>Comentário</TransactionInfoBold>
                   <TransactionInfo>{data.comentario}</TransactionInfo>
+
+                  <TransactionInfoBold>Lançamento repetitivo</TransactionInfoBold>
+                  <TransactionInfo>{data.repetido}</TransactionInfo>
+
+                  <TransactionInfoBold>Dia da cobrança</TransactionInfoBold>
+                  <TransactionInfo>{data.dia_cobranca ? data.dia_cobranca : 'Não definido'}</TransactionInfo>
+
+                  <TransactionInfoBold>Parcelado</TransactionInfoBold>
+                  <TransactionInfo>{data.parcelado}</TransactionInfo>
+
+                  <TransactionInfoBold>{ parcelado ? 'Quantidade de parcelas' : '' }</TransactionInfoBold>
+                  <TransactionInfo>{data.qtd_parcelas}</TransactionInfo>
+
+                  <TransactionInfoBold>{parcelado ? 'Parcela atual' : ''}</TransactionInfoBold>
+                  <TransactionInfo>{data.parcela_atual}</TransactionInfo>
+
+                  <TransactionInfoBold>{parcelado ? 'Valor da parcela' : ''}</TransactionInfoBold>
+                  <TransactionInfo>{data.valor_parcela}</TransactionInfo>
                 
               </DescriptionInfoBox>
             );
