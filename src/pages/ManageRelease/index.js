@@ -24,11 +24,7 @@ class ManageRelease extends Component {
           userId: "",
           isAuthenticated: false,
           userName: "",
-          date: new Date(Date.now()),
-          showStartDate: false,
-          showFinalDate: false,
-          start_date: new Date(Date.now()),
-          end_date: new Date(Date.now()),
+          x: [],
         };
       }
     
@@ -45,6 +41,23 @@ class ManageRelease extends Component {
           this.setState({ userName: userName });
           this.setState({ isAuthenticated: true });
         }
+        const onSuccess = ({ data }) => {
+          this.setState({ userName: userName });
+          this.setState({ isAuthenticated: true });
+          this.setState({ x: data });
+        };
+
+        APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
+      }
+
+      onPressDelete(id) {
+        console.log('delete')
+        console.log(id)
+        const onSuccess = ({ data }) => {
+          console.log(data)
+          console.log("deu bom")
+        };
+        APIKit.get("/api/deleteLancamento/" + id).then(onSuccess);
       }
       
   render() {
@@ -65,14 +78,21 @@ class ManageRelease extends Component {
         <ContentBox>
         <PageTitle>Gerenciar Lançamentos Recorrentes</PageTitle>
         <ReleaseContent>
-        <ReleaseBox>
-          <ReleaseTitle>Conta de celular</ReleaseTitle>
-          <AntDesign name="delete" size={20} color="#507DBC" />
-        </ReleaseBox>
-        <ReleaseBox>
-          <ReleaseTitle>Conta Netflix</ReleaseTitle>
-          <AntDesign name="delete" size={20} color="#507DBC" />
-        </ReleaseBox>
+          {this.state.x.map((item, index) => {
+            if (item.repetido == true) {
+              console.log(item)
+              return(
+                <ReleaseBox key={"release-box-" + index}>
+                  <ReleaseTitle>{item.titulo_lancamento}</ReleaseTitle>
+                  <AntDesign name="delete" size={20} color="#507DBC" 
+                    onPress={() => {
+                      this.onPressDelete(item.id);
+                    }}
+                  />
+                </ReleaseBox>
+              )
+            }
+          })}
         </ReleaseContent>
         </ContentBox>
       </Container>
