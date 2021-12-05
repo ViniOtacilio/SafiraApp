@@ -35,6 +35,7 @@
     "react-native-screens": "~3.4.0",
     "react-native-scroll-menu": "^1.0.6",
     "react-native-svg": "12.1.1",
+    "react-native-svg-charts": "^5.4.0",
     "react-native-switch-selector": "^2.1.4",
     "react-native-text-input-mask": "^3.1.4",
     "react-native-unimodules": "~0.14.5",
