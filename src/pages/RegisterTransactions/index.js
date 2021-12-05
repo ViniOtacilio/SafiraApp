@@ -169,7 +169,7 @@ onChangeDiaPagamento = (text) => {
   this.setState({ dia_cobranca: newText });
 }
 
-  onPressSave() {
+  async onPressSave() {
     let is_parcelado = false;
     const {
       value,
@@ -183,7 +183,7 @@ onChangeDiaPagamento = (text) => {
       card_id
     } = this.state;
     const userid = this.state.userId;
-    if(this.state.parcela != null)
+    if(this.state.qtd_parcelas != null)
     {
       is_parcelado = true;
     }
@@ -213,7 +213,7 @@ onChangeDiaPagamento = (text) => {
       this.setState({ errorState: true });
     };
 
-    APIKit.post("/api/users/novoLancamento", payload)
+    await APIKit.post("/api/users/novoLancamento", payload)
       .then(onSuccess)
       .catch(onFailure);
   }
@@ -305,13 +305,7 @@ onChangeDiaPagamento = (text) => {
           value={this.state.qtd_parcelas}
           maxLength={2}
         />
-        <Input 
-          placeholder="Dia do pagamento (Opcional)"
-          keyboardType='numeric'
-          onChangeText={(text)=> this.onChangeDiaPagamento(text)}
-          value={this.state.dia_cobranca}
-          maxLength={2}
-        />
+
         {/* Usuário seleciona cartão*/}
         <SelectBox>
           <RNPickerSelect
@@ -441,6 +435,13 @@ onChangeDiaPagamento = (text) => {
             useNativeAndroidPickerStyle={false}
           />
         </SelectBox>
+        <Input 
+          placeholder="Dia do pagamento (Opcional)"
+          keyboardType='numeric'
+          onChangeText={(text)=> this.onChangeDiaPagamento(text)}
+          value={this.state.dia_cobranca}
+          maxLength={2}
+        />
 
         <SimpleLineIcons
           name="check"

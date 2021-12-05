@@ -207,7 +207,7 @@ class Dashboard extends Component {
                 />
               </HistoricItem>
             );
-          })}
+          }).reverse()}
         </HistoricBox>
 
 
