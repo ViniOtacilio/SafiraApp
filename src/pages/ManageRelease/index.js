@@ -15,6 +15,7 @@ import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
+import { RefreshControl } from "react-native";
 
 class ManageRelease extends Component {
 
@@ -25,6 +26,7 @@ class ManageRelease extends Component {
           isAuthenticated: false,
           userName: "",
           x: [],
+          refreshing: false
         };
       }
     
@@ -57,8 +59,31 @@ class ManageRelease extends Component {
           console.log(data)
           console.log("deu bom")
         };
-        APIKit.get("/api/deleteLancamento/" + id).then(onSuccess);
+        APIKit.get("/api/deleteLancamento/" + id).then(this.onRefresh);
       }
+
+      onRefresh = async () => {
+        this.setState({ refreshing: true });
+        try {
+          const userId = await AsyncStorage.getItem("userId");
+          const userName = await AsyncStorage.getItem("username");
+    
+          if (userId == null || userId == "null") {
+            this.props.navigation.navigate("Login");
+          } else {
+            this.setState({ userId: userId });
+            this.setState({ userName: userName });
+            this.setState({ isAuthenticated: true });
+          }
+    
+          await APIKit.get("/api/deleteLancamento/" + id)
+          .then(this.setState({ refreshing: false }))
+          .catch();
+
+        } catch (error) {
+          console.log(error);
+        }
+      };
       
   render() {
     return (
@@ -82,7 +107,13 @@ class ManageRelease extends Component {
             if (item.repetido == true) {
               console.log(item)
               return(
-                <ReleaseBox key={"release-box-" + index}>
+                <ReleaseBox 
+                refreshControl={
+                    <RefreshControl
+                      refreshing={this.state.refreshing}
+                      onRefresh={this.onRefresh}
+                    />
+                  } key={"release-box-" + index}>
                   <ReleaseTitle>{item.titulo_lancamento}</ReleaseTitle>
                   <AntDesign name="delete" size={20} color="#507DBC" 
                     onPress={() => {
