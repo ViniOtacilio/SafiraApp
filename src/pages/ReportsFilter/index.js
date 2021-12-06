@@ -13,15 +13,23 @@ import {
     SaldoText,
     CategoriaText,
     AdvancedFilterLink,
-    ScrollingButtonMenuBox
+    ScrollingButtonMenuBox,
+    ReportsSubTitleDespesa,
+    ReportsSubTitleMes,
+    ReportsSubTitleCategory
 } from "./styles";
 import APIKit from "../../utils/APIKit";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { Text } from "react-native-svg";
 import { View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
 import ScrollingButtonMenu from 'react-native-scroll-menu';
-import { PieChart } from 'react-native-svg-charts'
+import { PieChart, StackedBarChart, Gri } from 'react-native-svg-charts'
+
+const colors = ['#67d847','#ff3333']
+const keys = ['Receita', 'Despesa']
+
 
 let menus = [
     {
@@ -95,7 +103,8 @@ class ReportsFilter extends Component {
             outrosGastos: 0,
             isAuthenticated: false,
             pieData: [],
-            dataChart:[]
+            dataChart:[],
+            saldoBarData:[]
         };
 
     }
@@ -114,6 +123,131 @@ class ReportsFilter extends Component {
             this.setState({ userName: userName });
             this.setState({ isAuthenticated: true });
         }
+
+        
+        APIKit.get(
+            "/api/users/lancamento/?user_id=" +
+            userId +
+            "&start_date=" +
+            "2021-12-01" +
+            "&end_date=" +
+            "2021-12-31"
+        ).then(onSuccess);
+
+        const onSuccess = ({ data }) => {
+            this.setState({ isAuthenticated: true });
+            this.setState({ x: data });
+            var receita = 0;
+            var despesa = 0;
+            var saldo = 0;
+            var moradiaGastos = 0;
+            var supermercadoGastos = 0;
+            var transporteGastos = 0;
+            var lazerGastos = 0;
+            var saudeGastos = 0;
+            var contasGastos = 0;
+            var restauranteGastos = 0;
+            var outrosGastos = 0;
+            console.log(data)
+            data.map(function (item) {
+                //entrada
+                if (item.tipo_de_transacao == 1) {
+                    //console.log(parseFloat(item.value));
+                    receita += parseFloat(item.value);
+                }
+                //saida
+                if (item.tipo_de_transacao == 2) {
+                    //console.log(parseFloat(item.value))
+                    despesa += parseFloat(item.value);
+                }
+                if (item.categoriaid == 1) {
+                    if (item.tipo_de_transacao == 2) {
+                        moradiaGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 2) {
+                    if (item.tipo_de_transacao == 2) {
+                        supermercadoGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 3) {
+                    if (item.tipo_de_transacao == 2) {
+                        transporteGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 4) {
+                    if (item.tipo_de_transacao == 2) {
+                        lazerGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 5) {
+                    if (item.tipo_de_transacao == 2) {
+                        saudeGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 6) {
+                    if (item.tipo_de_transacao == 2) {
+                        contasGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 7) {
+                    if (item.tipo_de_transacao == 2) {
+                        restauranteGastos += parseFloat(item.value);
+                    }
+                }
+                if (item.categoriaid == 8) {
+                    if (item.tipo_de_transacao == 2) {
+                        outrosGastos += parseFloat(item.value);
+                    }
+                }
+            });
+            saldo = receita - despesa;
+            this.setState({ receita: receita });
+            this.setState({ despesa: despesa });
+            this.setState({ saldo: saldo });
+            this.setState({ moradiaGastos: moradiaGastos });
+            this.setState({ supermercadoGastos: supermercadoGastos });
+            this.setState({ transporteGastos: transporteGastos });
+            this.setState({ lazerGastos: lazerGastos });
+            this.setState({ saudeGastos: saudeGastos });
+            this.setState({ contasGastos: contasGastos });
+            this.setState({ restauranteGastos: restauranteGastos });
+            this.setState({ outrosGastos: outrosGastos });
+            // console.log('receita: ' + this.state.receita);
+            // console.log('despesa: ' + this.state.despesa);
+            // console.log('saldo: ' + this.state.saldo);
+            // console.log('outros: ' + this.state.outrosGastos);
+            console.log(this.state.supermercadoGastos);
+            console.log(this.state.lazerGastos);
+            console.log(this.state.saudeGastos);
+            console.log(this.state.restauranteGastos);
+            let dataChart = [this.state.moradiaGastos, this.state.supermercadoGastos, this.state.transporteGastos, this.state.lazerGastos, this.state.saudeGastos, this.state.contasGastos, this.state.restauranteGastos, this.state.outrosGastos]
+            const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
+            this.state.pieData = dataChart
+                .filter((value) => value > 0)
+                .map((value, index) => ({
+                    value,
+                    svg: {
+                        fill: randomColor(),
+                        onPress: () => console.log('press', index),
+                    },
+                    key: `pie-${index}`,
+                }))
+            console.log("PieData:")
+            console.log(this.state.pieData);
+            
+            let saldoChartHelper = [
+                {
+                    Receita: this.state.receita ,
+                    Despesa: this.state.despesa,
+                    svg: {
+                        onPress: () => console.log('onPress => 0:broccoli:3840'),
+                    },
+                    
+                }
+                ]
+            this.setState({saldoBarData: saldoChartHelper});
+        };
     }
 
     async onPressFilter(id) {
@@ -276,10 +410,14 @@ class ReportsFilter extends Component {
             this.setState({ contasGastos: contasGastos });
             this.setState({ restauranteGastos: restauranteGastos });
             this.setState({ outrosGastos: outrosGastos });
-            console.log('receita: ' + this.state.receita);
-            console.log('despesa: ' + this.state.despesa);
-            console.log('saldo: ' + this.state.saldo);
-            console.log('outros: ' + this.state.outrosGastos);
+            // console.log('receita: ' + this.state.receita);
+            // console.log('despesa: ' + this.state.despesa);
+            // console.log('saldo: ' + this.state.saldo);
+            // console.log('outros: ' + this.state.outrosGastos);
+            console.log(this.state.supermercadoGastos);
+            console.log(this.state.lazerGastos);
+            console.log(this.state.saudeGastos);
+            console.log(this.state.restauranteGastos);
             let dataChart = [this.state.moradiaGastos, this.state.supermercadoGastos, this.state.transporteGastos, this.state.lazerGastos, this.state.saudeGastos, this.state.contasGastos, this.state.restauranteGastos, this.state.outrosGastos]
             const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
             this.state.pieData = dataChart
@@ -294,6 +432,18 @@ class ReportsFilter extends Component {
                 }))
             console.log("PieData:")
             console.log(this.state.pieData);
+            
+            let saldoChartHelper = [
+                {
+                    Receita: this.state.receita ,
+                    Despesa: this.state.despesa,
+                    svg: {
+                        onPress: () => console.log('onPress => 0:broccoli:3840'),
+                    },
+                    
+                }
+                ]
+            this.setState({saldoBarData: saldoChartHelper});
         };
 
         const userId = await AsyncStorage.getItem("userId");
@@ -309,6 +459,23 @@ class ReportsFilter extends Component {
     }
 
     render() {
+        const Label = ({ slices }) => {
+            return slices.map((slice,index) => {
+                const {pieCentroid, data} = slice;
+                return(
+                <Text 
+                key={`label-${index}`}
+                x={pieCentroid[0]}
+                y={pieCentroid[1]}
+                fill="black"
+                textAnchor={'middle'}
+                alignmentBaseline={'middle'}
+                fontSize={22}
+                >
+                {data.value}
+                </Text>)
+            });
+        }
         return (
             <Container>
                 <Header>
@@ -334,35 +501,52 @@ class ReportsFilter extends Component {
                 </ScrollingButtonMenuBox>
 
                 <FilterMonthlyBox>
+                <ReportsTitleBox>
+                    <ReportsSubTitleMes>
+                        {this.state.month}
+                    </ReportsSubTitleMes>
+                </ReportsTitleBox>
+                    <StackedBarChart
+                    style={{ height: 100 }}
+                    colors={colors}
+                    contentInset={{ top: 30, bottom: 30 }}
+                    data={this.state.saldoBarData}
+                    keys={keys}
+                    horizontal={true}
+                >
+                </StackedBarChart>
                     <ReportsTitleBox>
                         <ReportsSubTitle>
-                            Receita X Despesa
-                </ReportsSubTitle>
-                        <ReportsSubTitle>
-                            {this.state.month}
-                        </ReportsSubTitle>
+                            Receitas: R${this.state.receita}
+                    </ReportsSubTitle>
+                        <ReportsSubTitleDespesa>
+                            Despesas: R${this.state.despesa}
+                            {/* {this.state.month} */}
+                        </ReportsSubTitleDespesa>
                     </ReportsTitleBox>
-                    <ReceitaText>
+                    {/* <ReceitaText>
                         Receitas: R${this.state.receita}
                     </ReceitaText>
                     <DespesaText>
                         Despesas: R${this.state.despesa}
-                    </DespesaText>
+                    </DespesaText> */}
                     <SaldoText>
                         Saldo: R${this.state.saldo}
                     </SaldoText>
                 </FilterMonthlyBox>
 
                 <FilterMonthlyBox1>
-                    <PieChart style={{ height: 200 }} data={this.state.pieData} />
-                    <ReportsTitleBox>
-                        <ReportsSubTitle>
-                            Despesas por categoria
-                </ReportsSubTitle>
-                        <ReportsSubTitle>
-                            {this.state.month}
-                        </ReportsSubTitle>
+                <ReportsTitleBox>
+                <ReportsSubTitleCategory>
+                    Despesas por categoria
+                </ReportsSubTitleCategory>
                     </ReportsTitleBox>
+                    <PieChart style={{ height: 200 }} 
+                    //valueAccessor={({ item }) => item}
+                    data={this.state.pieData}>
+                    <Label/>
+                    </PieChart>
+
                     <CategoriaText>
                         Moradia: R${this.state.moradiaGastos}
                     </CategoriaText>

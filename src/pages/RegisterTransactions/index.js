@@ -313,7 +313,7 @@ onChangeDiaPagamento = (text) => {
               this.onCartaoChange(cartao)
             }
             items={this.state.allCards}
-            placeholder={{ label: "Selecione um cartão", value: "cartao" }}
+            placeholder={{ label: "Selecione um cartão", value: null }}
             style={{
               placeholder: {
                 color: 'gray'

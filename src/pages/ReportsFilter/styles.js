@@ -33,9 +33,9 @@ export const HeaderTitle = styled.Text`
 export const ReportsTitleBox = styled.View`
   flex: 1;
   flex-direction: row;
-  justify-content: space-between;
+  ${'' /* justify-content: flex-end; */}
   align-items: center;
-  padding: 20px 10px;
+  padding: 20px 10px 40px 10px;
 `;
 
 
@@ -52,33 +52,39 @@ export const AdvancedFilterLink = styled.Text`
 export const FilterMonthlyBox = styled.View`
   display: flex;
   flex-direction: column;
-  ${"" /* background-color: rgb(39, 52, 105); */}
-  background-color: #fff;
+  ${'' /* background-color: #fff; */}
   width: 80%;
   margin: 10px auto 0;
-  border-radius: 4px;
-  border: 2px solid #507DBC;
+  ${'' /* border-radius: 4px; */}
+  ${'' /* border: 2px solid #507DBC; */}
   padding: 8px;
 `;
 
-export const FilterMonthlyBox1 = styled.ScrollView`
+export const FilterMonthlyBox1 = styled.View`
   display: flex;
   flex-direction: column;
   ${"" /* background-color: rgb(39, 52, 105); */}
-  background-color: #fff;
+  ${'' /* background-color: #fff; */}
   width: 80%;
   margin: 10px auto 0;
-  border-radius: 4px;
-  border: 2px solid #507DBC;
+  ${'' /* border-radius: 4px; */}
+  ${'' /* border: 2px solid #507DBC; */}
   padding: 8px;
-  max-height: 200px;
+  ${'' /* max-height: 200px; */}
 `;
 
 export const ReportsSubTitle = styled.Text`
   font-size: 16px;
-  color: grey;
+  color: #67d847;
   font-weight: bold;
 `;
+
+export const ReportsSubTitleDespesa = styled.Text`
+  text-align: right;
+  font-size: 16px;
+  color: #ff3333;
+  font-weight: bold;
+`
 
 export const ReceitaText = styled.Text`
   padding: 10px 0;
@@ -87,7 +93,7 @@ export const ReceitaText = styled.Text`
   text-align: center;
   font-weight: bold;
   ${"" /* color: #DAE3E5;  */}
-  color: green;
+  color: #67d847;
 `;
 
 export const DespesaText = styled.Text`
@@ -97,7 +103,7 @@ export const DespesaText = styled.Text`
   text-align: center;
   font-weight: bold;
   ${"" /* color: #DAE3E5;  */}
-  color: red;
+  color: #ff3333;
 `;
 
 export const SaldoText = styled.Text`
@@ -107,7 +113,8 @@ export const SaldoText = styled.Text`
   text-align: center;
   font-weight: bold;
   ${"" /* color: #DAE3E5;  */}
-  color: blue;
+  ${'' /* color: #c0c0c0; */}
+  color: black;
 `;
 
 export const CategoriaText = styled.Text`
@@ -124,4 +131,15 @@ export const ScrollingButtonMenuBox = styled.View`
   margin-top: -20px;
   padding-right: 15px;
   margin-left: -5px;
+`;
+export const ReportsSubTitleMes = styled.Text`
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+`;
+
+export const ReportsSubTitleCategory = styled.Text`
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
 `;
