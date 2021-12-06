@@ -14,8 +14,8 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-height: 60px;
-  padding: 8px 8px 0px 8px;
+  ${'' /* max-height: 20px; */}
+  padding: 24px 30px 20px 8px;
 `;
 
 export const UserBox = styled.View`
@@ -60,7 +60,7 @@ export const FilterMonthlyBox = styled.View`
   padding: 8px;
 `;
 
-export const FilterMonthlyBox1 = styled.View`
+export const FilterMonthlyBox1 = styled.ScrollView`
   display: flex;
   flex-direction: column;
   ${"" /* background-color: rgb(39, 52, 105); */}
@@ -128,7 +128,7 @@ export const CategoriaText = styled.Text`
 `;
 
 export const ScrollingButtonMenuBox = styled.View`
-  margin-top: -20px;
+  padding-top: 10px;
   padding-right: 15px;
   margin-left: -5px;
 `;
