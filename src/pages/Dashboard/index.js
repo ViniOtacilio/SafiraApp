@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
-import { LineChart, YAxis, Grid } from 'react-native-svg-charts'
+import { LineChart, YAxis, Grid, XAxis } from 'react-native-svg-charts'
 import {
     Container,
     DashboardHeader,
@@ -30,7 +30,15 @@ const initialState = {
     isAuthenticated: false,
 };
 const contentInset = { top: 20, bottom: 20 }
+
+const axesSvg = { fontSize: 10, fill: 'grey' };
+const verticalContentInset = { top: 10, bottom: 10 }
+const xAxisHeight = 30
+
 let chartData = [];
+let months = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+//let months = [{data: "jan"},{data:"fev"}];
+
 class Dashboard extends Component {
     constructor() {
         super();
@@ -94,10 +102,21 @@ class Dashboard extends Component {
 
         const onSuccessSaldo = ({ data }) => {
             this.setState({ saldo: data });
+            this.state.dates.map(function (item) {
+                APIKit.get(
+                    "/api/users/lancamento/?user_id=" +
+                    userId +
+                    "&start_date=" +
+                    item[0] +
+                    "&end_date=" +
+                    item[1]
+                ).then(onSucessLancamentoByMonth);
+            }
+            );
         };
 
         const onSucessLancamentoByMonth = ({ data }) => {
-            console.log(data);
+            //console.log(data);
             data.map((lancamento) => {
                 if (lancamento.tipo_de_transacao == 1) {
                     this.state.saldoA += parseFloat(lancamento.value)
@@ -106,26 +125,16 @@ class Dashboard extends Component {
                     this.state.saldoA -= parseFloat(lancamento.value)
                 }
             })
-            console.log(this.state.saldoA);
+            //console.log(this.state.saldoA);
             this.state.saldosMonth.push(this.state.saldoA);
             chartData = this.state.saldosMonth;
+            console.log(chartData);
 
         };
 
         APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
         APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
-        this.state.dates.map(function (item) {
-            console.log(item[0] + " " + item[1]);
-            APIKit.get(
-                "/api/users/lancamento/?user_id=" +
-                userId +
-                "&start_date=" +
-                item[0] +
-                "&end_date=" +
-                item[1]
-            ).then(onSucessLancamentoByMonth);
-        }
-        );
+
 
     }
 
@@ -208,7 +217,39 @@ class Dashboard extends Component {
                     })}
                 </View>
                 <HistoricBox>
-                    <View style={{ height: 200, flexDirection: 'row' }}>
+
+                {/* <View style={{ height: 200, padding: 20, flexDirection: 'row' }}>
+                <YAxis
+                    data={chartData}
+                    style={{ marginBottom: xAxisHeight }}
+                    contentInset={verticalContentInset}
+                    svg={axesSvg}
+                />
+                <View style={{ flex: 1, marginLeft: 10 }}>
+                    <LineChart
+                        style={{ flex: 1 }}
+                        data={chartData}
+                        contentInset={verticalContentInset}
+                        svg={{ stroke: 'rgb(134, 65, 244)' }}
+                    />
+                    <XAxis
+                        style={{ marginHorizontal: -10, height: xAxisHeight }}
+                        data={months}
+                        contentInset={{ left: 10, right: 10 }}
+                        svg={axesSvg}
+                        formatLabel={(index) => index}
+                    /> 
+                     <XAxis
+                        formatLabel={(index) => months[index]}
+                        style={{ marginHorizontal: -10, height: xAxisHeight }}
+                        data={months}
+                        contentInset={{ left: 10, right: 10 }}
+                        svg={axesSvg}
+                    /> 
+                </View>
+                </View> */}
+                
+                <View style={{ height: 200, flexDirection: 'row' }}>
                         <YAxis
                             data={chartData}
                             contentInset={contentInset}
@@ -217,7 +258,7 @@ class Dashboard extends Component {
                                 fontSize: 14,
                             }}
                             numberOfTicks={12}
-                            formatLabel={(value) => `R$${value}`}
+                            formatLabel={(value) => `${value}`}
                         />
                         <LineChart
                             style={{ flex: 1, marginLeft: 16 }}
@@ -228,6 +269,9 @@ class Dashboard extends Component {
                             <Grid />
                         </LineChart>
                     </View>
+                    
+
+
                     {this.state.x.map((data, index) => {
                         if (data.tipo_de_transacao == 1) {
                             data.tipo_de_transacao = "Entrada";
