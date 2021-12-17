@@ -89,8 +89,7 @@ export const InputBox = styled.View`
 `;
 
 export const Input = styled.TextInput`
-    text-align: center;
-    background: #BBD1EA;
+    background: rgba(187, 209, 234, 0.5); 
     color: #808080;
     height: 44px;
     width: 280px;
