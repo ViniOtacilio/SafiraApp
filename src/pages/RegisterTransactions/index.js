@@ -174,7 +174,6 @@ onChangeDiaPagamento = (text) => {
   async onPressSave() {
     let is_parcelado = false;
     const {
-      value,
       tipo_de_transacao,
       categoriaid,
       titulo_lancamento,
@@ -184,21 +183,23 @@ onChangeDiaPagamento = (text) => {
       dia_cobranca,
       card_id
     } = this.state;
+    
     const userid = this.state.userId;
     if(this.state.qtd_parcelas != null)
     {
       is_parcelado = true;
     }
-    var value_final;
+    var value = '0';
     if (value) {
-      value_final = value.replace('R$', '');
-      value_final = value_final.replace('.', '');
-      value_final = value_final.replace(',', '.');
+      value = this.state.value.replace('R$', '');
+      value = value.replace('.', '');
+      value = value.replace(',', '.');
+      value = Number(value);
     }
     
     console.log(typeof(is_repetitivo));
     const payload = {
-      value_final,
+      value,
       tipo_de_transacao,
       userid,
       categoriaid,
@@ -211,8 +212,6 @@ onChangeDiaPagamento = (text) => {
       card_id
     };
   
-    console.log('aqui');
-    console.log(value_final)
     console.log(payload);
     this.setState({ errorState: false });
 
@@ -224,9 +223,9 @@ onChangeDiaPagamento = (text) => {
       this.setState({ errorState: true });
     };
 
-   /* await APIKit.post("/api/users/novoLancamento", payload)
+    await APIKit.post("/api/users/novoLancamento", payload)
       .then(onSuccess)
-      .catch(onFailure);*/
+      .catch(onFailure);
   }
 
   render() {
