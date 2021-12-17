@@ -316,7 +316,7 @@ class ManagePlanning extends Component {
 
 const styles = StyleSheet.create({
   maskedInput: {
-    backgroundColor: 'rgb(187, 209, 234)',
+    backgroundColor: 'background: rgba(187, 209, 234, 0.5)',
     marginBottom: 5,
     height: 40,
     fontSize: 18,
@@ -325,7 +325,6 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     borderRadius: 4,
-    textAlign: "center",
   },
 });
 

@@ -45,13 +45,12 @@ export const PageTitle = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-    background: #BBD1EA; 
+    background: rgba(187, 209, 234, 0.5);  
     height: 40px;
     width: 80%;
     border-radius: 4px;
     padding: 8px;
     font-size: 18px;
-    text-align: center;
     margin: 0 auto 5px;
 `;
 

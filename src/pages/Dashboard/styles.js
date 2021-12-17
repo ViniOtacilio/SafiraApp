@@ -33,12 +33,12 @@ export const Title = styled.Text`
 
 export const TextSaldo = styled.Text`
   padding: 0;
-  margin: 0;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   ${"" /* color: #DAE3E5;  */}
   color: #000;
+  margin-top: 2px;
 `;
 
 export const HistoricBox = styled.ScrollView`
@@ -47,7 +47,7 @@ export const HistoricBox = styled.ScrollView`
   ${"" /* background-color: rgb(39, 52, 105); */}
   background-color: transparent;
   width: 80%;
-  max-height: 350px;
+  max-height: 460px;
   margin: 0 auto;
   border-radius: 4px;
   padding: 8px;

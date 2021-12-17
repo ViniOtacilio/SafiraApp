@@ -198,7 +198,7 @@ class Dashboard extends Component {
                         var saldo = data.value.split(",");
                         return (
                             <TextSaldo
-                                style={{ margin: 0, padding: 0, includeFontPadding: false }}
+                                style={{ includeFontPadding: false }}
                                 key={index}
                             >
                                 {translate("balance")}: R$
@@ -207,7 +207,7 @@ class Dashboard extends Component {
                         );
                     })}
                 </View>
-                <HistoricBox>
+                <HistoricBox showsHorizontalScrollIndicator={false}>
                     <View style={{ height: 200, flexDirection: 'row' }}>
                         <YAxis
                             data={chartData}
