@@ -18,6 +18,8 @@ import SwitchSelector from "react-native-switch-selector";
 import RNPickerSelect from "react-native-picker-select";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translate } from "../../locales";
+import { TextInputMask } from 'react-native-masked-text';
+import { StyleSheet } from 'react-native';
 
 const initialState = {
   value: "",
@@ -187,9 +189,16 @@ onChangeDiaPagamento = (text) => {
     {
       is_parcelado = true;
     }
+    var value_final;
+    if (value) {
+      value_final = value.replace('R$', '');
+      value_final = value_final.replace('.', '');
+      value_final = value_final.replace(',', '.');
+    }
+    
     console.log(typeof(is_repetitivo));
     const payload = {
-      value,
+      value_final,
       tipo_de_transacao,
       userid,
       categoriaid,
@@ -202,6 +211,8 @@ onChangeDiaPagamento = (text) => {
       card_id
     };
   
+    console.log('aqui');
+    console.log(value_final)
     console.log(payload);
     this.setState({ errorState: false });
 
@@ -213,9 +224,9 @@ onChangeDiaPagamento = (text) => {
       this.setState({ errorState: true });
     };
 
-    await APIKit.post("/api/users/novoLancamento", payload)
+   /* await APIKit.post("/api/users/novoLancamento", payload)
       .then(onSuccess)
-      .catch(onFailure);
+      .catch(onFailure);*/
   }
 
   render() {
@@ -284,13 +295,15 @@ onChangeDiaPagamento = (text) => {
           autoCorrect={false}
           onChangeText={this.onTitleReleaseChange}
         ></Input>
-        <Input
-          placeholder={translate("amount")}
-          value={this.state.value}
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={this.onValueChange}
-        ></Input>
+        <TextInputMask
+              type={'money'}
+              placeholder={translate("amount")}
+              value={this.state.value}
+              style={styles.maskedInput}
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={this.onValueChange}
+            />
         <Input
           placeholder={translate("description")}
           value={this.state.comentario}
@@ -457,5 +470,19 @@ onChangeDiaPagamento = (text) => {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  maskedInput: {
+    backgroundColor: 'background: rgba(187, 209, 234, 0.5)',
+    marginBottom: 5,
+    height: 40,
+    fontSize: 18,
+    padding: 8,
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderRadius: 4,
+  },
+});
 
 export default RegisterTransactions;
