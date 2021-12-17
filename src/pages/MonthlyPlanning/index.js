@@ -149,6 +149,7 @@ class MonthlyPlanning extends Component {
       async onPressDelete(categoria) {
         console.log(this.state.mes)
         var categoria_id = 0;
+        console.log(categoria);
 
         if (categoria == "Moradia") {
           categoria_id = 1;
@@ -168,7 +169,7 @@ class MonthlyPlanning extends Component {
         if (categoria == "Contas") {
           categoria_id = 6;
         }
-        if (categoria == "Restaurante/Delivery") {
+        if (categoria == "Restaurantes") {
           categoria_id = 7;
         }
         if (categoria == "Outros") {
@@ -190,11 +191,9 @@ class MonthlyPlanning extends Component {
         const userId = await AsyncStorage.getItem("userId");
 
         var payload = {
-          "plan" : {
             "user_id": parseInt(userId),
             "mes": this.state.mes,
             "categoria_id": categoria_id,
-          }
         }
 
         console.log(payload)
@@ -204,7 +203,7 @@ class MonthlyPlanning extends Component {
         .then(onSuccess)
         .catch(onFailure);
         
-        window.location.reload(true);
+        this.props.navigation.navigate("Dashboard");
         
       }
       
@@ -239,20 +238,22 @@ class MonthlyPlanning extends Component {
                 {this.state.errorMessage}
               </PlanningTitle>
               {this.state.x.map((data, index) => {
+                console.log(data)
                 if (data.id_categoria === 1) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      var valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto_final = valor_gasto[0] + "," + valor_gasto[1].slice(0, 2);
+                      console.log(data.valor.gasto);
+                      var valor_gasto_1 = data.valor_gasto.split(".");
+                      var valor_gasto_final_1 = valor_gasto_1[0] + "," + valor_gasto_1[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      var valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado_final = valor_planejado[0] + "," + valor_planejado[1].slice(0, 2);
+                      var valor_planejado_1 = data.valor_planejado.split(".");
+                      var valor_planejado_final_1 = valor_planejado_1[0] + "," + valor_planejado_1[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Moradia</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto_final + "/R$" + valor_planejado_final }</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_1 + "/R$" + valor_planejado_final_1 }</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -267,17 +268,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria === 2) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_2 = data.valor_gasto.split(".");
+                      var valor_gasto_final_2 = valor_gasto_2[0] + "," + valor_gasto_2[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_2 = data.valor_planejado.split(".");
+                      var valor_planejado_final_2 = valor_planejado_2[0] + "," + valor_planejado_2[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Supermercado</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_2 + "/R$" + valor_planejado_final_2}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -292,17 +293,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria == 3) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_3 = data.valor_gasto.split(".");
+                      var valor_gasto_final_3 = valor_gasto_3[0] + "," + valor_gasto_3[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_3 = data.valor_planejado.split(".");
+                      var valor_planejado_final_3 = valor_planejado_3[0] + "," + valor_planejado_3[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Transporte</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_3 + "/R$" + valor_planejado_final_3}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -317,17 +318,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria == 4) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_4 = data.valor_gasto.split(".");
+                      var valor_gasto_final_4 = valor_gasto_4[0] + "," + valor_gasto_4[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_4 = data.valor_planejado.split(".");
+                      var valor_planejado_final_4 = valor_planejado_4[0] + "," + valor_planejado_4[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Lazer</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_4 + "/R$" + valor_planejado_final_4}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -342,17 +343,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria == 5) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_5 = data.valor_gasto.split(".");
+                      var valor_gasto_final_5 = valor_gasto_5[0] + "," + valor_gasto_5[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_5 = data.valor_planejado.split(".");
+                      var valor_planejado_final_5 = valor_planejado_5[0] + "," + valor_planejado_5[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Saúde</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_5 + "/R$" + valor_planejado_final_5}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -367,17 +368,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria == 6) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_6 = data.valor_gasto.split(".");
+                      var valor_gasto_final_6 = valor_gasto_6[0] + "," + valor_gasto_6[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_6 = data.valor_planejado.split(".");
+                      var valor_planejado_final_6 = valor_planejado_6[0] + "," + valor_planejado_6[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Contas</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_6 + "/R$" + valor_planejado_final_6}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -392,17 +393,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria == 7) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_7 = data.valor_gasto.split(".");
+                      var valor_gasto_final_7 = valor_gasto_7[0] + "," + valor_gasto_7[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_7 = data.valor_planejado.split(".");
+                      var valor_planejado_final_7 = valor_planejado_7[0] + "," + valor_planejado_7[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Restaurante/Delivery</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_7 + "/R$" + valor_planejado_final_7}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
@@ -417,17 +418,17 @@ class MonthlyPlanning extends Component {
                 if (data.id_categoria == 8) {
                   if (data.valor_planejado != null) {
                     if (data.valor_gasto) {
-                      data.valor_gasto = data.valor_gasto.split(".");
-                      var valor_gasto = data.valor_gasto[0] + "," + data.valor_gasto[1].slice(0, 2);
+                      var valor_gasto_8 = data.valor_gasto.split(".");
+                      var valor_gasto_final_8 = valor_gasto_8[0] + "," + valor_gasto_8[1].slice(0, 2);
                     }
                     if (data.valor_planejado) {
-                      data.valor_planejado = data.valor_planejado.split(".");
-                      var valor_planejado = data.valor_planejado[0] + "," + data.valor_planejado[1].slice(0, 2);
+                      var valor_planejado_8 = data.valor_planejado.split(".");
+                      var valor_planejado_final_8 = valor_planejado_8[0] + "," + valor_planejado_8[1].slice(0, 2);
                     }
                     return (
                       <PlanningBox key={"planning-box-" + index}>
                         <PlanningTitle>Outros</PlanningTitle>
-                        <PlanningTitle>{"R$" + valor_gasto + "/R$" + valor_planejado}</PlanningTitle>
+                        <PlanningTitle>{"R$" + valor_gasto_final_8 + "/R$" + valor_planejado_final_8}</PlanningTitle>
                         <AntDesign name="delete" size={20} color="rgb(80, 125, 188)" 
                           onPress={() => {
                             this.onPressDelete(data.nome_categoria);
