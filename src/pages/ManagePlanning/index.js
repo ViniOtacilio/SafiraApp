@@ -31,6 +31,7 @@ const initialState = {
   categoriaInputContas: "",
   categoriaInputRD: "",
   categoriaInputOutros: "",
+  categoriaInputOutrosValue: "",
   text: "",
   total: 0,
   errors: {},
@@ -243,6 +244,7 @@ class ManagePlanning extends Component {
               autoCorrect={false}
               onChangeText={this.onMesChange}
             />
+
             <Input
                 placeholder="Moradia"
                 value={this.categoriainputMoradia}
@@ -300,6 +302,7 @@ class ManagePlanning extends Component {
                 onChangeText={this.onCategoriaInputChangeOutros}
                 >
             </Input>
+
             <Text>{this.state.errorMessage}</Text>
             <ButtonBox>
               <Button onPress={this.onPressSave.bind(this)}>
