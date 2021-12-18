@@ -22,6 +22,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import { StyleSheet } from 'react-native';
 
 const initialState = {
+  data_lancamento: "",
   value: "",
   tipo_de_transacao: "1",
   categoriaid: "",
@@ -107,6 +108,10 @@ class RegisterTransactions extends Component {
     console.log(this.state.allCategories);
   }
 
+  onDataLancamentoChange = (data_lancamento) => {
+    this.setState({ data_lancamento });
+  };
+
   onCartaoChange = (card_id) => {
     this.setState({card_id});
   }
@@ -172,6 +177,7 @@ onChangeDiaPagamento = (text) => {
 }
 
   async onPressSave() {
+    console.log(this.state.data_lancamento)
     let is_parcelado = false;
     const {
       tipo_de_transacao,
@@ -181,7 +187,8 @@ onChangeDiaPagamento = (text) => {
       is_repetitivo,
       qtd_parcelas,
       dia_cobranca,
-      card_id
+      card_id,
+      data_lancamento
     } = this.state;
     
     const userid = this.state.userId;
@@ -190,7 +197,7 @@ onChangeDiaPagamento = (text) => {
       is_parcelado = true;
     }
     var value = '0';
-    if (value) {
+    if (this.state.value) {
       value = this.state.value.replace('R$', '');
       value = value.replace('.', '');
       value = value.replace(',', '.');
@@ -209,7 +216,8 @@ onChangeDiaPagamento = (text) => {
       qtd_parcelas,
       is_parcelado,
       dia_cobranca,
-      card_id
+      card_id,
+      data_lancamento
     };
   
     console.log(payload);
@@ -294,6 +302,16 @@ onChangeDiaPagamento = (text) => {
           autoCorrect={false}
           onChangeText={this.onTitleReleaseChange}
         ></Input>
+        <TextInputMask
+          type={'custom'}
+          placeholder="Data lançamento (opcional)"
+          options={{
+            mask: '9999-99-99'
+          }}
+          value={this.state.data_lancamento}
+          onChangeText={this.onDataLancamentoChange}
+          style={styles.maskedInput}
+        />
         <TextInputMask
               type={'money'}
               placeholder={translate("amount")}
