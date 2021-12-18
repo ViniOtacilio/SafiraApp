@@ -188,7 +188,6 @@ onChangeDiaPagamento = (text) => {
       qtd_parcelas,
       dia_cobranca,
       card_id,
-      data_lancamento
     } = this.state;
     
     const userid = this.state.userId;
@@ -204,6 +203,13 @@ onChangeDiaPagamento = (text) => {
       value = Number(value);
     }
     
+    var data_lancamento;
+    if (this.state.data_lancamento) {
+      data_lancamento = this.state.data_lancamento + ' 00:00:00';  
+    }
+
+    console.log('aqui')
+    console.log(data_lancamento)
     console.log(typeof(is_repetitivo));
     const payload = {
       value,
