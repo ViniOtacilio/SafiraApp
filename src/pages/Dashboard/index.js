@@ -97,7 +97,9 @@ class Dashboard extends Component {
         };
 
         const onSucessLancamentoByMonth = ({ data }) => {
-            console.log(data);
+            console.log(data)
+            if(data.length >= 1)
+            {
             data.map((lancamento) => {
                 if (lancamento.tipo_de_transacao == 1) {
                     this.state.saldoA += parseFloat(lancamento.value)
@@ -106,16 +108,14 @@ class Dashboard extends Component {
                     this.state.saldoA -= parseFloat(lancamento.value)
                 }
             })
-            console.log(this.state.saldoA);
             this.state.saldosMonth.push(this.state.saldoA);
             chartData = this.state.saldosMonth;
-
+            }
         };
 
         APIKit.get("/api/users/saldo/?user_id=" + userId).then(onSuccessSaldo);
         APIKit.get("/api/users/lancamento/?user_id=" + userId).then(onSuccess);
         this.state.dates.map(function (item) {
-            console.log(item[0] + " " + item[1]);
             APIKit.get(
                 "/api/users/lancamento/?user_id=" +
                 userId +
@@ -228,7 +228,7 @@ class Dashboard extends Component {
                             <Grid />
                         </LineChart>
                     </View>
-                    {this.state.x.map((data, index) => {
+                    {this.state.x.length >= 1 && this.state.x.map((data, index) => {
                         if (data.tipo_de_transacao == 1) {
                             data.tipo_de_transacao = "Entrada";
                         }
