@@ -22,6 +22,8 @@ import { StyleSheet } from 'react-native';
 
 const initialState = {
   mes: "",
+  ano: "",
+  data: "",
   errorMessage: "",
   categoriaInputMoradia: "",
   categoriaInputSupermercado: "",
@@ -76,11 +78,19 @@ class ManagePlanning extends Component {
         this.setState({ mes });
       };
 
+      onAnoChange = (ano) => {
+        this.setState({ ano });
+      };
+
+      onDataChange = (data) => {
+        this.setState({ data });
+      };
+
       onCategoriaInputChangeMoradia = (categoria) => {
         this.setState({ 
           categoriaInputMoradia: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 1,
             "value": categoria, 
           }
@@ -91,7 +101,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputSupermercado: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 2,
             "value": categoria, 
           }
@@ -102,7 +112,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputTransporte: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 3,
             "value": categoria, 
           }
@@ -113,7 +123,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputLazer: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 4,
             "value": categoria, 
           }
@@ -124,7 +134,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputSaude: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 5,
             "value": categoria, 
           }
@@ -135,7 +145,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputContas: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 6,
             "value": categoria, 
           }
@@ -146,7 +156,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputRD: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 7,
             "value": categoria, 
           }
@@ -157,7 +167,7 @@ class ManagePlanning extends Component {
         this.setState({ 
           categoriaInputOutros: {
             "user_id": parseInt(this.state.userId),
-            "mes": this.state.mes,
+            "mes": this.state.mes + "-" + this.state.ano,
             "categoria_id": 8,
             "value": categoria, 
           }
@@ -165,7 +175,6 @@ class ManagePlanning extends Component {
       };
 
       onPressSave() {
-        console.log(this.state.mes)
         const {
           categoriaInputMoradia,
           categoriaInputSupermercado,
@@ -232,18 +241,23 @@ class ManagePlanning extends Component {
         </Header>
         <ContentBox>
             <PageTitle>Vou Gastar:</PageTitle>
-            <TextInputMask
-              type={'custom'}
-              placeholder="Data"
-              options={{
-                mask: '99-9999'
-              }}
-              value={this.state.mes}
-              style={styles.maskedInput}
-              autoCapitalize="none"
-              autoCorrect={false}
-              onChangeText={this.onMesChange}
-            />
+            <Input
+                placeholder="Mês"
+                value={this.state.mes}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={this.onMesChange}
+                >
+            </Input>
+
+            <Input
+                placeholder="Ano"
+                value={this.state.ano}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={this.onAnoChange}
+                >
+            </Input>
 
             <Input
                 placeholder="Moradia"
