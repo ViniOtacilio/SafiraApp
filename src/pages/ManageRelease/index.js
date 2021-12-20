@@ -57,7 +57,7 @@ class ManageRelease extends Component {
           console.log(data)
           console.log("deu bom")
         };
-        APIKit.get("/api/deleteLancamento/" + id).then(onSuccess);
+        APIKit.get("/api/users/lancamento/" + id).then(onSuccess);
       }
       
   render() {

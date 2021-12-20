@@ -65,7 +65,7 @@ class Cards extends Component {
             console.log(error)
         };
 
-        APIKit.get("/api/cards/getCard?user_id=" + userId )
+        APIKit.get("/api/users/cards?user_id=" + userId )
             .then(this.getCard)
             .catch(onFailure);
       }
@@ -89,8 +89,8 @@ class Cards extends Component {
         const card_name = data;
         console.log(card_name);
         const payload = {
-            card_name,
-            user_id,
+          user_id,
+          card_name
         };
         console.log(payload)
         const onSuccess = ({ data }) => {
@@ -101,7 +101,7 @@ class Cards extends Component {
             console.log('Erro para deletar cartão')
         };
 
-        APIKit.post("/api/cards/deleteCard", payload)
+        APIKit.delete("/api/users/cards",{ data: payload})
            .then(this.onRefresh)
            .catch(onFailure);
       }
@@ -120,7 +120,7 @@ class Cards extends Component {
             this.setState({ isAuthenticated: true });
           }
     
-          await APIKit.get("/api/cards/getCard?user_id=" + userId )
+          await APIKit.get("/api/users/cards?user_id=" + userId )
           .then(this.getCard)
           .catch();
 

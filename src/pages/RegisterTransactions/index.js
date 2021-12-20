@@ -71,11 +71,11 @@ class RegisterTransactions extends Component {
       this.setState({ isAuthenticated: true });
     }
 
-    await APIKit.get("/api/cards/getCard?user_id=" + userId)
+    await APIKit.get("/api/users/cards?user_id=" + userId)
       .then(this.getCard)
       .catch();
 
-    await APIKit.get("/api/categorias?user_id=" + userId)
+    await APIKit.get("/api/users/categoria?user_id=" + userId)
       .then(this.getCategoria)
       .catch();
   
@@ -223,7 +223,7 @@ onChangeDiaPagamento = (text) => {
       this.setState({ errorState: true });
     };
 
-    await APIKit.post("/api/users/novoLancamento", payload)
+    await APIKit.post("/api/users/lancamento", payload)
       .then(onSuccess)
       .catch(onFailure);
   }

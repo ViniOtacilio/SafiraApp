@@ -54,7 +54,7 @@ class CustomCategory extends Component {
         this.setState({ refreshing: false });
       };
 
-      await APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId)
+      await APIKit.get("/api/users/categoria/customCategories?user_id=" + userId)
         .then(onSuccess)
         .catch("fail", userId);
     } catch (error) {
@@ -63,7 +63,7 @@ class CustomCategory extends Component {
   };
 
   deleteCustomCategory(id) {
-    APIKit.post("/api/categorias/deleteCustomCategory/" + id)
+    APIKit.delete("/api/users/categoria/" + id)
       .then(this.onRefresh)
       .catch(onFailure);
 
@@ -90,7 +90,7 @@ class CustomCategory extends Component {
       this.setState({ data: data });
     };
 
-    APIKit.get("/api/categorias/getCustomCategories/?user_id=" + userId)
+    APIKit.get("/api/users/categoria/customCategories?user_id=" + userId)
       .then(onSuccess)
       .catch("fail", userId);
   }
@@ -122,7 +122,7 @@ class CustomCategory extends Component {
       this.setState({ errorState: true });
     };
 
-    APIKit.post("/api/categorias/createCustomCategory", payload)
+    APIKit.post("/api/users/categoria", payload)
       .then(onSuccess)
       .catch(onFailure);
   }

@@ -219,7 +219,7 @@ class ManagePlanning extends Component {
           console.log(error)
         };
 
-        APIKit.post("/api/planejamento/createPlanejamento", payload)
+        APIKit.post("/api/users/planejamento", payload)
           .then(onSuccess)
           .catch(onFailure);
       }

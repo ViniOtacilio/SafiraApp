@@ -135,7 +135,7 @@ class MonthlyPlanning extends Component {
         const userId = await AsyncStorage.getItem("userId");
         
         APIKit.get(
-            "/api/planejamento/getPlanejamento?user_id=" +
+            "/api/users/planejamento?user_id=" +
             userId +
             "&mes=" +
             id
@@ -199,7 +199,7 @@ class MonthlyPlanning extends Component {
         console.log(payload)
   
         APIKit.post(
-          "/api/planejamento/deletePlanejamento", payload)
+          "/api/users/planejamento", payload)
         .then(onSuccess)
         .catch(onFailure);
         

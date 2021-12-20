@@ -80,8 +80,7 @@ class CardAdd extends Component {
             console.log('aqui deu ruim')
             this.props.navigation.navigate("Cards");
         };
-        console.log('/api/cards/createCard')
-        APIKit.post("/api/cards/createCard", payload)
+        APIKit.post("/api/users/cards", payload)
             .then(onSuccess)
             .catch(onFailure);
         
