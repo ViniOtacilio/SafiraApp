@@ -22,6 +22,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import { StyleSheet } from 'react-native';
 
 const initialState = {
+  data_lancamento: "",
   value: "",
   tipo_de_transacao: "1",
   categoriaid: "",
@@ -107,6 +108,10 @@ class RegisterTransactions extends Component {
     console.log(this.state.allCategories);
   }
 
+  onDataLancamentoChange = (data_lancamento) => {
+    this.setState({ data_lancamento });
+  };
+
   onCartaoChange = (card_id) => {
     this.setState({card_id});
   }
@@ -172,6 +177,7 @@ onChangeDiaPagamento = (text) => {
 }
 
   async onPressSave() {
+    console.log(this.state.qtd_parcelas)
     let is_parcelado = false;
     const {
       tipo_de_transacao,
@@ -181,7 +187,7 @@ onChangeDiaPagamento = (text) => {
       is_repetitivo,
       qtd_parcelas,
       dia_cobranca,
-      card_id
+      card_id,
     } = this.state;
     
     const userid = this.state.userId;
@@ -190,13 +196,20 @@ onChangeDiaPagamento = (text) => {
       is_parcelado = true;
     }
     var value = '0';
-    if (value) {
+    if (this.state.value) {
       value = this.state.value.replace('R$', '');
       value = value.replace('.', '');
       value = value.replace(',', '.');
       value = Number(value);
     }
     
+    var data_lancamento;
+    if (this.state.data_lancamento) {
+      data_lancamento = this.state.data_lancamento + ' 00:00:00';  
+    }
+
+    console.log('aqui')
+    console.log(data_lancamento)
     console.log(typeof(is_repetitivo));
     const payload = {
       value,
@@ -209,7 +222,8 @@ onChangeDiaPagamento = (text) => {
       qtd_parcelas,
       is_parcelado,
       dia_cobranca,
-      card_id
+      card_id,
+      data_lancamento
     };
   
     console.log(payload);
@@ -295,6 +309,16 @@ onChangeDiaPagamento = (text) => {
           onChangeText={this.onTitleReleaseChange}
         ></Input>
         <TextInputMask
+          type={'custom'}
+          placeholder="Data lançamento (opcional)"
+          options={{
+            mask: '9999-99-99'
+          }}
+          value={this.state.data_lancamento}
+          onChangeText={this.onDataLancamentoChange}
+          style={styles.maskedInput}
+        />
+        <TextInputMask
               type={'money'}
               placeholder={translate("amount")}
               value={this.state.value}
@@ -310,13 +334,59 @@ onChangeDiaPagamento = (text) => {
           autoCorrect={false}
           onChangeText={this.onCommentChange}
         ></Input>
-        <Input 
-          placeholder="Número de parcelas (Opcional)"
-          keyboardType='numeric'
-          onChangeText={(text)=> this.onChangeParcela(text)}
-          value={this.state.qtd_parcelas}
-          maxLength={2}
-        />
+        
+        {/* Usuário seleciona cartão*/}
+        <SelectBox>
+          <RNPickerSelect
+            onValueChange={(text)=> this.onChangeParcela(text)}
+            items={[
+              { label: "x2", value: 2 },
+              { label: "x3", value: 3 },
+              { label: "x4", value: 4 },
+              { label: "x5", value: 5 },
+              { label: "x6", value: 6 },
+              { label: "x7", value: 7 },
+              { label: "x8", value: 8 },
+              { label: "x9", value: 9 },
+              { label: "x10", value: 10 },
+              { label: "x11", value: 11 },
+              { label: "x12", value: 12 },
+            ]}
+            placeholder={{ label: "Número de parcelas (Opcional)", value: "" }}
+            style={{
+              placeholder: {
+                color: 'gray'
+              },
+              inputAndroid: {
+                textAlign: "center",
+                color: "gray",
+                backgroundColor: "#BBD1EA",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                fontSize: 18,
+                borderRadius: 4,
+                height: 40,
+              },
+              inputIOS: {
+                backgroundColor: "#BBD1EA",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                fontSize: 18,
+                borderRadius: 4,
+                height: 40,
+              },
+              iconContainer: {
+                top: 5,
+                right: 15,
+              },
+            }}
+            useNativeAndroidPickerStyle={false}
+          />
+        </SelectBox>
 
         {/* Usuário seleciona cartão*/}
         <SelectBox>
